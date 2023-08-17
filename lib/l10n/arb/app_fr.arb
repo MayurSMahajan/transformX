@@ -1,0 +1,60 @@
+{
+    "@@locale": "fr",
+    "counterAppBarTitle": "Compteur",
+    "@counterAppBarTitle": {
+        "description": "Texte affiché dans la barre d'application de la page du compteur"
+    },
+    "goodMorningGreet":"bonjour",
+    "goodAfternoonGreet":"bon après-midi",
+    "goodEveningGreet":"bonsoir",
+
+    "greatJobHomeText": "excellent travail",
+    "greatJobHomeDescription": "la semaine dernière a été ta meilleure semaine, tu peux le refaire !",
+    "couldHaveBeenBetterHomeText": "aurait pu être mieux",
+    "couldHaveBeenBetterHomeDescription": "tu étais un peu en retrait cette semaine, j'espère que tu seras actif à nouveau",
+    "titleHomeText": "titre",
+
+    "streakText": "série",
+    "recordText": "record",
+    "minText": "min",
+    "idealText": "idéal",
+    "rewardText": "récompense",
+    "editText": "modifier",
+
+
+    "nextActionButton" : "Suivant",
+    "startMyHabitActionButton" : "commencer mon habitude",
+    "iWillCueText" : "je vais",
+    "newHabitCuePlaceholder":"nouvelle habitude...",
+    "atCueText" : "à",
+    "timeCuePlaceholder":"heure",
+    "inCueText" : "dans",
+    "locationCuePlaceholder":"emplacement",
+    "iconForYourHabitCueText": "icône pour votre habitude",
+
+    "myHabitCanBeTrackedInCraveText": "mon habitude peut être suivie dans",
+    "hourCravePlaceholder":"heure",
+    "minDailyTargetCraveText": "objectif quotidien en min",
+    "minMinsCravePlaceholder": "25 min",
+    "idealDailyTargetCraveText": "objectif quotidien idéal",
+    "idealMinsCravePlaceholder": "60 min",
+
+    "afterResposeText": "après",
+    "currentHabitResponsePlaceholder": "habitude actuelle",
+    "iWillDoMyHabitResponseText": "je vais faire mon habitude",
+    "butBeforStartingMyHabitResponseText": "mais avant de commencer mon habitude",
+    "iWillDo1MinRitualResponseText": "je vais faire un rituel de 1 minute",
+    "setUpMyDeskResponseText": "préparer mon bureau",
+
+    "afterIHitMyDailyGoalRewardText": "après avoir atteint mon objectif quotidien",
+    "iWillRewardMyselfRewardText": "je vais me récompenser",
+    "dancingFor5MinsRewardPlaceholder":"danser pendant 5 minutes",
+    "myLongTermRewardRewardText": "ma récompense à long terme",
+    "goToAMovieRewardPlaceholder":"aller voir un film",
+
+    "greatSuccessText": "Formidable",
+    "rememberTrueChangesBeginWithinSuccessText": "n'oublie pas que les vrais changements commencent de l'intérieur",
+    "someTipsSuccessText": "quelques conseils",
+    "tipHeadingSuccessText": "l'environnement approprié",
+    "tipDescriptionSuccessText": "si tu veux apprendre la guitare, place ta guitare à côté de ta télévision dans le salon."
+}

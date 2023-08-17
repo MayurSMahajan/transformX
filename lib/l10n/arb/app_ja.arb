@@ -1,0 +1,60 @@
+{
+    "@@locale": "ja",
+    "counterAppBarTitle": "カウンター",
+    "@counterAppBarTitle": {
+        "description": "カウンターページのアプリバーに表示されるテキスト"
+    },
+    "goodMorningGreet":"おはようございます",
+    "goodAfternoonGreet":"こんにちは",
+    "goodEveningGreet":"こんばんは",
+
+    "greatJobHomeText": "素晴らしい仕事",
+    "greatJobHomeDescription": "先週はあなたのベストウィークでした、もう一度できます！",
+    "couldHaveBeenBetterHomeText": "もう少し良くできた",
+    "couldHaveBeenBetterHomeDescription": "今週は少し調子が悪かったですが、またアクティブになることを願っています",
+    "titleHomeText": "タイトル",
+
+    "streakText": "連続",
+    "recordText": "記録",
+    "minText": "分",
+    "idealText": "理想",
+    "rewardText": "報酬",
+    "editText": "編集",
+
+
+    "nextActionButton" : "次へ",
+    "startMyHabitActionButton" : "習慣を始める",
+    "iWillCueText" : "私はするつもりです",
+    "newHabitCuePlaceholder":"新しい習慣...",
+    "atCueText" : "で",
+    "timeCuePlaceholder":"時刻",
+    "inCueText" : "で",
+    "locationCuePlaceholder":"場所",
+    "iconForYourHabitCueText": "習慣のためのアイコン",
+
+    "myHabitCanBeTrackedInCraveText": "私の習慣は次で追跡できます",
+    "hourCravePlaceholder":"時間",
+    "minDailyTargetCraveText": "日別目標（分）",
+    "minMinsCravePlaceholder": "25 分",
+    "idealDailyTargetCraveText": "理想的な日別目標",
+    "idealMinsCravePlaceholder": "60 分",
+
+    "afterResposeText": "後で",
+    "currentHabitResponsePlaceholder": "現在の習慣",
+    "iWillDoMyHabitResponseText": "私は習慣を実行します",
+    "butBeforStartingMyHabitResponseText": "ただし、習慣を開始する前に",
+    "iWillDo1MinRitualResponseText": "1分間の儀式を行います",
+    "setUpMyDeskResponseText": "私のデスクをセットアップします",
+
+    "afterIHitMyDailyGoalRewardText": "日々の目標を達成した後",
+    "iWillRewardMyselfRewardText": "自分にご褒美をあげます",
+    "dancingFor5MinsRewardPlaceholder":"5分間踊る",
+    "myLongTermRewardRewardText": "長期的な報酬",
+    "goToAMovieRewardPlaceholder":"映画に行く",
+
+    "greatSuccessText": "素晴らしい",
+    "rememberTrueChangesBeginWithinSuccessText": "本当の変化は内から始まることを忘れないでください",
+    "someTipsSuccessText": "いくつかのヒント",
+    "tipHeadingSuccessText": "適切な環境",
+    "tipDescriptionSuccessText": "ギターを学びたい場合、リビングルームのテレビのそばにギターを置いてみてください。"
+}

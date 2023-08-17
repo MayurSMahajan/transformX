@@ -2,6 +2,59 @@
     "@@locale": "es",
     "counterAppBarTitle": "Contador",
     "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+        "description": "Texto mostrado en la barra de aplicaciones de la página del contador"
+    },
+    "goodMorningGreet":"buenos días",
+    "goodAfternoonGreet":"buenas tardes",
+    "goodEveningGreet":"buenas noches",
+
+    "greatJobHomeText": "gran trabajo",
+    "greatJobHomeDescription": "la semana pasada fue tu mejor semana, ¡puedes hacerlo de nuevo!",
+    "couldHaveBeenBetterHomeText": "podría haber sido mejor",
+    "couldHaveBeenBetterHomeDescription": "estuviste un poco desconectado esta semana, espero que vuelvas a estar activo",
+    "titleHomeText": "título",
+
+    "streakText": "racha",
+    "recordText": "récord",
+    "minText": "min",
+    "idealText": "ideal",
+    "rewardText": "recompensa",
+    "editText": "editar",
+
+
+    "nextActionButton" : "Siguiente",
+    "startMyHabitActionButton" : "empezar mi hábito",
+    "iWillCueText" : "lo haré",
+    "newHabitCuePlaceholder":"nuevo hábito...",
+    "atCueText" : "a las",
+    "timeCuePlaceholder":"hora",
+    "inCueText" : "en",
+    "locationCuePlaceholder":"ubicación",
+    "iconForYourHabitCueText": "icono para tu hábito",
+
+    "myHabitCanBeTrackedInCraveText": "mi hábito se puede rastrear en",
+    "hourCravePlaceholder":"hora",
+    "minDailyTargetCraveText": "objetivo diario de min",
+    "minMinsCravePlaceholder": "25 mins",
+    "idealDailyTargetCraveText": "objetivo diario ideal",
+    "idealMinsCravePlaceholder": "60 mins",
+
+    "afterResposeText": "después",
+    "currentHabitResponsePlaceholder": "hábito actual",
+    "iWillDoMyHabitResponseText": "haré mi hábito",
+    "butBeforStartingMyHabitResponseText": "pero antes de empezar mi hábito",
+    "iWillDo1MinRitualResponseText": "haré un ritual de 1 min",
+    "setUpMyDeskResponseText": "prepararé mi escritorio",
+
+    "afterIHitMyDailyGoalRewardText": "después de alcanzar mi objetivo diario",
+    "iWillRewardMyselfRewardText": "me recompensaré",
+    "dancingFor5MinsRewardPlaceholder":"bailar durante 5 minutos",
+    "myLongTermRewardRewardText": "mi recompensa a largo plazo",
+    "goToAMovieRewardPlaceholder":"ir al cine",
+
+    "greatSuccessText": "Gran",
+    "rememberTrueChangesBeginWithinSuccessText": "recuerda que los cambios verdaderos comienzan desde dentro",
+    "someTipsSuccessText": "algunos consejos",
+    "tipHeadingSuccessText": "el entorno adecuado",
+    "tipDescriptionSuccessText": "si quieres aprender guitarra, coloca tu guitarra junto a tu televisor en la sala de estar."
 }
