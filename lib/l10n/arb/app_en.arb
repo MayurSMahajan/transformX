@@ -3,5 +3,59 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
-    }
+    },
+    "goodMorningGreet":"good morning",
+    "goodAfternoonGreet":"good afternoon",
+    "goodEveningGreet":"good Evening",
+
+    "greatJobHomeText": "great job",
+    "greatJobHomeDescription": "last week was your best week, you can do it again!",
+    "couldHaveBeenBetterHomeText": "could have been better",
+    "couldHaveBeenBetterHomeDescription": "you were little off this week, hope you wil be active again",
+    "titleHomeText": "title",
+
+    "streakText": "streak",
+    "recordText": "record",
+    "minText": "min",
+    "idealText": "ideal",
+    "rewardText": "Reward",
+    "editText": "edit",
+
+
+    "nextActionButton" : "Next",
+    "startMyHabitActionButton" : "start my habit",
+    "iWillCueText" : "i will",
+    "newHabitCuePlaceholder":"new habit...",
+    "atCueText" : "at",
+    "timeCuePlaceholder":"time",
+    "inCueText" : "in",
+    "locationCuePlaceholder":"location",
+    "iconForYourHabitCueText": "icon for your habit",
+
+    "myHabitCanBeTrackedInCraveText": "my can be tracked in",
+    "hourCravePlaceholder":"hour",
+    "minDailyTargetCraveText": "min daily target",
+    "minMinsCravePlaceholder": "25 mins",
+    "idealDailyTargetCraveText": "ideal daily target",
+    "idealMinsCravePlaceholder": "60 mins",
+
+    "afterResposeText": "after",
+    "currentHabitResponsePlaceholder": "current habit",
+    "iWillDoMyHabitResponseText": "i will do my habit",
+    "butBeforStartingMyHabitResponseText": "but before starting my habit",
+    "iWillDo1MinRitualResponseText": "i will do a 1 min-Ritual",
+    "setUpMyDeskResponseText": "set up myDesk",
+
+    "afterIHitMyDailyGoalRewardText": "after I hit my daily goal",
+    "iWillRewardMyselfRewardText": "i will reward myself",
+    "dancingFor5MinsRewardPlaceholder":"dancing for 5 mins",
+    "myLongTermRewardRewardText": "my long term reward",
+    "goToAMovieRewardPlaceholder":"go to a movie",
+
+    "greatSuccessText": "Great",
+    "rememberTrueChangesBeginWithinSuccessText": "remember true changes begin within",
+    "someTipsSuccessText": "some tips",
+    "tipHeadingSuccessText": "the right Environment",
+    "tipDescriptionSuccessText": "if you want to learn guitar, place your guitar next to your TV in the drawing room.",
+
 }

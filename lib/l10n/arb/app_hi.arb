@@ -1,0 +1,60 @@
+{
+    "@@locale": "hi",
+    "counterAppBarTitle": "काउंटर",
+    "@counterAppBarTitle": {
+        "description": "काउंटर पेज की ऐप बार में दिखाए जाने वाले पाठ"
+    },
+    "goodMorningGreet":"सुप्रभात",
+    "goodAfternoonGreet":"शुभ दोपहर",
+    "goodEveningGreet":"शुभ संध्या",
+
+    "greatJobHomeText": "बहुत बढ़िया काम",
+    "greatJobHomeDescription": "पिछले हफ्ते आपका सबसे अच्छा हफ्ता था, आप फिर से कर सकते हैं!",
+    "couldHaveBeenBetterHomeText": "बेहतर हो सकता था",
+    "couldHaveBeenBetterHomeDescription": "आप इस हफ्ते थोड़े से पिछड़ गए थे, आशा है कि आप फिर से सक्रिय होंगे",
+    "titleHomeText": "शीर्षक",
+
+    "streakText": "दावा",
+    "recordText": "रिकॉर्ड",
+    "minText": "मिनट",
+    "idealText": "आदर्श",
+    "rewardText": "पुरस्कार",
+    "editText": "संपादित करें",
+
+
+    "nextActionButton" : "आगामी",
+    "startMyHabitActionButton" : "मेरा आदत शुरू करें",
+    "iWillCueText" : "मैं करूंगा",
+    "newHabitCuePlaceholder":"नई आदत...",
+    "atCueText" : "पर",
+    "timeCuePlaceholder":"समय",
+    "inCueText" : "में",
+    "locationCuePlaceholder":"स्थान",
+    "iconForYourHabitCueText": "आपकी आदत के लिए प्रतीक",
+
+    "myHabitCanBeTrackedInCraveText": "मेरी आदत को ट्रैक किया जा सकता है",
+    "hourCravePlaceholder":"घंटे",
+    "minDailyTargetCraveText": "मिनट का दैनिक लक्ष्य",
+    "minMinsCravePlaceholder": "25 मिनट",
+    "idealDailyTargetCraveText": "आदर्श दैनिक लक्ष्य",
+    "idealMinsCravePlaceholder": "60 मिनट",
+
+    "afterResposeText": "के बाद",
+    "currentHabitResponsePlaceholder": "वर्तमान आदत",
+    "iWillDoMyHabitResponseText": "मैं अपनी आदत करूंगा",
+    "butBeforStartingMyHabitResponseText": "लेकिन अपनी आदत शुरू करने से पहले",
+    "iWillDo1MinRitualResponseText": "मैं 1 मिनट का रीति-क्रिया करूंगा",
+    "setUpMyDeskResponseText": "मेरा मेज तैयार करूंगा",
+
+    "afterIHitMyDailyGoalRewardText": "मैं अपने दैनिक लक्ष्य को पूरा करने के बाद",
+    "iWillRewardMyselfRewardText": "मैं अपने आप को पुरस्कृत करूंगा",
+    "dancingFor5MinsRewardPlaceholder":"5 मिनट के लिए नृत्य करना",
+    "myLongTermRewardRewardText": "मेरा दीर्घकालिक पुरस्कार",
+    "goToAMovieRewardPlaceholder":"फिल्म देखने जाएँ",
+
+    "greatSuccessText": "शानदार",
+    "rememberTrueChangesBeginWithinSuccessText": "याद रखें, सच्चे परिवर्तन आंतरिकता से शुरू होते हैं",
+    "someTipsSuccessText": "कुछ सुझाव",
+    "tipHeadingSuccessText": "उचित परिवेश",
+    "tipDescriptionSuccessText": "अगर आप गिटार सीखना चाहते हैं, तो अपनी गिटार को अपने टीवी के पास अपने बैठक कक्ष में रखें।"
+}
