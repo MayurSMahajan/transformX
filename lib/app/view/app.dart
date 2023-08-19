@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transformx/counter/counter.dart';
 import 'package:transformx/l10n/l10n.dart';
+import 'package:transformx/new_habit/new_habit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -16,7 +16,7 @@ class App extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const CounterPage(),
+      home: const NewHabitPage(),
     );
   }
 }
