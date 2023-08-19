@@ -11,6 +11,9 @@ Habit _$HabitFromJson(Map<String, dynamic> json) => Habit(
       location: json['location'] as String,
       time: Time.fromJson(json['time'] as Map<String, dynamic>),
       metric: Metric.fromJson(json['metric'] as Map<String, dynamic>),
+      ritual: json['ritual'] as String,
+      shortReward: json['shortReward'] as String,
+      longReward: json['longReward'] as String,
       id: json['id'] as String?,
       icon: json['icon'] as String?,
     );
@@ -22,4 +25,7 @@ Map<String, dynamic> _$HabitToJson(Habit instance) => <String, dynamic>{
       'time': instance.time.toJson(),
       'metric': instance.metric.toJson(),
       'icon': instance.icon,
+      'ritual': instance.ritual,
+      'shortReward': instance.shortReward,
+      'longReward': instance.longReward,
     };

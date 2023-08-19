@@ -13,6 +13,9 @@ void main() {
       Time time = time,
       Metric metric = metric,
       String icon = 'icon',
+      String ritual = 'ritual',
+      String shortReward = 'shortReward',
+      String longReward = 'longReward',
     }) {
       return Habit(
         id: id,
@@ -21,6 +24,9 @@ void main() {
         time: time,
         metric: metric,
         icon: icon,
+        ritual: ritual,
+        shortReward: shortReward,
+        longReward: longReward,
       );
     }
 
@@ -61,6 +67,9 @@ void main() {
           '1', // id
           'title', // title
           'location', // location
+          'ritual', //ritual
+          'shortReward', //shortReward
+          'longReward', //longReward
         ]),
       );
     });
@@ -89,6 +98,9 @@ void main() {
             metric: metric.copyWith(minimum: 30),
             time: time.copyWith(mins: 30),
             icon: 'new icon',
+            ritual: 'new ritual',
+            shortReward: 'new shortReward',
+            longReward: 'new longReward',
           ),
           equals(
             createSubject(
@@ -98,6 +110,9 @@ void main() {
               metric: metric.copyWith(minimum: 30),
               time: time.copyWith(mins: 30),
               icon: 'new icon',
+              ritual: 'new ritual',
+              shortReward: 'new shortReward',
+              longReward: 'new longReward',
             ),
           ),
         );
@@ -114,6 +129,9 @@ void main() {
             'metric': metric.toJson(),
             'time': time.toJson(),
             'icon': 'icon',
+            'ritual': 'ritual',
+            'shortReward': 'shortReward',
+            'longReward': 'longReward',
           }),
           equals(createSubject()),
         );
@@ -131,6 +149,9 @@ void main() {
             'metric': metric.toJson(),
             'time': time.toJson(),
             'icon': 'icon',
+            'ritual': 'ritual',
+            'shortReward': 'shortReward',
+            'longReward': 'longReward',
           }),
         );
       });

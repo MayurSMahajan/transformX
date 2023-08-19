@@ -28,6 +28,9 @@ class Habit extends Equatable {
     required this.location,
     required this.time,
     required this.metric,
+    required this.ritual,
+    required this.shortReward,
+    required this.longReward,
     String? id,
     this.icon,
   })  : assert(
@@ -66,6 +69,21 @@ class Habit extends Equatable {
   /// Url for the current user's icon
   final String? icon;
 
+  /// The short preparation activity done before the `habit`.
+  ///
+  /// Can be empty but not null
+  final String ritual;
+
+  /// The daily reward for the `habit`.
+  ///
+  /// Can be empty but not null
+  final String shortReward;
+
+  /// The long-term reward for the `habit`.
+  ///
+  /// Can be empty but not null
+  final String longReward;
+
   /// Returns a copy of this `habit` with the given values updated.
   ///
   /// {@macro habit_item}
@@ -76,6 +94,9 @@ class Habit extends Equatable {
     Time? time,
     Metric? metric,
     String? icon,
+    String? ritual,
+    String? shortReward,
+    String? longReward,
   }) {
     return Habit(
       id: id ?? this.id,
@@ -84,6 +105,9 @@ class Habit extends Equatable {
       time: time ?? this.time,
       metric: metric ?? this.metric,
       icon: icon ?? this.icon,
+      ritual: ritual ?? this.ritual,
+      shortReward: shortReward ?? this.shortReward,
+      longReward: longReward ?? this.longReward,
     );
   }
 
@@ -94,5 +118,12 @@ class Habit extends Equatable {
   JsonMap toJson() => _$HabitToJson(this);
 
   @override
-  List<Object> get props => [id, title, location];
+  List<Object> get props => [
+        id,
+        title,
+        location,
+        ritual,
+        shortReward,
+        longReward,
+      ];
 }
