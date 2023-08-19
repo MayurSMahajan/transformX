@@ -23,7 +23,7 @@ class CustomProgressIndicator extends StatelessWidget {
             return LinearProgressIndicator(
               value: value,
               minHeight: 20,
-              backgroundColor: Colors.grey.shade300,
+              backgroundColor: Colors.amber.shade100,
               valueColor: const AlwaysStoppedAnimation<Color>(
                 Color.fromRGBO(255, 207, 35, 1),
               ),
