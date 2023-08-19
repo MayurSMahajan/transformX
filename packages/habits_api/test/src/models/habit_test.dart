@@ -2,24 +2,25 @@ import 'package:habits_api/habits_api.dart';
 import 'package:test/test.dart';
 
 void main() {
+  const metric = Metric(title: 'minutes', minimum: 25, ideal: 60);
+  const time = Time(hour: 12, mins: 55);
+
   group('Habit', () {
     Habit createSubject({
       String? id = '1',
       String title = 'title',
-      int hour = 12,
-      int mins = 55,
-      bool isAm = false,
       String location = 'location',
+      Time time = time,
+      Metric metric = metric,
       String icon = 'icon',
     }) {
       return Habit(
         id: id,
         title: title,
-        hour: hour,
-        mins: mins,
         location: location,
+        time: time,
+        metric: metric,
         icon: icon,
-        isAm: isAm,
       );
     }
 
@@ -59,10 +60,7 @@ void main() {
         equals([
           '1', // id
           'title', // title
-          12,
-          55,
-          'location', // description
-          false,
+          'location', // location
         ]),
       );
     });
@@ -87,19 +85,19 @@ void main() {
           createSubject().copyWith(
             id: '2',
             title: 'new title',
-            hour: 8,
-            mins: 45,
             location: 'new location',
-            isAm: true,
+            metric: metric.copyWith(minimum: 30),
+            time: time.copyWith(mins: 30),
+            icon: 'new icon',
           ),
           equals(
             createSubject(
               id: '2',
               title: 'new title',
-              hour: 8,
-              mins: 45,
               location: 'new location',
-              isAm: true,
+              metric: metric.copyWith(minimum: 30),
+              time: time.copyWith(mins: 30),
+              icon: 'new icon',
             ),
           ),
         );
@@ -113,9 +111,8 @@ void main() {
             'id': '1',
             'title': 'title',
             'location': 'location',
-            'hour': 12,
-            'mins': 55,
-            'isAm': false,
+            'metric': metric.toJson(),
+            'time': time.toJson(),
             'icon': 'icon',
           }),
           equals(createSubject()),
@@ -131,9 +128,8 @@ void main() {
             'id': '1',
             'title': 'title',
             'location': 'location',
-            'hour': 12,
-            'mins': 55,
-            'isAm': false,
+            'metric': metric.toJson(),
+            'time': time.toJson(),
             'icon': 'icon',
           }),
         );

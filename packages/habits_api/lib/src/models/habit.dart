@@ -9,7 +9,7 @@ part 'habit.g.dart';
 /// {@template habit_item}
 /// A single `habit` item.
 ///
-/// Contains a [title], [hour], [mins], [location] and [id],
+/// Contains a [title], [time], [metric], [location] and [id],
 /// in addition to a [icon] which is URL for habit illustration.
 ///
 /// If an [id] is provided, it cannot be empty. If no [id] is provided, one
@@ -20,17 +20,16 @@ part 'habit.g.dart';
 /// respectively.
 /// {@endtemplate}
 @immutable
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Habit extends Equatable {
   /// {@macro habit_item}
   Habit({
     required this.title,
-    required this.hour,
-    required this.mins,
     required this.location,
+    required this.time,
+    required this.metric,
     String? id,
     this.icon,
-    this.isAm = false,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or not empty',
@@ -47,25 +46,20 @@ class Habit extends Equatable {
   /// Note that the title may be empty.
   final String title;
 
-  /// The time of the `habit`.
-  ///
-  /// In this field we only care about hours.
-  final int hour;
-
-  /// The time of the `habit`.
-  ///
-  /// In this field we only care about mins.
-  final int mins;
-
-  /// The time format of the `habit`.
-  ///
-  /// flag determining either am or pm.
-  final bool isAm;
-
   /// The location of the `habit`.
   ///
   /// Defaults to an empty string.
   final String location;
+
+  /// The time of the `habit`.
+  ///
+  /// time when the user is expected to their habit.
+  final Time time;
+
+  /// The metric of the `habit`.
+  ///
+  /// it represents the unit of measurement for progress
+  final Metric metric;
 
   /// The icon of the `habit`.
   ///
@@ -78,19 +72,18 @@ class Habit extends Equatable {
   Habit copyWith({
     String? id,
     String? title,
-    int? hour,
-    int? mins,
     String? location,
+    Time? time,
+    Metric? metric,
     String? icon,
-    bool? isAm,
   }) {
     return Habit(
       id: id ?? this.id,
       title: title ?? this.title,
-      hour: hour ?? this.hour,
-      mins: mins ?? this.mins,
       location: location ?? this.location,
-      isAm: isAm ?? this.isAm,
+      time: time ?? this.time,
+      metric: metric ?? this.metric,
+      icon: icon ?? this.icon,
     );
   }
 
@@ -101,5 +94,5 @@ class Habit extends Equatable {
   JsonMap toJson() => _$HabitToJson(this);
 
   @override
-  List<Object> get props => [id, title, hour, mins, location, isAm];
+  List<Object> get props => [id, title, location];
 }

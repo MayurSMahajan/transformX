@@ -8,20 +8,18 @@ part of 'habit.dart';
 
 Habit _$HabitFromJson(Map<String, dynamic> json) => Habit(
       title: json['title'] as String,
-      hour: json['hour'] as int,
-      mins: json['mins'] as int,
       location: json['location'] as String,
+      time: Time.fromJson(json['time'] as Map<String, dynamic>),
+      metric: Metric.fromJson(json['metric'] as Map<String, dynamic>),
       id: json['id'] as String?,
       icon: json['icon'] as String?,
-      isAm: json['isAm'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$HabitToJson(Habit instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'hour': instance.hour,
-      'mins': instance.mins,
-      'isAm': instance.isAm,
       'location': instance.location,
+      'time': instance.time.toJson(),
+      'metric': instance.metric.toJson(),
       'icon': instance.icon,
     };
