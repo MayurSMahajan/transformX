@@ -34,7 +34,10 @@ class _HabitNameInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text('I will '),
+        Text(
+          'I will ',
+          style: Theme.of(context).textTheme.displaySmall,
+        ),
         Expanded(
           child: BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
             buildWhen: (previous, current) =>
@@ -46,7 +49,7 @@ class _HabitNameInput extends StatelessWidget {
                     .read<NewHabitFormBloc>()
                     .add(HabitNameChanged(name)),
                 decoration: InputDecoration(
-                  labelText: 'habitname',
+                  hintText: 'habitname',
                   errorText: state.habitName.displayError != null
                       ? 'invalid habitname'
                       : null,
@@ -65,7 +68,10 @@ class _HabitLocationInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text('in '),
+        Text(
+          'in ',
+          style: Theme.of(context).textTheme.displaySmall,
+        ),
         Expanded(
           child: BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
             buildWhen: (previous, current) =>
@@ -77,7 +83,7 @@ class _HabitLocationInput extends StatelessWidget {
                     .read<NewHabitFormBloc>()
                     .add(HabitLocationChanged(location)),
                 decoration: InputDecoration(
-                  labelText: 'habitlocation',
+                  hintText: 'habitlocation',
                   errorText: state.habitName.displayError != null
                       ? 'invalid location'
                       : null,
@@ -96,7 +102,7 @@ class _NextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
       builder: (context, state) {
-        return TextButton(
+        return ElevatedButton(
           onPressed: state.isValid
               ? () {
                   context.read<NewHabitUICubit>().setStatusAndProgress(
