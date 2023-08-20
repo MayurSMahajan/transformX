@@ -12,24 +12,89 @@ class HabitHalfForm extends StatelessWidget {
       (NewHabitUICubit cubit) => cubit.state.progress,
     );
 
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+      child: Column(
+        children: [
+          CustomProgressIndicator(progress: progress),
+          const VSpace(),
+          _HabitRitualInput(),
+          const Expanded(child: SizedBox()),
+          const VSpace(),
+          _NextButton(),
+          const VSpace(),
+        ],
+      ),
+    );
+  }
+}
+
+class _HabitRitualInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomProgressIndicator(progress: progress),
-        const VSpace(),
-        InkWell(
-          onTap: () {
-            context.read<NewHabitUICubit>().setStatusAndProgress(
-                  NewHabitUIStatus.quarterAndHalf,
-                  0.75,
-                );
+        Text(
+          'but before starting my habit',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              'i will do a 1-min ritual',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.question_mark_rounded,
+                size: 14,
+              ),
+            )
+          ],
+        ),
+        BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+          buildWhen: (previous, current) =>
+              previous.habitRitual != current.habitRitual,
+          builder: (context, state) {
+            return TextField(
+              key: const Key('habitForm_habitRitualInput_textField'),
+              onChanged: (ritual) => context
+                  .read<NewHabitFormBloc>()
+                  .add(HabitRitualChanged(ritual)),
+              decoration: InputDecoration(
+                hintText: 'habit ritual',
+                errorText: state.habitRitual.displayError != null
+                    ? 'invalid habit ritual'
+                    : null,
+              ),
+            );
           },
-          child: Container(
-            height: 300,
-            width: 300,
-            color: Colors.blueAccent,
-          ),
         ),
       ],
+    );
+  }
+}
+
+class _NextButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+      builder: (context, state) {
+        return ElevatedButton(
+          onPressed: state.isValid
+              ? () {
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.quarterAndHalf,
+                        0.70,
+                      );
+                }
+              : null,
+          child: const Text('Next'),
+        );
+      },
     );
   }
 }

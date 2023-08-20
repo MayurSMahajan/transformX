@@ -58,13 +58,7 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       state.copyWith(
         habitMetricMin: habitMetricMin,
         isValid: Formz.validate([
-          state.habitName,
-          state.habitLocation,
-          state.habitLongReward,
-          state.habitShortReward,
           habitMetricMin,
-          state.habitMetricIdeal,
-          state.habitRitual,
         ]),
       ),
     );
@@ -79,13 +73,8 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       state.copyWith(
         habitMetricIdeal: habitMetricIdeal,
         isValid: Formz.validate([
-          state.habitName,
-          state.habitLocation,
-          state.habitLongReward,
-          state.habitShortReward,
           state.habitMetricMin,
           habitMetricIdeal,
-          state.habitRitual,
         ]),
       ),
     );
@@ -100,12 +89,6 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       state.copyWith(
         habitRitual: habitRitual,
         isValid: Formz.validate([
-          state.habitName,
-          state.habitLocation,
-          state.habitLongReward,
-          state.habitShortReward,
-          state.habitMetricMin,
-          state.habitMetricIdeal,
           habitRitual,
         ]),
       ),

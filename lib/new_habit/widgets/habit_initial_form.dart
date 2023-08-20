@@ -21,8 +21,10 @@ class HabitInitialForm extends StatelessWidget {
           _HabitNameInput(),
           const VSpace(),
           _HabitLocationInput(),
+          const Expanded(child: SizedBox()),
           const VSpace(),
           _NextButton(),
+          const VSpace(),
         ],
       ),
     );
@@ -84,7 +86,7 @@ class _HabitLocationInput extends StatelessWidget {
                     .add(HabitLocationChanged(location)),
                 decoration: InputDecoration(
                   hintText: 'habitlocation',
-                  errorText: state.habitName.displayError != null
+                  errorText: state.habitLocation.displayError != null
                       ? 'invalid location'
                       : null,
                 ),

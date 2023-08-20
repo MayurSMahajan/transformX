@@ -40,9 +40,7 @@ class NewHabitView extends StatelessWidget {
               case NewHabitUIStatus.quarterAndHalf:
                 return const HabitQuarterAndHalfForm();
               case NewHabitUIStatus.complete:
-                return Container(
-                  color: Colors.indigo,
-                );
+                return const HabitCompleteForm();
             }
           },
         ),
