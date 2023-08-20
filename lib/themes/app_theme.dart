@@ -57,7 +57,7 @@ class AppTheme {
     );
   }
 
-  Color get _backgroundColor => AppColors.white;
+  Color get _backgroundColor => const Color(0xFFFFF7D5);
 
   AppBarTheme get _appBarTheme {
     return AppBarTheme(

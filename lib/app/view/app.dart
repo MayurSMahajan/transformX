@@ -12,6 +12,7 @@ class App extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: const AppTheme().themeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      debugShowCheckedModeBanner: false,
       supportedLocales: AppLocalizations.supportedLocales,
       home: const NewHabitPage(),
     );
