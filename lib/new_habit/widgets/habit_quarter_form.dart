@@ -9,7 +9,7 @@ class HabitQuarterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final progress = context.select(
-      (NewHabitCubit cubit) => cubit.state.progress,
+      (NewHabitUICubit cubit) => cubit.state.progress,
     );
 
     return Column(
@@ -23,8 +23,8 @@ class HabitQuarterForm extends StatelessWidget {
           child: TextButton(
             child: const Text('Next'),
             onPressed: () {
-              context.read<NewHabitCubit>().setStatusAndProgress(
-                    NewHabitStatus.half,
+              context.read<NewHabitUICubit>().setStatusAndProgress(
+                    NewHabitUIStatus.half,
                     0.50,
                   );
             },

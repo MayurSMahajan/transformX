@@ -9,7 +9,7 @@ class HabitHalfForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final progress = context.select(
-      (NewHabitCubit cubit) => cubit.state.progress,
+      (NewHabitUICubit cubit) => cubit.state.progress,
     );
 
     return Column(
@@ -18,8 +18,8 @@ class HabitHalfForm extends StatelessWidget {
         const VSpace(),
         InkWell(
           onTap: () {
-            context.read<NewHabitCubit>().setStatusAndProgress(
-                  NewHabitStatus.quarterAndHalf,
+            context.read<NewHabitUICubit>().setStatusAndProgress(
+                  NewHabitUIStatus.quarterAndHalf,
                   0.75,
                 );
           },

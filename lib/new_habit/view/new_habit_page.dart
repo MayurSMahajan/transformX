@@ -7,8 +7,15 @@ class NewHabitPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => NewHabitCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NewHabitUICubit>(
+          create: (_) => NewHabitUICubit(),
+        ),
+        BlocProvider<NewHabitFormBloc>(
+          create: (_) => NewHabitFormBloc(),
+        ),
+      ],
       child: const NewHabitView(),
     );
   }
@@ -21,18 +28,18 @@ class NewHabitView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: BlocBuilder<NewHabitCubit, NewHabitState>(
+        child: BlocBuilder<NewHabitUICubit, NewHabitUIState>(
           builder: (context, state) {
             switch (state.status) {
-              case NewHabitStatus.initial:
+              case NewHabitUIStatus.initial:
                 return const HabitInitialForm();
-              case NewHabitStatus.quarter:
+              case NewHabitUIStatus.quarter:
                 return const HabitQuarterForm();
-              case NewHabitStatus.half:
+              case NewHabitUIStatus.half:
                 return const HabitHalfForm();
-              case NewHabitStatus.quarterAndHalf:
+              case NewHabitUIStatus.quarterAndHalf:
                 return const HabitQuarterAndHalfForm();
-              case NewHabitStatus.complete:
+              case NewHabitUIStatus.complete:
                 return Container(
                   color: Colors.indigo,
                 );
