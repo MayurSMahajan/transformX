@@ -31,7 +31,7 @@ class AppTheme {
       switchTheme: _switchTheme,
       progressIndicatorTheme: _progressIndicatorTheme,
       tabBarTheme: _tabBarTheme,
-      bottomNavigationBarTheme: _bottomAppBarTheme,
+      navigationBarTheme: _navigationBarTheme,
       chipTheme: _chipTheme,
     );
   }
@@ -165,10 +165,12 @@ class AppTheme {
   ElevatedButtonThemeData get _elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        minimumSize: const Size(200, 50),
+        side: const BorderSide(width: 2),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
+          borderRadius: BorderRadius.all(Radius.circular(6)),
         ),
-        padding: const EdgeInsets.symmetric(vertical: AppSpacing.lg),
+        padding: const EdgeInsets.all(AppSpacing.lg),
         textStyle: _textTheme.labelLarge,
         backgroundColor: AppColors.primaryYellow,
         foregroundColor: AppColors.black,
@@ -260,11 +262,11 @@ InputBorder get _textFieldBorder => const UnderlineInputBorder(
       ),
     );
 
-BottomNavigationBarThemeData get _bottomAppBarTheme {
-  return BottomNavigationBarThemeData(
-    backgroundColor: AppColors.darkBackground,
-    selectedItemColor: AppColors.white,
-    unselectedItemColor: AppColors.white.withOpacity(0.74),
+NavigationBarThemeData get _navigationBarTheme {
+  return const NavigationBarThemeData(
+    elevation: 3,
+    indicatorColor: AppColors.orange,
+    backgroundColor: AppColors.primaryYellow,
   );
 }
 
