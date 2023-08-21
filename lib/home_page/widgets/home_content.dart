@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
 
 class HomeContent extends StatelessWidget {
@@ -140,19 +141,22 @@ class NewHabitCardBtn extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.add,
-              size: 54,
-            ),
-            const VSpace(),
-            Text(
-              'new habit',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        child: InkWell(
+          onTap: () => context.go('/new'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.add,
+                size: 54,
+              ),
+              const VSpace(),
+              Text(
+                'new habit',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
         ),
       ),
     );

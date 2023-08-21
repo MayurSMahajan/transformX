@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:transformx/home_page/home_page.dart';
 import 'package:transformx/l10n/l10n.dart';
+import 'package:transformx/routes/routes.dart';
 import 'package:transformx/themes/themes.dart';
 
 class App extends StatelessWidget {
@@ -8,13 +8,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       themeMode: ThemeMode.light,
       theme: const AppTheme().themeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const HomePage(),
+      routerConfig: routerConfig,
     );
   }
 }
