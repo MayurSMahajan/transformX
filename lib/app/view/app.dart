@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transformx/home_page/home_page.dart';
 import 'package:transformx/l10n/l10n.dart';
-import 'package:transformx/new_habit/new_habit.dart';
 import 'package:transformx/themes/themes.dart';
 
 class App extends StatelessWidget {
@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const NewHabitPage(),
+      home: const HomePage(),
     );
   }
 }

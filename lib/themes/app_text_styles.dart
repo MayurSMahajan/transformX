@@ -187,7 +187,7 @@ abstract class ContentTextStyle {
   /// Headline 4 Text Style
   static final TextStyle headline4 = _baseTextStyle.copyWith(
     fontSize: 24,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w500,
     height: 1.33,
   );
 

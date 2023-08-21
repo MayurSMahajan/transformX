@@ -13,7 +13,7 @@ class AppTheme {
   ThemeData get themeData {
     return ThemeData(
       primaryColor: AppColors.primaryYellow,
-      canvasColor: _backgroundColor,
+      canvasColor: _canvasColor,
       scaffoldBackgroundColor: _backgroundColor,
       iconTheme: _iconTheme,
       appBarTheme: _appBarTheme,
@@ -57,7 +57,9 @@ class AppTheme {
     );
   }
 
-  Color get _backgroundColor => const Color(0xFFFFF7D5);
+  Color get _backgroundColor => const Color(0xFFFFFFFF);
+
+  Color get _canvasColor => const Color(0xFFFFF7D5);
 
   AppBarTheme get _appBarTheme {
     return AppBarTheme(
