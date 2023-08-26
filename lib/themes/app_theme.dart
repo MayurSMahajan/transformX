@@ -264,7 +264,7 @@ InputBorder get _textFieldBorder => const UnderlineInputBorder(
 
 NavigationBarThemeData get _navigationBarTheme {
   return const NavigationBarThemeData(
-    elevation: 3,
+    elevation: 5,
     indicatorColor: AppColors.orange,
     backgroundColor: AppColors.primaryYellow,
   );

@@ -58,13 +58,13 @@ class HabitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 170,
-      height: 200,
+      height: 220,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Theme.of(context).canvasColor,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -91,9 +91,10 @@ class HabitCard extends StatelessWidget {
               ),
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(right: 8),
+                  padding: EdgeInsets.only(right: 8, bottom: 8),
                   child: Icon(
                     Icons.timelapse,
                     size: 24,
@@ -106,9 +107,10 @@ class HabitCard extends StatelessWidget {
               ],
             ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Padding(
-                  padding: EdgeInsets.only(right: 8),
+                  padding: EdgeInsets.only(right: 8, bottom: 8),
                   child: Icon(
                     Icons.pin_drop_outlined,
                     size: 24,
@@ -134,7 +136,7 @@ class NewHabitCardBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 170,
-      height: 200,
+      height: 220,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Theme.of(context).canvasColor,
@@ -240,17 +242,17 @@ class CustomAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.notifications),
-        ),
         Text(
           'TransformX',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.settings),
+        CircleAvatar(
+          radius: 25,
+          backgroundColor: Colors.amberAccent,
+          child: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.person_2),
+          ),
         )
       ],
     );
