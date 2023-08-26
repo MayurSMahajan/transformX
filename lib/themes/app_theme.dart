@@ -93,27 +93,6 @@ class AppTheme {
 
   TextTheme get _textTheme => uiTextTheme;
 
-  /// The Content text theme based on [ContentTextStyle].
-  static final contentTextTheme = TextTheme(
-    displayLarge: ContentTextStyle.headline1,
-    displayMedium: ContentTextStyle.headline2,
-    displaySmall: ContentTextStyle.headline3,
-    headlineMedium: ContentTextStyle.headline4,
-    headlineSmall: ContentTextStyle.headline5,
-    titleLarge: ContentTextStyle.headline6,
-    titleMedium: ContentTextStyle.subtitle1,
-    titleSmall: ContentTextStyle.subtitle2,
-    bodyLarge: ContentTextStyle.bodyText1,
-    bodyMedium: ContentTextStyle.bodyText2,
-    labelLarge: ContentTextStyle.button,
-    bodySmall: ContentTextStyle.caption,
-    labelSmall: ContentTextStyle.overline,
-  ).apply(
-    bodyColor: AppColors.black,
-    displayColor: AppColors.black,
-    decorationColor: AppColors.black,
-  );
-
   /// The UI text theme based on [UITextStyle].
   static final uiTextTheme = TextTheme(
     displayLarge: UITextStyle.headline1,
@@ -294,7 +273,7 @@ class AppDarkTheme extends AppTheme {
 
   @override
   TextTheme get _textTheme {
-    return AppTheme.contentTextTheme.apply(
+    return AppTheme.uiTextTheme.apply(
       bodyColor: AppColors.white,
       displayColor: AppColors.white,
       decorationColor: AppColors.white,
