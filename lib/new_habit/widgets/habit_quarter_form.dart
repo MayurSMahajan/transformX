@@ -49,7 +49,7 @@ class _HabitMetricTitleInput extends StatelessWidget {
           children: [
             Text(
               'can be tracked in',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
               onPressed: () {},
@@ -79,7 +79,7 @@ class _HabitMetricMinInput extends StatelessWidget {
       children: [
         Text(
           'min daily target',
-          style: Theme.of(context).textTheme.displaySmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
           buildWhen: (previous, current) =>
@@ -113,7 +113,7 @@ class _HabitMetricIdealInput extends StatelessWidget {
       children: [
         Text(
           'ideal daily target',
-          style: Theme.of(context).textTheme.displaySmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
           buildWhen: (previous, current) =>

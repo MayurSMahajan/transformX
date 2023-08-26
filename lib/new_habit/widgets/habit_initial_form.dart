@@ -38,7 +38,7 @@ class _HabitNameInput extends StatelessWidget {
       children: [
         Text(
           'I will ',
-          style: Theme.of(context).textTheme.displaySmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         Expanded(
           child: BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
@@ -72,7 +72,7 @@ class _HabitLocationInput extends StatelessWidget {
       children: [
         Text(
           'in ',
-          style: Theme.of(context).textTheme.displaySmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         Expanded(
           child: BlocBuilder<NewHabitFormBloc, NewHabitFormState>(

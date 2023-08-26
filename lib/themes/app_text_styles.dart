@@ -54,15 +54,15 @@ abstract class UITextStyle {
   /// Headline 4 Text Style
   static final TextStyle headline4 = _baseTextStyle.copyWith(
     fontSize: 24,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w500,
     height: 1.33,
   );
 
   /// Headline 5 Text Style
   static final TextStyle headline5 = _baseTextStyle.copyWith(
-    fontSize: 22,
-    fontWeight: FontWeight.normal,
-    height: 1.27,
+    fontSize: 24,
+    fontWeight: FontWeight.w400,
+    height: 1.35,
   );
 
   /// Headline 6 Text Style
@@ -75,6 +75,7 @@ abstract class UITextStyle {
   /// Subtitle 1 Text Style
   static final TextStyle subtitle1 = _baseTextStyle.copyWith(
     fontSize: 16,
+    fontWeight: FontWeight.w200,
     height: 1.5,
     letterSpacing: 0.1,
   );

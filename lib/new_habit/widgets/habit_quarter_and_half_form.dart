@@ -46,7 +46,7 @@ class _HabitShortRewardInput extends StatelessWidget {
           children: [
             Text(
               'i will reward myself',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
               onPressed: () {},
@@ -91,7 +91,7 @@ class _HabitLongRewardInput extends StatelessWidget {
           children: [
             Text(
               'my long term reward',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
               onPressed: () {},

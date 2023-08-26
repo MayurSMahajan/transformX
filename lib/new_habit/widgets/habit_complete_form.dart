@@ -15,7 +15,7 @@ class HabitCompleteForm extends StatelessWidget {
           const VSpace(),
           Text(
             'Great\n Remember true change begins within',
-            style: Theme.of(context).textTheme.displaySmall,
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
           const Expanded(child: SizedBox()),
           const VSpace(),

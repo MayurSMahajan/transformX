@@ -44,7 +44,7 @@ class _HabitRitualInput extends StatelessWidget {
           children: [
             Text(
               'i will do a 1-min ritual',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
               onPressed: () {},

@@ -36,7 +36,7 @@ class HabitListContainer extends StatelessWidget {
         const VSpace(),
         Text(
           'habits',
-          style: Theme.of(context).textTheme.displaySmall,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         const VSpace(),
         const Row(
@@ -176,7 +176,7 @@ class DailyStreakContainer extends StatelessWidget {
         color: Theme.of(context).canvasColor,
       ),
       child: const Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -214,9 +214,17 @@ class DailyStreakCard extends StatelessWidget {
         ),
         const VSpace(),
         if (isActive)
-          Image.asset('assets/icons/streak_active.png')
+          Image.asset(
+            'assets/icons/streak_active.png',
+            width: 28,
+            height: 28,
+          )
         else
-          Image.asset('assets/icons/streak_inactive.png')
+          Image.asset(
+            'assets/icons/streak_inactive.png',
+            width: 28,
+            height: 28,
+          )
       ],
     );
   }
@@ -229,7 +237,7 @@ class GreetingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'good morning',
-      style: Theme.of(context).textTheme.displayMedium,
+      style: Theme.of(context).textTheme.headlineSmall,
     );
   }
 }
