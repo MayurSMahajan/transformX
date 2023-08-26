@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformx/habit_track/view/habit_track_page.dart';
 import 'package:transformx/home_page/home_page.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 
@@ -36,6 +37,25 @@ final GoRouter routerConfig = GoRouter(
                 return FadeTransition(
                   opacity: CurveTween(curve: Curves.easeInOutCirc)
                       .animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: 'track',
+          pageBuilder: (context, state) {
+            debugPrint(state.pageKey.toString());
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const HabitTrackPage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(
+                    curve: Curves.easeOutSine,
+                  ).animate(animation),
                   child: child,
                 );
               },

@@ -67,7 +67,7 @@ class AppTheme {
       titleTextStyle: _textTheme.titleLarge,
       elevation: 0,
       toolbarHeight: 64,
-      backgroundColor: AppColors.transparent,
+      backgroundColor: _canvasColor,
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
@@ -144,10 +144,10 @@ class AppTheme {
   ElevatedButtonThemeData get _elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        elevation: 0,
         minimumSize: const Size(200, 50),
-        side: const BorderSide(width: 2),
         shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(6)),
+          borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         padding: const EdgeInsets.all(AppSpacing.lg),
         textStyle: _textTheme.labelLarge,

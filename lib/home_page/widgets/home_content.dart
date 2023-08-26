@@ -56,73 +56,55 @@ class HabitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 170,
-      height: 220,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Theme.of(context).canvasColor,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Theme.of(context).primaryColor,
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(8),
-                child: Icon(
-                  Icons.sports_gymnastics,
-                  size: 22,
+    return InkWell(
+      onTap: () => context.go('/track'),
+      child: Container(
+        width: 170,
+        height: 220,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Theme.of(context).canvasColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Theme.of(context).primaryColor,
                 ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  'go to gym and gym',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-              ),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 8, bottom: 8),
-                  child: Icon(
-                    Icons.timelapse,
-                    size: 24,
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Hero(
+                    tag: 'habit_icon',
+                    child: Icon(
+                      Icons.sports_gymnastics,
+                      size: 22,
+                    ),
                   ),
                 ),
-                Text(
-                  '06:00 AM',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 8, bottom: 8),
-                  child: Icon(
-                    Icons.pin_drop_outlined,
-                    size: 24,
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'go to gym and gym',
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
-                Text(
-                  'gym ',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ],
-            ),
-          ],
+              ),
+              const MetadataCard(
+                iconData: Icons.timer_outlined,
+                metadata: '06:00AM',
+              ),
+              const MetadataCard(
+                iconData: Icons.pin_drop_outlined,
+                metadata: 'gym',
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -40,7 +40,7 @@ abstract class UITextStyle {
   /// Headline 2 Text Style
   static final TextStyle headline2 = _baseTextStyle.copyWith(
     fontSize: 32,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w500,
     height: 1.25,
   );
 
@@ -110,9 +110,10 @@ abstract class UITextStyle {
 
   /// Button Text Style
   static final TextStyle button = _baseTextStyle.copyWith(
-    fontSize: 16,
+    fontSize: 18,
     height: 1.42,
-    letterSpacing: 0.1,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.2,
   );
 
   /// Overline Text Style
