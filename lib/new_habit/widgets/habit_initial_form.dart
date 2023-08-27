@@ -16,6 +16,7 @@ class HabitInitialForm extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         children: [
+          const VSpace(),
           CustomProgressIndicator(progress: progress),
           const VSpace(),
           _HabitNameInput(),

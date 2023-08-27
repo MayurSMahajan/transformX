@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:transformx/infra/infra.dart';
-import 'package:transformx/new_habit/new_habit.dart';
 
 class HabitCompleteForm extends StatelessWidget {
   const HabitCompleteForm({super.key});
@@ -11,6 +10,7 @@ class HabitCompleteForm extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         children: [
+          const VSpace(),
           const CustomProgressIndicator(progress: 1),
           const VSpace(),
           Text(
