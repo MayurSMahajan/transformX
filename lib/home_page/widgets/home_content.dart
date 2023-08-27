@@ -96,11 +96,11 @@ class HabitCard extends StatelessWidget {
                 ),
               ),
               const MetadataCard(
-                iconData: Icons.timer_outlined,
+                icon: Icon(Icons.timer_outlined),
                 metadata: '06:00AM',
               ),
               const MetadataCard(
-                iconData: Icons.pin_drop_outlined,
+                icon: Icon(Icons.pin_drop_outlined),
                 metadata: 'gym',
               ),
             ],

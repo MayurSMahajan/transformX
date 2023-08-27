@@ -19,20 +19,10 @@ class HabitCompleteForm extends StatelessWidget {
           ),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          _NextButton(),
+          PrimaryButton(onPressed: () {}, text: 'Next'),
           const VSpace(),
         ],
       ),
-    );
-  }
-}
-
-class _NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {},
-      child: const Text('Next'),
     );
   }
 }

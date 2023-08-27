@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class MetadataCard extends StatelessWidget {
   const MetadataCard({
-    required this.iconData,
+    required this.icon,
     required this.metadata,
     super.key,
   });
 
-  final IconData iconData;
+  final Widget icon;
   final String metadata;
 
   @override
@@ -17,11 +17,7 @@ class MetadataCard extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 8, bottom: 8),
-          child: Icon(
-            iconData,
-            size: 24,
-            color: Colors.grey.shade700,
-          ),
+          child: icon,
         ),
         Text(
           metadata,

@@ -74,11 +74,11 @@ class _HabitHorizontalCardSubHeading extends StatelessWidget {
             child: Column(
               children: [
                 MetadataCard(
-                  iconData: Icons.timer_outlined,
+                  icon: Icon(Icons.timer_outlined),
                   metadata: '06:00AM',
                 ),
                 MetadataCard(
-                  iconData: Icons.pin_drop_outlined,
+                  icon: Icon(Icons.pin_drop_outlined),
                   metadata: 'gym',
                 ),
               ],

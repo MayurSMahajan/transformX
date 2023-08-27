@@ -161,7 +161,7 @@ class AppTheme {
     return TextButtonThemeData(
       style: TextButton.styleFrom(
         textStyle: _textTheme.labelLarge?.copyWith(
-          fontWeight: FontWeight.w200,
+          fontWeight: FontWeight.w400,
         ),
         foregroundColor: AppColors.black,
       ),

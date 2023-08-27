@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transformx/habit_track/habit_track.dart';
+import 'package:transformx/infra/infra.dart';
 
 class HabitTrackPage extends StatelessWidget {
   const HabitTrackPage({super.key});
@@ -16,11 +17,18 @@ class HabitTrackPage extends StatelessWidget {
             ),
           ],
         ),
-        body: const Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HabitHorizontalCard(),
-          ],
+        body: const SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HabitHorizontalCard(),
+              HabitRecordContainer(),
+              HabitMetricContainer(),
+              HabitStackContainer(),
+              VSpace(),
+              HabitStackAction(),
+            ],
+          ),
         ),
       ),
     );
