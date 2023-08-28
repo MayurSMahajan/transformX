@@ -17,8 +17,8 @@ abstract class HabitStatsApi {
 
   /// Deletes the `stats` with the given id.
   ///
-  /// If no `stats` with the given id exists, a [StatsNotFoundException] error is
-  /// thrown.
+  /// If no `stats` with the given id exists,
+  /// a [StatsNotFoundException] error is thrown.
   Future<void> deleteTodo(String id);
 }
 
