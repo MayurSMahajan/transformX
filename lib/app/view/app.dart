@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transformx/app/app.dart';
 import 'package:transformx/l10n/l10n.dart';
-import 'package:transformx/routes/routes.dart';
 import 'package:transformx/themes/themes.dart';
 
 class App extends StatelessWidget {
