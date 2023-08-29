@@ -10,6 +10,18 @@ A habit tracking app based on the Atomic Habits
 
 ---
 
+<!-- ## Firebase Setup 🚀
+
+After cloning this repository, migrate to instagram-flutter-clone folder. Then, follow the following steps:
+
+    Create Firebase Project
+    Create Android, iOS & Web Apps
+    Enable Authentication
+    Click the "sign-in method" tab and enable sign in with Google
+    Create a Flutter app within your Firebase and ake  for Android, with package name: com.example.verygoodcore.transformx
+    
+     -->
+
 ## Getting Started 🚀
 
 This project contains 3 flavors:
