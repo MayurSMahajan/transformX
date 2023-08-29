@@ -50,7 +50,7 @@ class _HabitHorizontalCardHeading extends StatelessWidget {
               padding: const EdgeInsets.only(left: 4),
               child: Text(
                 'go to gym and gym',
-                style: Theme.of(context).textTheme.displayMedium,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
             ),
           ),

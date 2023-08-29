@@ -9,17 +9,19 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Padding(
       padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          CustomAppBar(),
-          VSpace(),
-          GreetingContainer(),
-          VSpace(),
-          DailyStreakContainer(),
-          VSpace(),
-          HabitListContainer(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomAppBar(),
+            VSpace(),
+            GreetingContainer(),
+            VSpace(),
+            DailyStreakContainer(),
+            VSpace(),
+            HabitListContainer(),
+          ],
+        ),
       ),
     );
   }
@@ -192,7 +194,7 @@ class DailyStreakCard extends StatelessWidget {
       children: [
         Text(
           day,
-          style: Theme.of(context).textTheme.headlineMedium,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         const VSpace(),
         if (isActive)

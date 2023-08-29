@@ -33,7 +33,7 @@ abstract class UITextStyle {
   /// Headline 1 Text Style
   static final TextStyle headline1 = _baseTextStyle.copyWith(
     fontSize: 36,
-    fontWeight: FontWeight.bold,
+    fontWeight: FontWeight.w600,
     height: 1.22,
   );
 
@@ -47,28 +47,28 @@ abstract class UITextStyle {
   /// Headline 3 Text Style
   static final TextStyle headline3 = _baseTextStyle.copyWith(
     fontSize: 28,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
     height: 1.28,
   );
 
   /// Headline 4 Text Style
   static final TextStyle headline4 = _baseTextStyle.copyWith(
     fontSize: 24,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w400,
     height: 1.33,
   );
 
   /// Headline 5 Text Style
   static final TextStyle headline5 = _baseTextStyle.copyWith(
     fontSize: 24,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w300,
     height: 1.35,
   );
 
   /// Headline 6 Text Style
   static final TextStyle headline6 = _baseTextStyle.copyWith(
     fontSize: 18,
-    fontWeight: FontWeight.w700,
+    fontWeight: FontWeight.w500,
     height: 1.33,
   );
 
