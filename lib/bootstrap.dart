@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/widgets.dart';
+import 'package:transformx/app/view/app.dart';
 import 'package:transformx/firebase_options.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -37,7 +39,7 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap() async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
@@ -48,7 +50,10 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   );
   Bloc.observer = const AppBlocObserver();
 
+  final authenticationRepository = AuthenticationRepository();
+  await authenticationRepository.user.first;
+
   // Add cross-flavor configuration here
 
-  runApp(await builder());
+  runApp(App(authenticationRepository: authenticationRepository));
 }

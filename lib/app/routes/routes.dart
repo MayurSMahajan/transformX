@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformx/app/app.dart';
 import 'package:transformx/habit_track/view/habit_track_page.dart';
 import 'package:transformx/home_page/home_page.dart';
 import 'package:transformx/new_habit/new_habit.dart';
+import 'package:transformx/sign_in/sign_in.dart';
 
 final GoRouter routerConfig = GoRouter(
   routes: <RouteBase>[
@@ -13,8 +16,6 @@ final GoRouter routerConfig = GoRouter(
           key: state.pageKey,
           child: const HomePage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            // Change the opacity of the screen using a Curve based
-            //on the the animation's value
             return FadeTransition(
               opacity:
                   CurveTween(curve: Curves.easeInOutCirc).animate(animation),
@@ -32,8 +33,6 @@ final GoRouter routerConfig = GoRouter(
               child: const NewHabitPage(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
-                // Change the opacity of the screen using a Curve based
-                // on the the animation's value
                 return FadeTransition(
                   opacity: CurveTween(curve: Curves.easeInOutCirc)
                       .animate(animation),
@@ -46,7 +45,6 @@ final GoRouter routerConfig = GoRouter(
         GoRoute(
           path: 'track',
           pageBuilder: (context, state) {
-            debugPrint(state.pageKey.toString());
             return CustomTransitionPage(
               key: state.pageKey,
               child: const HabitTrackPage(),
@@ -64,5 +62,38 @@ final GoRouter routerConfig = GoRouter(
         ),
       ],
     ),
+    GoRoute(
+      path: '/signin',
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          child: const SignInPage(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: CurveTween(
+                curve: Curves.easeOutSine,
+              ).animate(animation),
+              child: child,
+            );
+          },
+        );
+      },
+    ),
   ],
+
+  // redirect to the sign in page if the user has not signed in
+  redirect: (BuildContext context, GoRouterState state) {
+    final authStatus = context.read<AppBloc>().state.status;
+    final signedIn = state.matchedLocation == '/signin';
+
+    if (authStatus == AppStatus.unauthenticated) {
+      return '/signin';
+    }
+
+    if (signedIn) {
+      return '/';
+    }
+
+    return null;
+  },
 );
