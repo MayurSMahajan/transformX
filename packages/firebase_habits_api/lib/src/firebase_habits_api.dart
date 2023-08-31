@@ -15,28 +15,38 @@ class FirebaseHabitsApi implements HabitsApi {
     required this.userId,
   });
 
-  /// the habitsCollection in Firestore.
-  final habitsCollection = FirebaseFirestore.instance.collection('habits');
+  /// the top level db collection in Firestore.
+  final db = FirebaseFirestore.instance.collection('users');
+
+  /// sub collection called habits used to store habits as documents
+  static const subCollection = 'habits';
 
   /// the user id accepted as paramater
   final String userId;
 
   @override
   Future<void> saveHabit(Habit habit) {
+    final habitsCollection = db.doc(userId).collection(subCollection);
     final habitEntityMap = HabitEntity.fromHabit(habit).toFirestore();
     return habitsCollection
         .doc(userId)
-        .collection(habit.id)
+        .collection(subCollection)
         .add(habitEntityMap);
   }
 
   @override
   Future<void> deleteHabit(String habitId) {
-    return habitsCollection.doc(userId).collection(habitId).doc().delete();
+    final habitsCollection = db.doc(userId).collection(subCollection);
+    return habitsCollection
+        .doc(userId)
+        .collection(subCollection)
+        .doc(habitId)
+        .delete();
   }
 
   @override
   Stream<List<Habit>> getHabits() {
+    final habitsCollection = db.doc(userId).collection(subCollection);
     final iterableHabits = habitsCollection
         .snapshots()
         .map(
