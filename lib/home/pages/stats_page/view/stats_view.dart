@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ProfileContent extends StatelessWidget {
-  const ProfileContent({super.key});
+class StatsPage extends StatelessWidget {
+  const StatsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      color: Colors.teal,
       alignment: Alignment.center,
-      child: const Text('Page 2'),
+      child: const Text('Page 3'),
     );
   }
 }

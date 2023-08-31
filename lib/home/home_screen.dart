@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:transformx/home_page/home_page.dart';
+import 'package:transformx/home/pages/pages.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   int currentPageIndex = 0;
 
   @override
@@ -43,9 +43,9 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         body: <Widget>[
-          const HomeContent(),
-          const StatsContent(),
-          const ProfileContent(),
+          const HomePage(),
+          const StatsPage(),
+          const ProfilePage(),
         ][currentPageIndex],
       ),
     );

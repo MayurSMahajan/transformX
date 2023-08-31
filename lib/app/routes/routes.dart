@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformx/app/app.dart';
 import 'package:transformx/habit_track/view/habit_track_page.dart';
-import 'package:transformx/home_page/home_page.dart';
+import 'package:transformx/home/home.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 import 'package:transformx/sign_in/sign_in.dart';
 
@@ -14,7 +14,7 @@ final GoRouter routerConfig = GoRouter(
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
-          child: const HomePage(),
+          child: const HomeScreen(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity:
