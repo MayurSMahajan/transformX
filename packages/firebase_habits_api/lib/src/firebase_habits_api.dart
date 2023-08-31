@@ -45,6 +45,6 @@ class FirebaseHabitsApi implements HabitsApi {
           ),
         )
         .toList();
-    return Stream.fromIterable(iterableHabits as Iterable<List<Habit>>);
+    return Stream.fromFutures(iterableHabits as Iterable<Future<List<Habit>>>);
   }
 }
