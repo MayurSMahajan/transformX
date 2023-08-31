@@ -55,5 +55,8 @@ Future<void> bootstrap() async {
 
   // Add cross-flavor configuration here
 
-  runApp(App(authenticationRepository: authenticationRepository));
+  runZonedGuarded(
+    () => runApp(App(authenticationRepository: authenticationRepository)),
+    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  );
 }
