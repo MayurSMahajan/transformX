@@ -11,50 +11,32 @@ class FirebaseHabitsApi implements HabitsApi {
   /// this is because the habits are stored in Firestore like this:
   ///
   /// habits(collection) -> userID(collection) -> actual habits
-  FirebaseHabitsApi({
-    required this.userId,
-  });
+  FirebaseHabitsApi();
 
   /// the top level db collection in Firestore.
-  final db = FirebaseFirestore.instance.collection('users');
-
-  /// sub collection called habits used to store habits as documents
-  static const subCollection = 'habits';
-
-  /// the user id accepted as paramater
-  final String userId;
+  final db = FirebaseFirestore.instance;
 
   @override
-  Future<void> saveHabit(Habit habit) {
-    final habitsCollection = db.doc(userId).collection(subCollection);
+  Future<void> saveHabit(Habit habit, String userId) {
+    final habitsCollection = db.collection(userId);
     final habitEntityMap = HabitEntity.fromHabit(habit).toFirestore();
-    return habitsCollection
-        .doc(userId)
-        .collection(subCollection)
-        .add(habitEntityMap);
+    return habitsCollection.add(habitEntityMap);
   }
 
   @override
-  Future<void> deleteHabit(String habitId) {
-    final habitsCollection = db.doc(userId).collection(subCollection);
-    return habitsCollection
-        .doc(userId)
-        .collection(subCollection)
-        .doc(habitId)
-        .delete();
+  Future<void> deleteHabit(String habitId, String userId) {
+    final habitsCollection = db.collection(userId);
+    return habitsCollection.doc(habitId).delete();
   }
 
   @override
-  Stream<List<Habit>> getHabits() {
-    final habitsCollection = db.doc(userId).collection(subCollection);
-    final iterableHabits = habitsCollection
-        .snapshots()
-        .map(
+  Stream<Iterable<Habit>> getHabits(String userId) {
+    final habitsCollection = db.collection(userId);
+    final ans = habitsCollection.snapshots().map(
           (snapshot) => snapshot.docs.map(
             (e) => HabitEntity.fromFirestore(e).toHabit(),
           ),
-        )
-        .toList();
-    return Stream.fromFutures(iterableHabits as Iterable<Future<List<Habit>>>);
+        );
+    return ans;
   }
 }

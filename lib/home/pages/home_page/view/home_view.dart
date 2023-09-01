@@ -1,9 +1,28 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habits_repository/habits_repository.dart';
+import 'package:transformx/home/pages/home_page/bloc/habits_bloc.dart';
 import 'package:transformx/home/pages/home_page/widgets/widgets.dart';
 import 'package:transformx/infra/infra.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeViewWrapper extends StatelessWidget {
+  const HomeViewWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HabitsBloc(
+        habitsRepository: context.read<HabitsRepository>(),
+        userId: context.read<AuthenticationRepository>().savedUser.id,
+      )..add(const HabitsSubscriptionRequested()),
+      child: const HomeView(),
+    );
+  }
+}
+
+class HomeView extends StatelessWidget {
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +51,39 @@ class HabitListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const VSpace(),
-        Text(
-          'habits',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        const VSpace(),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            HabitCard(),
-            NewHabitCardBtn(),
-          ],
-        )
-      ],
+    return BlocBuilder<HabitsBloc, HabitsState>(
+      builder: (context, state) {
+        if (state.status == AllHabitsStatus.success) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const VSpace(),
+              Text(
+                'habits',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const VSpace(),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  HabitCard(),
+                  NewHabitCardBtn(),
+                ],
+              )
+            ],
+          );
+        }
+        if (state.status == AllHabitsStatus.failure) {
+          debugPrint('Failure occured');
+          return Container(
+            color: Colors.red,
+          );
+        }
+        if (state.status == AllHabitsStatus.initial) {
+          return const CircularProgressIndicator(color: Colors.amber);
+        }
+        return const CircularProgressIndicator(color: Colors.orange);
+      },
     );
   }
 }

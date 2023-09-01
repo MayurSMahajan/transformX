@@ -166,6 +166,9 @@ class AuthenticationRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
+  /// reference of the user fetched from firebase will be stored in this.
+  late User savedUser;
+
   /// Whether or not the current environment is web
   /// Should only be overridden for testing purposes. Otherwise,
   /// defaults to [kIsWeb]
@@ -183,16 +186,16 @@ class AuthenticationRepository {
   /// Emits [User.empty] if the user is not authenticated.
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser == null ? User.empty : firebaseUser.toUser;
-      _cache.write(key: userCacheKey, value: user);
-      return user;
+      savedUser = firebaseUser == null ? User.empty : firebaseUser.toUser;
+      _cache.write(key: userCacheKey, value: savedUser);
+      return savedUser;
     });
   }
 
   /// Returns the current cached user.
   /// Defaults to [User.empty] if there is no cached user.
   User get currentUser {
-    return _cache.read<User>(key: userCacheKey) ?? User.empty;
+    return _cache.read<User>(key: userCacheKey) ?? savedUser;
   }
 
   /// Creates a new user with the provided [email] and [password].

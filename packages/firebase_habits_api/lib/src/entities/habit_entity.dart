@@ -40,7 +40,7 @@ class HabitEntity {
       ritual: data?['ritual'] as String,
       shortReward: data?['shortReward'] as String,
       longReward: data?['longReward'] as String,
-      icon: data?['icon'] as String,
+      icon: data?['icon'] as String?,
     );
   }
 
@@ -74,7 +74,7 @@ class HabitEntity {
   /// the hour, a subfield of Time object
   final int? hour;
 
-  /// the min, a subfield of Time object
+  /// the mins, a subfield of Time object
   final int? mins;
 
   /// is Am format or PM format, a subfield of Time object
@@ -86,7 +86,7 @@ class HabitEntity {
   /// the means of measuring progress, a subfield of Metric object
   final String? metricTitle;
 
-  /// the minimum progress, a subfield of Metric object
+  /// the minsimum progress, a subfield of Metric object
   final int? metricMin;
 
   /// the ideal progress, a subfield of Metric object
@@ -110,7 +110,7 @@ class HabitEntity {
       if (title != null) 'title': title,
       if (location != null) 'location': location,
       if (hour != null) 'hour': hour,
-      if (mins != null) 'min': mins,
+      if (mins != null) 'mins': mins,
       if (isAM != null) 'isAM': isAM,
       if (is24hour != null) 'is24hour': is24hour,
       if (metricTitle != null) 'metricTitle': metricTitle,

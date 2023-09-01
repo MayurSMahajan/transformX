@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/app/app.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/themes/themes.dart';
@@ -8,14 +9,20 @@ import 'package:transformx/themes/themes.dart';
 class App extends StatelessWidget {
   const App({
     required AuthenticationRepository authenticationRepository,
+    required HabitsRepository habitsRepository,
     super.key,
-  }) : _authenticationRepository = authenticationRepository;
+  })  : _authenticationRepository = authenticationRepository,
+        _habitsRepository = habitsRepository;
   final AuthenticationRepository _authenticationRepository;
+  final HabitsRepository _habitsRepository;
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
-      value: _authenticationRepository,
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider.value(value: _authenticationRepository),
+        RepositoryProvider.value(value: _habitsRepository),
+      ],
       child: BlocProvider(
         create: (_) => AppBloc(
           authenticationRepository: _authenticationRepository,

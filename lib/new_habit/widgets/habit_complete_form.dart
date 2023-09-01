@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/new_habit/bloc/new_habit_form_bloc.dart';
 
 class HabitCompleteForm extends StatelessWidget {
   const HabitCompleteForm({super.key});
@@ -19,10 +22,24 @@ class HabitCompleteForm extends StatelessWidget {
           ),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          PrimaryButton(onPressed: () {}, text: 'Next'),
+          _NextButton(),
           const VSpace(),
         ],
       ),
+    );
+  }
+}
+
+class _NextButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+      builder: (context, state) {
+        return ElevatedButton(
+          onPressed: () => context.go('/'),
+          child: const Text('Next'),
+        );
+      },
     );
   }
 }

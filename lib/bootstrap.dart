@@ -4,7 +4,9 @@ import 'dart:developer';
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_habits_api/firebase_habits_api.dart';
 import 'package:flutter/widgets.dart';
+import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/app/view/app.dart';
 import 'package:transformx/firebase_options.dart';
 
@@ -53,10 +55,14 @@ Future<void> bootstrap() async {
   final authenticationRepository = AuthenticationRepository();
   await authenticationRepository.user.first;
 
+  final habitsRepository = HabitsRepository(habitsApi: FirebaseHabitsApi());
+
   // Add cross-flavor configuration here
 
-  runZonedGuarded(
-    () => runApp(App(authenticationRepository: authenticationRepository)),
-    (error, stackTrace) => log(error.toString(), stackTrace: stackTrace),
+  runApp(
+    App(
+      authenticationRepository: authenticationRepository,
+      habitsRepository: habitsRepository,
+    ),
   );
 }

@@ -12,16 +12,19 @@ class HabitsRepository {
   final HabitsApi _habitsApi;
 
   /// Provides a [Stream] of all habits.
-  Stream<List<Habit>> getHabits() => _habitsApi.getHabits();
+  Stream<Iterable<Habit>> getHabits(String userId) =>
+      _habitsApi.getHabits(userId);
 
   /// Saves a [Habit].
   ///
   /// If a [Habit] with the same id already exists, it will be replaced.
-  Future<void> saveHabit(Habit habit) => _habitsApi.saveHabit(habit);
+  Future<void> saveHabit(Habit habit, String userId) =>
+      _habitsApi.saveHabit(habit, userId);
 
   /// Deletes the `Habit` with the given id.
   ///
-  /// If no `Habit` with the given id exists, a [HabitNotFoundException] error is
-  /// thrown.
-  Future<void> deleteHabit(String id) => _habitsApi.deleteHabit(id);
+  /// If no `Habit` with the given id exists, a [HabitNotFoundException]
+  ///  error is thrown.
+  Future<void> deleteHabit(String id, String userId) =>
+      _habitsApi.deleteHabit(id, userId);
 }

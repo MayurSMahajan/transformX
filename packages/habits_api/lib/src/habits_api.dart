@@ -8,18 +8,18 @@ abstract class HabitsApi {
   const HabitsApi();
 
   /// Provides a [Stream] of all habits.
-  Stream<List<Habit>> getHabits();
+  Stream<Iterable<Habit>> getHabits(String userId);
 
   /// Saves a [habit].
   ///
   /// If a [habit] with the same id already exists, it will be replaced.
-  Future<void> saveHabit(Habit habit);
+  Future<void> saveHabit(Habit habit, String userId);
 
   /// Deletes the `habit` with the given id.
   ///
   /// If no `habit` with the given id exists, a [HabitNotFoundException] error
   /// is thrown.
-  Future<void> deleteHabit(String id);
+  Future<void> deleteHabit(String id, String userId);
 }
 
 /// Error thrown when a [Habit] with a given id is not found.

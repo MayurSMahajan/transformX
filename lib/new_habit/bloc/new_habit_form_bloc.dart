@@ -1,13 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:habits_api/habits_api.dart';
+import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/new_habit/models/models.dart';
 
 part 'new_habit_form_event.dart';
 part 'new_habit_form_state.dart';
 
 class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
-  NewHabitFormBloc() : super(const NewHabitFormState()) {
+  NewHabitFormBloc({
+    required HabitsRepository habitsRepository,
+    required String userId,
+  })  : _habitsRepository = habitsRepository,
+        _userId = userId,
+        super(const NewHabitFormState()) {
     on<HabitNameChanged>(_onHabitNameChanged);
     on<HabitLocationChanged>(_onHabitLocationChanged);
     on<HabitMetricMinChanged>(_onHabitMetricMinChanged);
@@ -17,6 +24,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     on<HabitLongRewardChanged>(_onHabitLongRewardChanged);
     on<HabitSubmitted>(_onHabitSubmitted);
   }
+
+  final HabitsRepository _habitsRepository;
+  final String _userId;
 
   void _onHabitNameChanged(
     HabitNameChanged event,
@@ -58,6 +68,8 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       state.copyWith(
         habitMetricMin: habitMetricMin,
         isValid: Formz.validate([
+          state.habitName,
+          state.habitLocation,
           habitMetricMin,
         ]),
       ),
@@ -73,6 +85,8 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       state.copyWith(
         habitMetricIdeal: habitMetricIdeal,
         isValid: Formz.validate([
+          state.habitName,
+          state.habitLocation,
           state.habitMetricMin,
           habitMetricIdeal,
         ]),
@@ -89,6 +103,10 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       state.copyWith(
         habitRitual: habitRitual,
         isValid: Formz.validate([
+          state.habitName,
+          state.habitLocation,
+          state.habitMetricMin,
+          state.habitMetricIdeal,
           habitRitual,
         ]),
       ),
@@ -107,10 +125,10 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
           state.habitName,
           state.habitLocation,
           state.habitLongReward,
-          habitShortReward,
           state.habitMetricMin,
           state.habitMetricIdeal,
           state.habitRitual,
+          habitShortReward,
         ]),
       ),
     );
@@ -127,11 +145,12 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
         isValid: Formz.validate([
           state.habitName,
           state.habitLocation,
-          habitLongReward,
           state.habitShortReward,
           state.habitMetricMin,
           state.habitMetricIdeal,
           state.habitRitual,
+          state.habitShortReward,
+          habitLongReward,
         ]),
       ),
     );
@@ -144,7 +163,21 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        //call the habit repository to save this newly created habit
+        final finalHabit = Habit(
+          title: state.habitName.value,
+          location: state.habitLocation.value,
+          time: const Time(hour: 12, mins: 24),
+          metric: Metric(
+            title: 'minutes',
+            minimum: state.habitMetricMin.value,
+            ideal: state.habitMetricMin.value,
+          ),
+          ritual: state.habitRitual.value,
+          shortReward: state.habitShortReward.value,
+          longReward: state.habitLongReward.value,
+          icon: 'assets/gym',
+        );
+        await _habitsRepository.saveHabit(finalHabit, _userId);
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));

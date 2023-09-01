@@ -134,6 +134,7 @@ class _NextButton extends StatelessWidget {
         return ElevatedButton(
           onPressed: state.isValid
               ? () {
+                  context.read<NewHabitFormBloc>().add(const HabitSubmitted());
                   context.read<NewHabitUICubit>().setStatusAndProgress(
                         NewHabitUIStatus.complete,
                         0.95,

@@ -1,5 +1,7 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 
 class NewHabitPage extends StatelessWidget {
@@ -13,7 +15,10 @@ class NewHabitPage extends StatelessWidget {
           create: (_) => NewHabitUICubit(),
         ),
         BlocProvider<NewHabitFormBloc>(
-          create: (_) => NewHabitFormBloc(),
+          create: (_) => NewHabitFormBloc(
+            habitsRepository: context.read<HabitsRepository>(),
+            userId: context.read<AuthenticationRepository>().savedUser.id,
+          ),
         ),
       ],
       child: const NewHabitView(),
