@@ -168,7 +168,6 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
           location: state.habitLocation.value,
           time: const Time(hour: 12, mins: 24),
           metric: Metric(
-            title: 'minutes',
             minimum: state.habitMetricMin.value,
             ideal: state.habitMetricMin.value,
           ),

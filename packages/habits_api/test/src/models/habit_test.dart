@@ -1,9 +1,11 @@
 import 'package:habits_api/habits_api.dart';
+import 'package:habits_api/src/models/stats.dart';
 import 'package:test/test.dart';
 
 void main() {
-  const metric = Metric(title: 'minutes', minimum: 25, ideal: 60);
+  const metric = Metric(minimum: 25, ideal: 60);
   const time = Time(hour: 12, mins: 55);
+  const stats = Stats();
 
   group('Habit', () {
     Habit createSubject({
@@ -16,6 +18,7 @@ void main() {
       String ritual = 'ritual',
       String shortReward = 'shortReward',
       String longReward = 'longReward',
+      Stats stats = stats,
     }) {
       return Habit(
         id: id,
@@ -27,6 +30,7 @@ void main() {
         ritual: ritual,
         shortReward: shortReward,
         longReward: longReward,
+        stats: stats,
       );
     }
 
@@ -101,6 +105,7 @@ void main() {
             ritual: 'new ritual',
             shortReward: 'new shortReward',
             longReward: 'new longReward',
+            stats: stats.copyWith(weeklyRecord: 10),
           ),
           equals(
             createSubject(
@@ -113,6 +118,7 @@ void main() {
               ritual: 'new ritual',
               shortReward: 'new shortReward',
               longReward: 'new longReward',
+              stats: stats.copyWith(weeklyRecord: 10),
             ),
           ),
         );
@@ -132,6 +138,7 @@ void main() {
             'ritual': 'ritual',
             'shortReward': 'shortReward',
             'longReward': 'longReward',
+            'stats': stats.toJson(),
           }),
           equals(createSubject()),
         );
@@ -152,6 +159,7 @@ void main() {
             'ritual': 'ritual',
             'shortReward': 'shortReward',
             'longReward': 'longReward',
+            'stats': stats.toJson(),
           }),
         );
       });

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:habits_api/habits_api.dart';
+import 'package:habits_api/src/models/stats.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
@@ -31,13 +32,15 @@ class Habit extends Equatable {
     required this.ritual,
     required this.shortReward,
     required this.longReward,
+    Stats? stats,
     String? id,
     this.icon,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or not empty',
         ),
-        id = id ?? const Uuid().v4();
+        id = id ?? const Uuid().v4(),
+        stats = stats ?? const Stats();
 
   /// The unique identifier of the `habit`.
   ///
@@ -59,14 +62,14 @@ class Habit extends Equatable {
   /// time when the user is expected to their habit.
   final Time time;
 
-  /// The metric of the `habit`.
+  /// The metric or some unit of measuring progress of the `habit`.
   ///
-  /// it represents the unit of measurement for progress
+  /// can be empty
   final Metric metric;
 
-  /// The icon of the `habit`.
+  /// The Url for the icon of the `habit`.
   ///
-  /// Url for the current user's icon
+  /// can be null
   final String? icon;
 
   /// The short preparation activity done before the `habit`.
@@ -84,6 +87,11 @@ class Habit extends Equatable {
   /// Can be empty but not null
   final String longReward;
 
+  /// Contains the statistics of the `habit`
+  ///
+  /// can
+  final Stats stats;
+
   /// Returns a copy of this `habit` with the given values updated.
   ///
   /// {@macro habit_item}
@@ -97,6 +105,7 @@ class Habit extends Equatable {
     String? ritual,
     String? shortReward,
     String? longReward,
+    Stats? stats,
   }) {
     return Habit(
       id: id ?? this.id,
@@ -108,6 +117,7 @@ class Habit extends Equatable {
       ritual: ritual ?? this.ritual,
       shortReward: shortReward ?? this.shortReward,
       longReward: longReward ?? this.longReward,
+      stats: stats ?? this.stats,
     );
   }
 
