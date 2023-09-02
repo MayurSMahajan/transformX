@@ -74,15 +74,11 @@ class HabitListContainer extends StatelessWidget {
           );
         }
         if (state.status == AllHabitsStatus.failure) {
-          debugPrint('Failure occured');
           return Container(
             color: Colors.red,
           );
         }
-        if (state.status == AllHabitsStatus.initial) {
-          return const CircularProgressIndicator(color: Colors.amber);
-        }
-        return const CircularProgressIndicator(color: Colors.orange);
+        return const ProgressCircle();
       },
     );
   }
