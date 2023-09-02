@@ -1,7 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: non_constant_identifier_names
-
 part of 'stats.dart';
 
 // **************************************************************************
@@ -9,15 +7,13 @@ part of 'stats.dart';
 // **************************************************************************
 
 _$_Stats _$$_StatsFromJson(Map<String, dynamic> json) => _$_Stats(
-      id: json['id'] as String,
-      streak: json['streak'] as int,
-      monthlyRecord: json['monthlyRecord'] as int,
-      weeklyRecord: json['weeklyRecord'] as int,
-      yearlyRecord: json['yearlyRecord'] as int,
+      streak: json['streak'] as int? ?? 0,
+      monthlyRecord: json['monthlyRecord'] as int? ?? 0,
+      weeklyRecord: json['weeklyRecord'] as int? ?? 0,
+      yearlyRecord: json['yearlyRecord'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_StatsToJson(_$_Stats instance) => <String, dynamic>{
-      'id': instance.id,
       'streak': instance.streak,
       'monthlyRecord': instance.monthlyRecord,
       'weeklyRecord': instance.weeklyRecord,

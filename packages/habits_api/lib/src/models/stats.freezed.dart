@@ -20,7 +20,6 @@ Stats _$StatsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Stats {
-  String get id => throw _privateConstructorUsedError;
   int get streak => throw _privateConstructorUsedError;
   int get monthlyRecord => throw _privateConstructorUsedError;
   int get weeklyRecord => throw _privateConstructorUsedError;
@@ -37,11 +36,7 @@ abstract class $StatsCopyWith<$Res> {
       _$StatsCopyWithImpl<$Res, Stats>;
   @useResult
   $Res call(
-      {String id,
-      int streak,
-      int monthlyRecord,
-      int weeklyRecord,
-      int yearlyRecord});
+      {int streak, int monthlyRecord, int weeklyRecord, int yearlyRecord});
 }
 
 /// @nodoc
@@ -57,17 +52,12 @@ class _$StatsCopyWithImpl<$Res, $Val extends Stats>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? streak = null,
     Object? monthlyRecord = null,
     Object? weeklyRecord = null,
     Object? yearlyRecord = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       streak: null == streak
           ? _value.streak
           : streak // ignore: cast_nullable_to_non_nullable
@@ -95,11 +85,7 @@ abstract class _$$_StatsCopyWith<$Res> implements $StatsCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      int streak,
-      int monthlyRecord,
-      int weeklyRecord,
-      int yearlyRecord});
+      {int streak, int monthlyRecord, int weeklyRecord, int yearlyRecord});
 }
 
 /// @nodoc
@@ -111,17 +97,12 @@ class __$$_StatsCopyWithImpl<$Res> extends _$StatsCopyWithImpl<$Res, _$_Stats>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? streak = null,
     Object? monthlyRecord = null,
     Object? weeklyRecord = null,
     Object? yearlyRecord = null,
   }) {
     return _then(_$_Stats(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       streak: null == streak
           ? _value.streak
           : streak // ignore: cast_nullable_to_non_nullable
@@ -146,29 +127,30 @@ class __$$_StatsCopyWithImpl<$Res> extends _$StatsCopyWithImpl<$Res, _$_Stats>
 @JsonSerializable()
 class _$_Stats implements _Stats {
   const _$_Stats(
-      {required this.id,
-      required this.streak,
-      required this.monthlyRecord,
-      required this.weeklyRecord,
-      required this.yearlyRecord});
+      {this.streak = 0,
+      this.monthlyRecord = 0,
+      this.weeklyRecord = 0,
+      this.yearlyRecord = 0});
 
   factory _$_Stats.fromJson(Map<String, dynamic> json) =>
       _$$_StatsFromJson(json);
 
   @override
-  final String id;
-  @override
+  @JsonKey()
   final int streak;
   @override
+  @JsonKey()
   final int monthlyRecord;
   @override
+  @JsonKey()
   final int weeklyRecord;
   @override
+  @JsonKey()
   final int yearlyRecord;
 
   @override
   String toString() {
-    return 'Stats(id: $id, streak: $streak, monthlyRecord: $monthlyRecord, weeklyRecord: $weeklyRecord, yearlyRecord: $yearlyRecord)';
+    return 'Stats(streak: $streak, monthlyRecord: $monthlyRecord, weeklyRecord: $weeklyRecord, yearlyRecord: $yearlyRecord)';
   }
 
   @override
@@ -176,7 +158,6 @@ class _$_Stats implements _Stats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Stats &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.streak, streak) || other.streak == streak) &&
             (identical(other.monthlyRecord, monthlyRecord) ||
                 other.monthlyRecord == monthlyRecord) &&
@@ -189,7 +170,7 @@ class _$_Stats implements _Stats {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, streak, monthlyRecord, weeklyRecord, yearlyRecord);
+      runtimeType, streak, monthlyRecord, weeklyRecord, yearlyRecord);
 
   @JsonKey(ignore: true)
   @override
@@ -207,16 +188,13 @@ class _$_Stats implements _Stats {
 
 abstract class _Stats implements Stats {
   const factory _Stats(
-      {required final String id,
-      required final int streak,
-      required final int monthlyRecord,
-      required final int weeklyRecord,
-      required final int yearlyRecord}) = _$_Stats;
+      {final int streak,
+      final int monthlyRecord,
+      final int weeklyRecord,
+      final int yearlyRecord}) = _$_Stats;
 
   factory _Stats.fromJson(Map<String, dynamic> json) = _$_Stats.fromJson;
 
-  @override
-  String get id;
   @override
   int get streak;
   @override

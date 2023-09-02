@@ -7,12 +7,13 @@ part 'metric.g.dart';
 /// Metric class represents a unit of measurement for progress in habit
 @freezed
 class Metric with _$Metric {
-  /// hour and mins are required and isAM, is24hour
-  /// are flags set to false by default
+  /// the title field that defines the type of Metric, eg: minutes, litres, etc.
+  /// the minimum field describes the minimum amount to satisfy a habit goal.
+  /// the ideal field describes the ideal amount to satisfy a habit goal.
   const factory Metric({
-    required String title,
-    required int minimum,
-    required int ideal,
+    @Default('minutes') String title,
+    @Default(5) int minimum,
+    @Default(20) int ideal,
   }) = _Metric;
 
   ///utility method for creating Metric from JSON

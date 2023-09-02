@@ -114,17 +114,19 @@ class __$$_MetricCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Metric implements _Metric {
-  const _$_Metric(
-      {required this.title, required this.minimum, required this.ideal});
+  const _$_Metric({this.title = 'minutes', this.minimum = 5, this.ideal = 20});
 
   factory _$_Metric.fromJson(Map<String, dynamic> json) =>
       _$$_MetricFromJson(json);
 
   @override
+  @JsonKey()
   final String title;
   @override
+  @JsonKey()
   final int minimum;
   @override
+  @JsonKey()
   final int ideal;
 
   @override
@@ -162,9 +164,7 @@ class _$_Metric implements _Metric {
 
 abstract class _Metric implements Metric {
   const factory _Metric(
-      {required final String title,
-      required final int minimum,
-      required final int ideal}) = _$_Metric;
+      {final String title, final int minimum, final int ideal}) = _$_Metric;
 
   factory _Metric.fromJson(Map<String, dynamic> json) = _$_Metric.fromJson;
 

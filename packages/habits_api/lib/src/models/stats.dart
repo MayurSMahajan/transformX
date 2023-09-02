@@ -9,11 +9,10 @@ part 'stats.g.dart';
 class Stats with _$Stats {
   /// stats constructor
   const factory Stats({
-    required String id,
-    required int streak,
-    required int monthlyRecord,
-    required int weeklyRecord,
-    required int yearlyRecord,
+    @Default(0) int streak,
+    @Default(0) int monthlyRecord,
+    @Default(0) int weeklyRecord,
+    @Default(0) int yearlyRecord,
   }) = _Stats;
 
   ///utility method for creating Metric from JSON
