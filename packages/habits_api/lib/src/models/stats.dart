@@ -13,6 +13,7 @@ class Stats with _$Stats {
     @Default(0) int monthlyRecord,
     @Default(0) int weeklyRecord,
     @Default(0) int yearlyRecord,
+    @Default(0) int allTimeRecord,
   }) = _Stats;
 
   ///utility method for creating Metric from JSON
