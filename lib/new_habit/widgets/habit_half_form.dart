@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 
 class HabitHalfForm extends StatelessWidget {
@@ -33,18 +34,19 @@ class HabitHalfForm extends StatelessWidget {
 class _HabitRitualInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'but before starting my habit',
+          l10n.butBeforStartingMyHabitResponseText,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              'i will do a 1-min ritual',
+              l10n.iWillDo1MinRitualResponseText,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
@@ -66,9 +68,9 @@ class _HabitRitualInput extends StatelessWidget {
                   .read<NewHabitFormBloc>()
                   .add(HabitRitualChanged(ritual)),
               decoration: InputDecoration(
-                hintText: 'habit ritual',
+                hintText: l10n.habitRitual,
                 errorText: state.habitRitual.displayError != null
-                    ? 'invalid habit ritual'
+                    ? l10n.invalidHabitRitual
                     : null,
               ),
             );
@@ -82,6 +84,7 @@ class _HabitRitualInput extends StatelessWidget {
 class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
       builder: (context, state) {
         return ElevatedButton(
@@ -93,7 +96,7 @@ class _NextButton extends StatelessWidget {
                       );
                 }
               : null,
-          child: const Text('Next'),
+          child: Text(l10n.nextActionButton),
         );
       },
     );

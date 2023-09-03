@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/bloc/new_habit_form_bloc.dart';
 
 class HabitCompleteForm extends StatelessWidget {
@@ -9,6 +12,7 @@ class HabitCompleteForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
@@ -17,7 +21,7 @@ class HabitCompleteForm extends StatelessWidget {
           const CustomProgressIndicator(progress: 1),
           const VSpace(),
           Text(
-            'Great\n Remember true change begins within',
+            l10n.greatSuccessText,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const Expanded(child: SizedBox()),
@@ -33,11 +37,12 @@ class HabitCompleteForm extends StatelessWidget {
 class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
       builder: (context, state) {
         return ElevatedButton(
           onPressed: () => context.go('/'),
-          child: const Text('Next'),
+          child: Text(l10n.nextActionButton),
         );
       },
     );

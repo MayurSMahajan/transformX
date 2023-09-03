@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 import 'package:transformx/themes/themes.dart';
 
@@ -38,18 +39,19 @@ class HabitQuarterForm extends StatelessWidget {
 class _HabitMetricTitleInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'my habit',
+          l10n.myHabit,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              'can be tracked in',
+              l10n.habitCanBeTrackedInCraveText,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
@@ -62,7 +64,7 @@ class _HabitMetricTitleInput extends StatelessWidget {
           ],
         ),
         Text(
-          'minutes',
+          l10n.minutes,
           style: UITextStyle.headline4.copyWith(
             color: AppColors.mediumEmphasisSurface,
           ),
@@ -75,11 +77,12 @@ class _HabitMetricTitleInput extends StatelessWidget {
 class _HabitMetricMinInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'min daily target',
+          l10n.minDailyTargetCraveText,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
@@ -93,9 +96,9 @@ class _HabitMetricMinInput extends StatelessWidget {
                   .read<NewHabitFormBloc>()
                   .add(HabitMetricMinChanged(int.parse(min))),
               decoration: InputDecoration(
-                hintText: 'habitMetricMin',
+                hintText: l10n.habitMetricMin,
                 errorText: state.habitMetricMin.displayError != null
-                    ? 'invalid habitMetricMin'
+                    ? l10n.invalidHabitMetricMin
                     : null,
               ),
             );
@@ -109,11 +112,12 @@ class _HabitMetricMinInput extends StatelessWidget {
 class _HabitMetricIdealInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'ideal daily target',
+          l10n.idealDailyTargetCraveText,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
@@ -127,9 +131,9 @@ class _HabitMetricIdealInput extends StatelessWidget {
                   .read<NewHabitFormBloc>()
                   .add(HabitMetricIdealChanged(int.parse(min))),
               decoration: InputDecoration(
-                hintText: 'habitMetricIdeal',
+                hintText: l10n.habitMetricIdeal,
                 errorText: state.habitMetricIdeal.displayError != null
-                    ? 'invalid habitMetricIdeal'
+                    ? l10n.invalidHabitMetricIdeal
                     : null,
               ),
             );
@@ -143,6 +147,7 @@ class _HabitMetricIdealInput extends StatelessWidget {
 class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
       builder: (context, state) {
         return ElevatedButton(
@@ -154,7 +159,7 @@ class _NextButton extends StatelessWidget {
                       );
                 }
               : null,
-          child: const Text('Next'),
+          child: Text(l10n.nextActionButton),
         );
       },
     );

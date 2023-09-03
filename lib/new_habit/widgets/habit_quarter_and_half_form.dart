@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 
 class HabitQuarterAndHalfForm extends StatelessWidget {
@@ -35,18 +36,19 @@ class HabitQuarterAndHalfForm extends StatelessWidget {
 class _HabitShortRewardInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'after i hit my daily goal,',
+          l10n.afterIHitMyDailyGoalRewardText,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              'i will reward myself',
+              l10n.iWillRewardMyselfRewardText,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
@@ -68,9 +70,9 @@ class _HabitShortRewardInput extends StatelessWidget {
                   .read<NewHabitFormBloc>()
                   .add(HabitShortRewardChanged(reward)),
               decoration: InputDecoration(
-                hintText: 'habit Short Reward',
+                hintText: l10n.habitShortReward,
                 errorText: state.habitShortReward.displayError != null
-                    ? 'invalid habit Short Reward'
+                    ? l10n.invalidHabitShortReward
                     : null,
               ),
             );
@@ -84,6 +86,7 @@ class _HabitShortRewardInput extends StatelessWidget {
 class _HabitLongRewardInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -91,7 +94,7 @@ class _HabitLongRewardInput extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              'my long term reward',
+              l10n.myLongTermRewardRewardText,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             IconButton(
@@ -113,9 +116,9 @@ class _HabitLongRewardInput extends StatelessWidget {
                   .read<NewHabitFormBloc>()
                   .add(HabitLongRewardChanged(reward)),
               decoration: InputDecoration(
-                hintText: 'habit Long Reward',
+                hintText: l10n.habitLongReward,
                 errorText: state.habitLongReward.displayError != null
-                    ? 'invalid habit Long Reward'
+                    ? l10n.invalidhHabitLongReward
                     : null,
               ),
             );
@@ -129,6 +132,7 @@ class _HabitLongRewardInput extends StatelessWidget {
 class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
       builder: (context, state) {
         return ElevatedButton(
@@ -141,7 +145,7 @@ class _NextButton extends StatelessWidget {
                       );
                 }
               : null,
-          child: const Text('Next'),
+          child: Text(l10n.nextActionButton),
         );
       },
     );
