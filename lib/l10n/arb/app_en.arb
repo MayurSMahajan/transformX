@@ -32,7 +32,7 @@
     "locationCuePlaceholder":"location",
     "iconForYourHabitCueText": "icon for your habit",
 
-    "myHabitCanBeTrackedInCraveText": "my can be tracked in",
+    "habitCanBeTrackedInCraveText": "can be tracked in",
     "hourCravePlaceholder":"hour",
     "minDailyTargetCraveText": "min daily target",
     "minMinsCravePlaceholder": "25 mins",
@@ -52,8 +52,7 @@
     "myLongTermRewardRewardText": "my long term reward",
     "goToAMovieRewardPlaceholder":"go to a movie",
 
-    "greatSuccessText": "Great",
-    "rememberTrueChangesBeginWithinSuccessText": "remember true changes begin within",
+    "greatSuccessText": "great\nremember true change begins within",
     "someTipsSuccessText": "some tips",
     "tip1title": "easy entry point",
     "tip1description": "begin with actions that can be completed in under two minutes, like a single push-up or jotting down a few sentences.",
@@ -154,5 +153,22 @@
     "tip49title": "growth mindset",
     "tip49description": "cultivate a growth mindset by viewing challenges as opportunities to learn and improve your habits.",
     "tip50title": "habitual gratitude",
-    "tip50description": "incorporate a gratitude practice into your routine, reflecting on positive aspects of your habits and accomplishments."
+    "tip50description": "incorporate a gratitude practice into your routine, reflecting on positive aspects of your habits and accomplishments.",
+
+    "habitName": "habitname",
+    "invalidHabitName": "invalid habitname",
+    "habitLocation": "habitlocation",
+    "invalidLocation": "invalid location",
+    "myHabit": "my habit",
+    "minutes": "minutes",
+    "habitMetricMin": "habitMetricMin",
+    "invalidHabitMetricMin": "invalid habitMetricMin",
+    "habitMetricIdeal": "habitMetricIdeal",
+    "invalidHabitMetricIdeal": "invalid habitMetricIdeal",
+    "habitRitual": "habit ritual",
+    "invalidHabitRitual": "invalid habit ritual",
+    "habitShortReward": "habit Short Reward",
+    "invalidHabitShortReward": "invalid habit Short Reward",
+    "habitLongReward": "habit Long Reward",
+    "invalidhHabitLongReward": "invalid habit Long Reward"
 }
