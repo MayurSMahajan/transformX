@@ -22,6 +22,115 @@ After cloning this repository, migrate to instagram-flutter-clone folder. Then, 
     
      -->
 
+## Set up project locally
+
+- **Create a Fork**
+    - Visit the [Transform X](https://github.com/MayurSMahajan/transformX) GitHub repository, and click 'Fork'.
+    - Select the owner and repository name and click “Create Fork”
+
+- **[Clone the fork](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)**
+
+- **Set up the upstream branch**
+
+    1. Open Terminal.
+    2. List the current configured remote repository for your fork.
+
+    ```
+    $ git remote -v
+    > origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (fetch)
+    > origin  https://github.com/YOUR_USERNAME/YOUR_FORK.git (push)
+    ```
+
+    3. Specify a new remote *upstream* repository that will be synced with the fork.
+
+    ```
+    git remote add upstream https://github.com/MayurSMahajan/transformX.git
+    ```
+
+    4. Verify the new upstream repository you've specified for your fork.
+
+    ```
+    $ git remote -v
+    > origin    https://github.com/YOUR_USERNAME/transformX.git
+    > origin    https://github.com/YOUR_USERNAME/transformX.git
+    > upstream  https://github.com/MayurSMahajan/transformX.git
+    > upstream  https://github.com/MayurSMahajan/transformX.git
+    ```
+
+- **Running local project**
+    - Begin by ensuring that the script execution policy is enabled on your Windows system. For guidance, refer [Enabling Script Execution Policy](https://www.makeuseof.com/enable-script-execution-policy-windows-powershell/).
+    - Install very_good_cli as a global package.
+
+    ```
+    dart pub global activate very_good_cli
+    ```
+
+    - After that from the root directory run
+
+    ```
+    very_good packages get --recursive
+    ```
+
+    - If the above command does not install all the dependencies in all your packages then you can try manually running `flutter pub get` within all your packages inside `transformx/packages` folder
+
+- **Setting up Firebase**
+    - Visit “[Firebase](https://firebase.google.com/)” and login with your Google Account.
+    - Click on the "[Console](https://console.firebase.google.com/)" button located in the top-right corner and create a new project.
+    - Within the project overview, choose the Flutter option.
+    - Install the Firebase CLI by executing the following command in your terminal:
+
+    ```
+    npm install -g firebase-tools
+    ```
+
+    - Install the FlutterFire CLI using the following command:
+
+    ```
+    dart pub global activate flutterfire_cli
+    ```
+
+    - Then login to Firebase using the following command:
+
+    ```
+    firebase login
+    ```
+
+    - A new Google Sign-In tab will open in your web browser.
+    - Select your Google account and grant the necessary permissions.
+    - Then, at the root of your Flutter project directory, run this command:
+
+    ```
+    flutterfire configure
+    ```
+
+- **Add SHA-1 certificate fingerprint**
+    1. Open your terminal/command prompt.
+    2. Run the following command in your VS Code terminal to generate the SHA-1 fingerprint:
+
+    ```
+    ./gradlew signingReport
+    ```
+
+    3. Look for the SHA-1 fingerprint in the output. It will be displayed along with other signing information. For example:
+
+    ```
+    SHA1: 23:4E:xx:xx:xx:..
+    ```
+
+    4. In the project overview, select the recently created Flutter app and then go to settings.
+    5. Scroll down to the "Your apps" section, where your Flutter app should be listed. Click on your app's platform (Android) to expand the settings.
+    6. Under the "SHA certificate fingerprints" section, click on the "Add fingerprint" button. Enter the SHA-1 certificate fingerprint that you obtained earlier in the terminal. Click the “Save” button. (It is important to add SHA key for Google Sign In option)
+
+- **Enable Google Sign-In and Firestore Database**
+
+Your Firebase console should look like this:
+
+<p align="center">
+  <img src="https://github.com/vinaybadgujar102/transformX/assets/90821253/6a02c4a7-f0c1-4088-8928-f84872b24b03" alt="Firebase Console">
+</p>
+
+---
+
 ## Getting Started 🚀
 
 This project contains 3 flavors:
