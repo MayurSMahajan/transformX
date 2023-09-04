@@ -4,8 +4,27 @@ import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 
-class HabitHalfForm extends StatelessWidget {
+class HabitHalfForm extends StatefulWidget {
   const HabitHalfForm({super.key});
+
+  @override
+  State<HabitHalfForm> createState() => _HabitHalfFormState();
+}
+
+class _HabitHalfFormState extends State<HabitHalfForm> {
+  final habitRitualFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    habitRitualFocusNode.requestFocus();
+  }
+
+  @override
+  void dispose() {
+    habitRitualFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +39,7 @@ class HabitHalfForm extends StatelessWidget {
           const VSpace(),
           CustomProgressIndicator(progress: progress),
           const VSpace(),
-          _HabitRitualInput(),
+          _HabitRitualInput(focusNode: habitRitualFocusNode),
           const Expanded(child: SizedBox()),
           const VSpace(),
           NextButton(
@@ -39,6 +58,12 @@ class HabitHalfForm extends StatelessWidget {
 }
 
 class _HabitRitualInput extends StatelessWidget {
+  const _HabitRitualInput({
+    required this.focusNode,
+  });
+
+  final FocusNode focusNode;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -71,15 +96,16 @@ class _HabitRitualInput extends StatelessWidget {
           builder: (context, state) {
             return TextField(
               key: const Key('habitForm_habitRitualInput_textField'),
-              onChanged: (ritual) => context
-                  .read<NewHabitFormBloc>()
-                  .add(HabitRitualChanged(ritual)),
+              focusNode: focusNode,
               decoration: InputDecoration(
                 hintText: l10n.habitRitual,
                 errorText: state.habitRitual.displayError != null
                     ? l10n.invalidHabitRitual
                     : null,
               ),
+              onChanged: (ritual) => context.read<NewHabitFormBloc>().add(
+                    HabitRitualChanged(ritual),
+                  ),
             );
           },
         ),
