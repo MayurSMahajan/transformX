@@ -25,7 +25,14 @@ class HabitInitialForm extends StatelessWidget {
           _HabitLocationInput(),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          _NextButton(),
+          NextButton(
+            onPressed: () {
+              context.read<NewHabitUICubit>().setStatusAndProgress(
+                    NewHabitUIStatus.quarter,
+                    0.25,
+                  );
+            },
+          ),
           const VSpace(),
         ],
       ),
@@ -99,28 +106,6 @@ class _HabitLocationInput extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-      builder: (context, state) {
-        return ElevatedButton(
-          onPressed: state.isValid
-              ? () {
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.quarter,
-                        0.25,
-                      );
-                }
-              : null,
-          child: Text(l10n.nextActionButton),
-        );
-      },
     );
   }
 }

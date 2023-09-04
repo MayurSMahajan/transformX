@@ -23,7 +23,14 @@ class HabitHalfForm extends StatelessWidget {
           _HabitRitualInput(),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          _NextButton(),
+          NextButton(
+            onPressed: () {
+              context.read<NewHabitUICubit>().setStatusAndProgress(
+                    NewHabitUIStatus.quarterAndHalf,
+                    0.70,
+                  );
+            },
+          ),
           const VSpace(),
         ],
       ),
@@ -77,28 +84,6 @@ class _HabitRitualInput extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class _NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-      builder: (context, state) {
-        return ElevatedButton(
-          onPressed: state.isValid
-              ? () {
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.quarterAndHalf,
-                        0.70,
-                      );
-                }
-              : null,
-          child: Text(l10n.nextActionButton),
-        );
-      },
     );
   }
 }

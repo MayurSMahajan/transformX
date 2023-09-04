@@ -25,7 +25,15 @@ class HabitQuarterAndHalfForm extends StatelessWidget {
           _HabitLongRewardInput(),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          _NextButton(),
+          NextButton(
+            onPressed: () {
+              context.read<NewHabitFormBloc>().add(const HabitSubmitted());
+              context.read<NewHabitUICubit>().setStatusAndProgress(
+                    NewHabitUIStatus.complete,
+                    0.95,
+                  );
+            },
+          ),
           const VSpace(),
         ],
       ),
@@ -125,29 +133,6 @@ class _HabitLongRewardInput extends StatelessWidget {
           },
         ),
       ],
-    );
-  }
-}
-
-class _NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-      builder: (context, state) {
-        return ElevatedButton(
-          onPressed: state.isValid
-              ? () {
-                  context.read<NewHabitFormBloc>().add(const HabitSubmitted());
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.complete,
-                        0.95,
-                      );
-                }
-              : null,
-          child: Text(l10n.nextActionButton),
-        );
-      },
     );
   }
 }
