@@ -2,6 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/sign_in/cubit/sign_in_cubit.dart';
 
 class SignInPage extends StatelessWidget {
@@ -26,6 +27,7 @@ class SignInPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return BlocListener<SignInCubit, SignInState>(
       listener: (context, state) {
         if (state.status == SignInStatus.failure) {
@@ -33,7 +35,7 @@ class SignInPageView extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage ?? 'Authentication Failure'),
+                content: Text(state.errorMessage ?? l10n.authenticationFailure),
               ),
             );
         }
@@ -59,10 +61,11 @@ class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
     return ElevatedButton.icon(
       key: const Key('loginForm_googleLogin_raisedButton'),
-      label: const Text(
-        'SIGN IN WITH GOOGLE',
+      label: Text(
+        l10n.signInWithGoogle,
         style: TextStyle(color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(

@@ -170,5 +170,11 @@
     "habitShortReward": "habit Short Reward",
     "invalidHabitShortReward": "invalid habit Short Reward",
     "habitLongReward": "habit Long Reward",
-    "invalidhHabitLongReward": "invalid habit Long Reward"
+    "invalidhHabitLongReward": "invalid habit Long Reward",
+    "weekly": "weekly",
+    "habits": "habits",
+    "createYourFirstHabitByClickingPlus": "create your first habit by clicking +",
+    "newHabit": "new habit",
+    "authenticationFailure": "Authentication Failure",
+    "signInWithGoogle": "SIGN IN WITH GOOGLE"
 }

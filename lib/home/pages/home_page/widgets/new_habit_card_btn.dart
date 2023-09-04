@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/widgets/vspace.dart';
+import 'package:transformx/l10n/l10n.dart';
 
 class NewHabitCardBtn extends StatelessWidget {
   const NewHabitCardBtn({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       width: 170,
       height: 220,
@@ -27,7 +29,7 @@ class NewHabitCardBtn extends StatelessWidget {
               ),
               const VSpace(),
               Text(
-                'new habit',
+                l10n.newHabit,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],

@@ -6,6 +6,7 @@ import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/home/pages/home_page/bloc/habits_bloc.dart';
 import 'package:transformx/home/pages/home_page/widgets/widgets.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 
 class HomeViewWrapper extends StatelessWidget {
   const HomeViewWrapper({super.key});
@@ -52,12 +53,13 @@ class HabitListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const VSpace(),
         Text(
-          'habits',
+          l10n.habits,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         const VSpace(),
@@ -84,7 +86,7 @@ class HabitListContainer extends StatelessWidget {
                   return Column(
                     children: [
                       Text(
-                        'create your first habit by clicking +',
+                        l10n.createYourFirstHabitByClickingPlus,
                         style: Theme.of(context).textTheme.titleMedium,
                         textAlign: TextAlign.center,
                       ),
@@ -180,8 +182,9 @@ class GreetingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Text(
-      'good morning',
+      l10n.goodMorningGreet,
       style: Theme.of(context).textTheme.headlineSmall,
     );
   }
