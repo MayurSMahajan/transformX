@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:transformx/infra/infra.dart';
 
 class HabitStackContainer extends StatelessWidget {
-  const HabitStackContainer({super.key});
+  const HabitStackContainer({required this.title, super.key});
+
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +35,24 @@ class HabitStackContainer extends StatelessWidget {
           ),
           const VSpace(),
           const _HabitStackGraphic(),
-          const Padding(
-            padding: EdgeInsets.all(20),
+          Padding(
+            padding: const EdgeInsets.all(20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Brush',
                   textAlign: TextAlign.center,
                 ),
                 Text(
-                  'go to the gym',
+                  title,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
                 ),
-                Text(
+                const Text(
                   'Bath',
                   textAlign: TextAlign.center,
                 )

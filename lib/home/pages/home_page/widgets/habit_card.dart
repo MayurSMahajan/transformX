@@ -13,7 +13,7 @@ class HabitCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: InkWell(
-        onTap: () => context.go('/track'),
+        onTap: () => context.go('/track', extra: habit),
         child: Container(
           width: 165,
           height: 220,
@@ -46,7 +46,7 @@ class HabitCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      'go to gym and gym',
+                      habit.title,
                       style: Theme.of(context).textTheme.headlineMedium,
                     ),
                   ),
@@ -55,9 +55,9 @@ class HabitCard extends StatelessWidget {
                   icon: Icon(Icons.timer_outlined),
                   metadata: '06:00AM',
                 ),
-                const MetadataCard(
-                  icon: Icon(Icons.pin_drop_outlined),
-                  metadata: 'gym',
+                MetadataCard(
+                  icon: const Icon(Icons.pin_drop_outlined),
+                  metadata: habit.location,
                 ),
               ],
             ),

@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:habits_api/habits_api.dart';
 
 class HabitMetricContainer extends StatelessWidget {
-  const HabitMetricContainer({super.key});
+  const HabitMetricContainer({required this.metric, super.key});
+
+  final Metric metric;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(20),
+    return Padding(
+      padding: const EdgeInsets.all(20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           HabitMetricCard(
-            initialValue: 25,
+            initialValue: metric.minimum,
             metricBound: 'Min',
           ),
           HabitMetricCard(
-            initialValue: 60,
+            initialValue: metric.ideal,
             metricBound: 'Ideal',
           ),
         ],

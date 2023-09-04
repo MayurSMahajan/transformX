@@ -89,7 +89,7 @@ class HabitListContainer extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
-                        height: 360,
+                        height: 300,
                         width: double.infinity,
                         child: Stack(
                           alignment: Alignment.bottomRight,
