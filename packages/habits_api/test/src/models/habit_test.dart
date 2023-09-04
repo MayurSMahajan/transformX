@@ -1,5 +1,4 @@
 import 'package:habits_api/habits_api.dart';
-import 'package:habits_api/src/models/stats.dart';
 import 'package:test/test.dart';
 
 void main() {

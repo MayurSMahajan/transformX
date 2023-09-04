@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:habits_api/habits_api.dart';
-import 'package:habits_api/src/models/stats.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
