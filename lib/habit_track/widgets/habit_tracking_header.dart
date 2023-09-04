@@ -3,12 +3,14 @@ import 'package:transformx/infra/infra.dart';
 
 class HabitHorizontalCard extends StatelessWidget {
   const HabitHorizontalCard({
+    required this.id,
     required this.title,
     required this.location,
     required this.streak,
     super.key,
   });
 
+  final Object id;
   final String title;
   final String location;
   final int streak;
@@ -30,11 +32,11 @@ class HabitHorizontalCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(5),
                       color: Theme.of(context).primaryColor,
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
                       child: Hero(
-                        tag: 'habit_icon',
-                        child: Icon(
+                        tag: id,
+                        child: const Icon(
                           Icons.sports_gymnastics,
                           size: 32,
                         ),

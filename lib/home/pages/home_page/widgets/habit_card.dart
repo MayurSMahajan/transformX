@@ -31,11 +31,11 @@ class HabitCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                     color: Theme.of(context).primaryColor,
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
                     child: Hero(
-                      tag: 'habit_icon',
-                      child: Icon(
+                      tag: habit.id,
+                      child: const Icon(
                         Icons.sports_gymnastics,
                         size: 22,
                       ),

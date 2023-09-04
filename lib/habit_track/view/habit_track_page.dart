@@ -40,6 +40,7 @@ class HabitLoadedView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               HabitHorizontalCard(
+                id: habit.id,
                 title: habit.title,
                 location: habit.location,
                 streak: habit.stats.streak,
