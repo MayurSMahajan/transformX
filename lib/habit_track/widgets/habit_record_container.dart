@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 
 class HabitRecordContainer extends StatelessWidget {
   const HabitRecordContainer({
@@ -12,6 +13,7 @@ class HabitRecordContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -28,7 +30,7 @@ class HabitRecordContainer extends StatelessWidget {
                 metadata: 'Record',
               ),
               TextButton(
-                child: const Text('weekly'),
+                child: Text(l10n.weekly),
                 onPressed: () {},
               ),
             ],

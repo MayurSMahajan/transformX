@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/habit_track/habit_track.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/l10n/l10n.dart';
 
 class HabitTrackPage extends StatelessWidget {
   const HabitTrackPage({required this.habit, super.key});
@@ -25,13 +26,14 @@ class HabitLoadedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           actions: [
             TextButton(
               onPressed: () {},
-              child: const Text('Edit'),
+              child: Text(l10n.editText),
             ),
           ],
         ),
