@@ -5,8 +5,29 @@ import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 import 'package:transformx/themes/themes.dart';
 
-class HabitQuarterForm extends StatelessWidget {
+class HabitQuarterForm extends StatefulWidget {
   const HabitQuarterForm({super.key});
+
+  @override
+  State<HabitQuarterForm> createState() => _HabitQuarterFormState();
+}
+
+class _HabitQuarterFormState extends State<HabitQuarterForm> {
+  final metricMinFocusNode = FocusNode();
+  final metricIdealFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    metricMinFocusNode.requestFocus();
+  }
+
+  @override
+  void dispose() {
+    metricMinFocusNode.dispose();
+    metricIdealFocusNode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +42,27 @@ class HabitQuarterForm extends StatelessWidget {
           const VSpace(),
           CustomProgressIndicator(progress: progress),
           const VSpace(),
-          _HabitMetricTitleInput(),
+          const _HabitMetricTitleInput(),
           const VSpace(),
-          _HabitMetricMinInput(),
+          _HabitMetricMinInput(
+            focusNode: metricMinFocusNode,
+            onSubmit: metricIdealFocusNode.requestFocus,
+          ),
           const VSpace(),
-          _HabitMetricIdealInput(),
+          _HabitMetricIdealInput(
+            focusNode: metricIdealFocusNode,
+            onSubmit: () {},
+          ),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          _NextButton(),
+          NextButton(
+            onPressed: () {
+              context.read<NewHabitUICubit>().setStatusAndProgress(
+                    NewHabitUIStatus.half,
+                    0.5,
+                  );
+            },
+          ),
           const VSpace(),
         ],
       ),
@@ -37,6 +71,8 @@ class HabitQuarterForm extends StatelessWidget {
 }
 
 class _HabitMetricTitleInput extends StatelessWidget {
+  const _HabitMetricTitleInput();
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -75,6 +111,14 @@ class _HabitMetricTitleInput extends StatelessWidget {
 }
 
 class _HabitMetricMinInput extends StatelessWidget {
+  const _HabitMetricMinInput({
+    required this.focusNode,
+    required this.onSubmit,
+  });
+
+  final FocusNode focusNode;
+  final VoidCallback onSubmit;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -91,16 +135,20 @@ class _HabitMetricMinInput extends StatelessWidget {
           builder: (context, state) {
             return TextField(
               key: const Key('habitForm_habitMetricMinInput_textField'),
+              focusNode: focusNode,
               keyboardType: TextInputType.number,
-              onChanged: (min) => context
-                  .read<NewHabitFormBloc>()
-                  .add(HabitMetricMinChanged(int.parse(min))),
               decoration: InputDecoration(
                 hintText: l10n.habitMetricMin,
                 errorText: state.habitMetricMin.displayError != null
                     ? l10n.invalidHabitMetricMin
                     : null,
               ),
+              onChanged: (min) => context.read<NewHabitFormBloc>().add(
+                    HabitMetricMinChanged(
+                      int.parse(min),
+                    ),
+                  ),
+              onSubmitted: (_) => onSubmit,
             );
           },
         ),
@@ -110,6 +158,14 @@ class _HabitMetricMinInput extends StatelessWidget {
 }
 
 class _HabitMetricIdealInput extends StatelessWidget {
+  const _HabitMetricIdealInput({
+    required this.focusNode,
+    required this.onSubmit,
+  });
+
+  final FocusNode focusNode;
+  final VoidCallback onSubmit;
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -126,42 +182,24 @@ class _HabitMetricIdealInput extends StatelessWidget {
           builder: (context, state) {
             return TextField(
               key: const Key('habitForm_habitMetricIdealInput_textField'),
+              focusNode: focusNode,
               keyboardType: TextInputType.number,
-              onChanged: (min) => context
-                  .read<NewHabitFormBloc>()
-                  .add(HabitMetricIdealChanged(int.parse(min))),
               decoration: InputDecoration(
                 hintText: l10n.habitMetricIdeal,
                 errorText: state.habitMetricIdeal.displayError != null
                     ? l10n.invalidHabitMetricIdeal
                     : null,
               ),
+              onChanged: (min) => context.read<NewHabitFormBloc>().add(
+                    HabitMetricIdealChanged(
+                      int.parse(min),
+                    ),
+                  ),
+              onSubmitted: (_) => onSubmit,
             );
           },
         ),
       ],
-    );
-  }
-}
-
-class _NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-      builder: (context, state) {
-        return ElevatedButton(
-          onPressed: state.isValid
-              ? () {
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.half,
-                        0.5,
-                      );
-                }
-              : null,
-          child: Text(l10n.nextActionButton),
-        );
-      },
     );
   }
 }

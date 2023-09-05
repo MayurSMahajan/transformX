@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 
 class HabitRecordContainer extends StatelessWidget {
-  const HabitRecordContainer({super.key});
+  const HabitRecordContainer({
+    required this.stats,
+    super.key,
+  });
+
+  final Stats stats;
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +37,15 @@ class HabitRecordContainer extends StatelessWidget {
           ),
           Stack(
             children: [
-              const CustomProgressIndicator(
-                progress: 0.65,
+              CustomProgressIndicator(
+                progress: (stats.weeklyRecord / 7) - 0.21,
                 minHeight: 24,
               ),
               Positioned(
                 left: 30,
                 bottom: 1,
                 child: Text(
-                  '6/7 days',
+                  '${stats.weeklyRecord} days',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
