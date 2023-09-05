@@ -66,7 +66,7 @@ class _GoogleLoginButton extends StatelessWidget {
       key: const Key('loginForm_googleLogin_raisedButton'),
       label: Text(
         l10n.signInWithGoogle,
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

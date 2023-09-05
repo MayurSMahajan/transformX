@@ -28,6 +28,14 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
     super.dispose();
   }
 
+  void _show(BuildContext ctx) {
+    showModalBottomSheet<BottomSheet>(
+      elevation: 10,
+      context: ctx,
+      builder: (ctx) => const TimePickerWidget(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -104,6 +112,21 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
                   },
                 ),
               ),
+            ],
+          ),
+          const VSpace(),
+          const VSpace(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'habit time',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              FilledButton.tonal(
+                onPressed: () => _show(context),
+                child: const Text('Specify Time'),
+              )
             ],
           ),
           const Expanded(child: SizedBox()),
