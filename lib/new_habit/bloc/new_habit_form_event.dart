@@ -25,6 +25,15 @@ final class HabitLocationChanged extends NewHabitFormEvent {
   List<Object> get props => [habitLocation];
 }
 
+final class HabitTimeChanged extends NewHabitFormEvent {
+  const HabitTimeChanged(this.habitTime);
+
+  final Time habitTime;
+
+  @override
+  List<Object> get props => [habitTime.hour, habitTime.mins, habitTime.isAm];
+}
+
 final class HabitMetricMinChanged extends NewHabitFormEvent {
   const HabitMetricMinChanged(this.habitMetricMin);
 

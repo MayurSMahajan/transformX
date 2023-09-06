@@ -60,7 +60,6 @@ class _GoogleLoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final l10n = context.l10n;
     return ElevatedButton.icon(
       key: const Key('loginForm_googleLogin_raisedButton'),
@@ -72,9 +71,8 @@ class _GoogleLoginButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
-        backgroundColor: theme.colorScheme.secondary,
       ),
-      icon: const Text('G'),
+      icon: const Text('G', style: TextStyle(color: Colors.white)),
       onPressed: () => context.read<SignInCubit>().logInWithGoogle(),
     );
   }

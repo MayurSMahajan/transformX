@@ -5,6 +5,7 @@ class NewHabitFormState extends Equatable {
     this.status = FormzSubmissionStatus.initial,
     this.habitName = const HabitName.pure(),
     this.habitLocation = const HabitLocation.pure(),
+    this.habitTime = const Time(hour: 0, mins: 0),
     this.habitMetricMin = const HabitMetricMin.pure(),
     this.habitMetricIdeal = const HabitMetricIdeal.pure(),
     this.habitRitual = const HabitRitual.pure(),
@@ -16,6 +17,7 @@ class NewHabitFormState extends Equatable {
   final FormzSubmissionStatus status;
   final HabitName habitName;
   final HabitLocation habitLocation;
+  final Time habitTime;
   final HabitMetricMin habitMetricMin;
   final HabitMetricIdeal habitMetricIdeal;
   final HabitRitual habitRitual;
@@ -27,6 +29,7 @@ class NewHabitFormState extends Equatable {
     FormzSubmissionStatus? status,
     HabitName? habitName,
     HabitLocation? habitLocation,
+    Time? habitTime,
     HabitMetricMin? habitMetricMin,
     HabitMetricIdeal? habitMetricIdeal,
     HabitRitual? habitRitual,
@@ -38,6 +41,7 @@ class NewHabitFormState extends Equatable {
       status: status ?? this.status,
       habitName: habitName ?? this.habitName,
       habitLocation: habitLocation ?? this.habitLocation,
+      habitTime: habitTime ?? this.habitTime,
       habitMetricMin: habitMetricMin ?? this.habitMetricMin,
       habitMetricIdeal: habitMetricIdeal ?? this.habitMetricIdeal,
       habitRitual: habitRitual ?? this.habitRitual,

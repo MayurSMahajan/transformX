@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
@@ -32,8 +33,16 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
     showModalBottomSheet<BottomSheet>(
       elevation: 10,
       context: ctx,
-      builder: (ctx) => const TimePickerWidget(),
+      builder: (ctx) => TimePickerWidget(
+        onTimeSelected: onTimeSelected,
+      ),
     );
+  }
+
+  void onTimeSelected(Time habitTime) {
+    debugPrint('${habitTime.hour} ${habitTime.mins}');
+    context.read<NewHabitFormBloc>().add(HabitTimeChanged(habitTime));
+    Navigator.of(context).pop();
   }
 
   @override
