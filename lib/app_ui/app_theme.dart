@@ -24,6 +24,7 @@ class AppTheme {
       splashColor: AppColors.transparent,
       snackBarTheme: _snackBarTheme,
       elevatedButtonTheme: _elevatedButtonTheme,
+      outlinedButtonTheme: _outlinedButtonTheme,
       textButtonTheme: _textButtonTheme,
       colorScheme: _colorScheme,
       bottomSheetTheme: _bottomSheetTheme,
@@ -144,7 +145,7 @@ class AppTheme {
   ElevatedButtonThemeData get _elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 0,
+        elevation: 1,
         minimumSize: const Size(200, 50),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -153,6 +154,19 @@ class AppTheme {
         textStyle: _textTheme.labelLarge,
         backgroundColor: AppColors.primaryYellow,
         foregroundColor: AppColors.black,
+      ),
+    );
+  }
+
+  OutlinedButtonThemeData get _outlinedButtonTheme {
+    return OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(80, 50),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8)),
+        ),
+        padding: const EdgeInsets.all(AppSpacing.lg),
+        textStyle: _textTheme.labelLarge,
       ),
     );
   }

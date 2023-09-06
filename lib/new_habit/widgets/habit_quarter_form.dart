@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transformx/app_ui/app_ui.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
-import 'package:transformx/app_ui/app_ui.dart';
 
 class HabitQuarterForm extends StatefulWidget {
   const HabitQuarterForm({super.key});
@@ -55,13 +55,26 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
           ),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          NextButton(
-            onPressed: () {
-              context.read<NewHabitUICubit>().setStatusAndProgress(
-                    NewHabitUIStatus.half,
-                    0.5,
-                  );
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              PrevButton(
+                onPressed: () {
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.initial,
+                        0,
+                      );
+                },
+              ),
+              NextButton(
+                onPressed: () {
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.half,
+                        0.5,
+                      );
+                },
+              ),
+            ],
           ),
           const VSpace(),
         ],

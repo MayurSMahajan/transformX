@@ -42,13 +42,26 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
           _HabitRitualInput(focusNode: habitRitualFocusNode),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          NextButton(
-            onPressed: () {
-              context.read<NewHabitUICubit>().setStatusAndProgress(
-                    NewHabitUIStatus.quarterAndHalf,
-                    0.70,
-                  );
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              PrevButton(
+                onPressed: () {
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.quarter,
+                        0.25,
+                      );
+                },
+              ),
+              NextButton(
+                onPressed: () {
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.quarterAndHalf,
+                        0.70,
+                      );
+                },
+              ),
+            ],
           ),
           const VSpace(),
         ],

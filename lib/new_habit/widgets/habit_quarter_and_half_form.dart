@@ -133,14 +133,27 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
           ),
           const Expanded(child: SizedBox()),
           const VSpace(),
-          NextButton(
-            onPressed: () {
-              context.read<NewHabitFormBloc>().add(const HabitSubmitted());
-              context.read<NewHabitUICubit>().setStatusAndProgress(
-                    NewHabitUIStatus.complete,
-                    0.95,
-                  );
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              PrevButton(
+                onPressed: () {
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.half,
+                        0.5,
+                      );
+                },
+              ),
+              NextButton(
+                onPressed: () {
+                  context.read<NewHabitFormBloc>().add(const HabitSubmitted());
+                  context.read<NewHabitUICubit>().setStatusAndProgress(
+                        NewHabitUIStatus.complete,
+                        0.95,
+                      );
+                },
+              ),
+            ],
           ),
           const VSpace(),
         ],
