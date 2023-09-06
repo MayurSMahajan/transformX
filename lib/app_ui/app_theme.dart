@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:transformx/themes/themes.dart';
+import 'package:transformx/app_ui/app_ui.dart';
 
 /// {@template app_theme}
 /// The Default App [ThemeData].
