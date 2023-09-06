@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:habits_api/habits_api.dart';
@@ -65,9 +66,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     Emitter<NewHabitFormState> emit,
   ) {
     final habitTime = Time(
-      hour: event.habitTime.hour,
-      mins: event.habitTime.mins,
-      isAm: event.habitTime.isAm,
+      hour: event.hour,
+      mins: event.mins,
+      isAm: event.isAm,
     );
 
     emit(
@@ -165,6 +166,7 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     if (state.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
+        debugPrint('onHabitSubmitted: ${state.habitTime}');
         final finalHabit = Habit(
           title: state.habitName.value,
           location: state.habitLocation.value,

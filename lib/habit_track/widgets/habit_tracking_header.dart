@@ -6,6 +6,7 @@ class HabitHorizontalCard extends StatelessWidget {
     required this.id,
     required this.title,
     required this.location,
+    required this.time,
     required this.streak,
     super.key,
   });
@@ -13,6 +14,7 @@ class HabitHorizontalCard extends StatelessWidget {
   final Object id;
   final String title;
   final String location;
+  final String time;
   final int streak;
 
   @override
@@ -64,9 +66,9 @@ class HabitHorizontalCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
-                      const MetadataCard(
-                        icon: Icon(Icons.timer_outlined),
-                        metadata: '06:00AM',
+                      MetadataCard(
+                        icon: const Icon(Icons.timer_outlined),
+                        metadata: time,
                       ),
                       MetadataCard(
                         icon: const Icon(Icons.pin_drop_outlined),

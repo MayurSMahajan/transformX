@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habits_api/habits_api.dart';
-import 'package:transformx/infra/widgets/metadata_card.dart';
+import 'package:transformx/infra/infra.dart';
 
 class HabitCard extends StatelessWidget {
   const HabitCard({required this.habit, super.key});
@@ -51,9 +51,9 @@ class HabitCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const MetadataCard(
-                  icon: Icon(Icons.timer_outlined),
-                  metadata: '06:00AM',
+                MetadataCard(
+                  icon: const Icon(Icons.timer_outlined),
+                  metadata: habit.time.toReadableString(),
                 ),
                 MetadataCard(
                   icon: const Icon(Icons.pin_drop_outlined),

@@ -40,8 +40,13 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
   }
 
   void onTimeSelected(Time habitTime) {
-    debugPrint('${habitTime.hour} ${habitTime.mins}');
-    context.read<NewHabitFormBloc>().add(HabitTimeChanged(habitTime));
+    context.read<NewHabitFormBloc>().add(
+          HabitTimeChanged(
+            habitTime.hour,
+            habitTime.mins,
+            isAm: habitTime.isAm,
+          ),
+        );
     Navigator.of(context).pop();
   }
 
