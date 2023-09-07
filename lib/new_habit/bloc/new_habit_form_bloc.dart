@@ -40,6 +40,7 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
         habitName: habitName,
         isValid: Formz.validate([
           habitName,
+          state.habitLocation,
         ]),
       ),
     );
@@ -92,6 +93,7 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
         habitMetricMin: habitMetricMin,
         isValid: Formz.validate([
           habitMetricMin,
+          state.habitMetricIdeal,
         ]),
       ),
     );
@@ -138,6 +140,7 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
         habitShortReward: habitShortReward,
         isValid: Formz.validate([
           habitShortReward,
+          state.habitLongReward,
         ]),
       ),
     );

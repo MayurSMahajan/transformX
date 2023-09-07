@@ -1,29 +1,44 @@
 import 'package:formz/formz.dart';
 
-enum HabitMetricValidationError { large, negative }
+enum HabitMetricMinValidationError { large, negative }
 
-class HabitMetricMin extends FormzInput<int, HabitMetricValidationError> {
+enum HabitMetricIdealValidationError { large, negative }
+
+class HabitMetricMin extends FormzInput<int, HabitMetricMinValidationError> {
   const HabitMetricMin.pure() : super.pure(0);
   const HabitMetricMin.dirty([super.value = 0]) : super.dirty();
 
   @override
-  HabitMetricValidationError? validator(int value) => _metricValidator(value);
+  HabitMetricMinValidationError? validator(int value) =>
+      _metricValidator(value);
 }
 
-class HabitMetricIdeal extends FormzInput<int, HabitMetricValidationError> {
+HabitMetricMinValidationError? _metricValidator(int value) {
+  if (value > 999) {
+    return HabitMetricMinValidationError.large;
+  }
+  if (value < 0) {
+    return HabitMetricMinValidationError.negative;
+  }
+  return null;
+}
+
+class HabitMetricIdeal
+    extends FormzInput<int, HabitMetricIdealValidationError> {
   const HabitMetricIdeal.pure() : super.pure(0);
   const HabitMetricIdeal.dirty([super.value = 0]) : super.dirty();
 
   @override
-  HabitMetricValidationError? validator(int value) => _metricValidator(value);
+  HabitMetricIdealValidationError? validator(int value) =>
+      _metricIdealValidator(value);
 }
 
-HabitMetricValidationError? _metricValidator(int value) {
+HabitMetricIdealValidationError? _metricIdealValidator(int value) {
   if (value > 999) {
-    return HabitMetricValidationError.large;
+    return HabitMetricIdealValidationError.large;
   }
   if (value < 0) {
-    return HabitMetricValidationError.negative;
+    return HabitMetricIdealValidationError.negative;
   }
   return null;
 }

@@ -131,7 +131,7 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
           const VSpace(),
           const VSpace(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'habit time',
@@ -139,7 +139,7 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
               ),
               FilledButton.tonal(
                 onPressed: () => _show(context),
-                child: const Text('Specify Time'),
+                child: const Text('Change Time'),
               )
             ],
           ),
