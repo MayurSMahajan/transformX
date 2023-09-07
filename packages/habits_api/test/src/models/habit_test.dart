@@ -67,12 +67,18 @@ void main() {
       expect(
         createSubject().props,
         equals([
-          '1', // id
-          'title', // title
-          'location', // location
-          'ritual', //ritual
-          'shortReward', //shortReward
-          'longReward', //longReward
+          '1',
+          'title',
+          'location',
+          12,
+          55,
+          false,
+          'minutes',
+          25,
+          60,
+          'ritual',
+          'shortReward',
+          'longReward'
         ]),
       );
     });
