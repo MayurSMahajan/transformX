@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/app/app.dart';
-import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/app_ui/app_ui.dart';
+import 'package:transformx/l10n/l10n.dart';
 
 class App extends StatelessWidget {
   const App({

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habits_api/habits_api.dart';
 import 'package:transformx/app_ui/app_ui.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
@@ -29,6 +30,26 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
     super.dispose();
   }
 
+  void _show(BuildContext ctx) {
+    showModalBottomSheet<BottomSheet>(
+      elevation: 10,
+      context: ctx,
+      builder: (ctx) => MetricPickerWidget(
+        onMetricSelected: onMetricSelected,
+      ),
+    );
+  }
+
+  void onMetricSelected(Metric habitMetric) {
+    context.read<NewHabitFormBloc>().add(
+          HabitMetricIdealChanged(habitMetric.ideal),
+        );
+    context.read<NewHabitFormBloc>().add(
+          HabitMetricMinChanged(habitMetric.minimum),
+        );
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     final progress = context.select(
@@ -44,14 +65,18 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
           const VSpace(),
           const _HabitMetricTitleInput(),
           const VSpace(),
-          _HabitMetricMinInput(
-            focusNode: metricMinFocusNode,
-            onSubmit: metricIdealFocusNode.requestFocus,
-          ),
-          const VSpace(),
-          _HabitMetricIdealInput(
-            focusNode: metricIdealFocusNode,
-            onSubmit: () {},
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'habit metrics',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              FilledButton.tonal(
+                onPressed: () => _show(context),
+                child: const Text('Change Metric'),
+              )
+            ],
           ),
           const Expanded(child: SizedBox()),
           const VSpace(),
@@ -117,100 +142,6 @@ class _HabitMetricTitleInput extends StatelessWidget {
           style: UITextStyle.headline4.copyWith(
             color: AppColors.mediumEmphasisSurface,
           ),
-        ),
-      ],
-    );
-  }
-}
-
-class _HabitMetricMinInput extends StatelessWidget {
-  const _HabitMetricMinInput({
-    required this.focusNode,
-    required this.onSubmit,
-  });
-
-  final FocusNode focusNode;
-  final VoidCallback onSubmit;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.minDailyTargetCraveText,
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-          buildWhen: (previous, current) =>
-              previous.habitMetricMin != current.habitMetricMin,
-          builder: (context, state) {
-            return TextField(
-              key: const Key('habitForm_habitMetricMinInput_textField'),
-              focusNode: focusNode,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: l10n.habitMetricMin,
-                errorText: state.habitMetricMin.displayError != null
-                    ? l10n.invalidHabitMetricMin
-                    : null,
-              ),
-              onChanged: (min) => context.read<NewHabitFormBloc>().add(
-                    HabitMetricMinChanged(
-                      int.parse(min),
-                    ),
-                  ),
-              onSubmitted: (_) => onSubmit,
-            );
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class _HabitMetricIdealInput extends StatelessWidget {
-  const _HabitMetricIdealInput({
-    required this.focusNode,
-    required this.onSubmit,
-  });
-
-  final FocusNode focusNode;
-  final VoidCallback onSubmit;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.idealDailyTargetCraveText,
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-          buildWhen: (previous, current) =>
-              previous.habitMetricIdeal != current.habitMetricIdeal,
-          builder: (context, state) {
-            return TextField(
-              key: const Key('habitForm_habitMetricIdealInput_textField'),
-              focusNode: focusNode,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                hintText: l10n.habitMetricIdeal,
-                errorText: state.habitMetricIdeal.displayError != null
-                    ? l10n.invalidHabitMetricIdeal
-                    : null,
-              ),
-              onChanged: (min) => context.read<NewHabitFormBloc>().add(
-                    HabitMetricIdealChanged(
-                      int.parse(min),
-                    ),
-                  ),
-              onSubmitted: (_) => onSubmit,
-            );
-          },
         ),
       ],
     );
