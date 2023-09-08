@@ -5,8 +5,8 @@ enum HabitMetricMinValidationError { large, negative }
 enum HabitMetricIdealValidationError { large, negative }
 
 class HabitMetricMin extends FormzInput<int, HabitMetricMinValidationError> {
-  const HabitMetricMin.pure() : super.pure(0);
-  const HabitMetricMin.dirty([super.value = 0]) : super.dirty();
+  const HabitMetricMin.pure() : super.pure(5);
+  const HabitMetricMin.dirty([super.value = 5]) : super.dirty();
 
   @override
   HabitMetricMinValidationError? validator(int value) =>
@@ -25,8 +25,8 @@ HabitMetricMinValidationError? _metricValidator(int value) {
 
 class HabitMetricIdeal
     extends FormzInput<int, HabitMetricIdealValidationError> {
-  const HabitMetricIdeal.pure() : super.pure(0);
-  const HabitMetricIdeal.dirty([super.value = 0]) : super.dirty();
+  const HabitMetricIdeal.pure() : super.pure(10);
+  const HabitMetricIdeal.dirty([super.value = 10]) : super.dirty();
 
   @override
   HabitMetricIdealValidationError? validator(int value) =>

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
 
+const metricMinOffset = 5;
+const metricIdealOffset = 10;
+
 class MetricPickerWidgetWrapper extends StatelessWidget {
   const MetricPickerWidgetWrapper({required this.onMetricSelected, super.key});
 
@@ -42,8 +45,8 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
 
   void submitTime(BuildContext context) {
     final habitMetric = Metric(
-      minimum: _minimumController.selectedItem,
-      ideal: _idealController.selectedItem,
+      minimum: _minimumController.selectedItem + metricMinOffset,
+      ideal: _idealController.selectedItem + metricIdealOffset,
     );
     widget.onMetricSelected(habitMetric);
   }
@@ -60,13 +63,13 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'ideal ',
+                'min ',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const HSpace(),
               const HSpace(),
               Text(
-                ' min',
+                ' ideal',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             ],
@@ -95,16 +98,16 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
                       SizedBox(
                         width: 70,
                         child: ListWheelScrollView.useDelegate(
-                          controller: _idealController,
+                          controller: _minimumController,
                           itemExtent: 54,
                           perspective: 0.005,
                           diameterRatio: 1.2,
                           physics: const FixedExtentScrollPhysics(),
                           childDelegate: ListWheelChildBuilderDelegate(
-                            childCount: 60,
+                            childCount: 31,
                             builder: (context, index) {
-                              return MetricIdeal(
-                                hours: index,
+                              return MetricMinimum(
+                                minimum: index + metricMinOffset,
                               );
                             },
                           ),
@@ -115,16 +118,16 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
                       SizedBox(
                         width: 70,
                         child: ListWheelScrollView.useDelegate(
-                          controller: _minimumController,
+                          controller: _idealController,
                           itemExtent: 54,
                           perspective: 0.005,
                           diameterRatio: 1.2,
                           physics: const FixedExtentScrollPhysics(),
                           childDelegate: ListWheelChildBuilderDelegate(
-                            childCount: 60,
+                            childCount: 56,
                             builder: (context, index) {
-                              return MetricMinimum(
-                                mins: index,
+                              return MetricIdeal(
+                                ideal: index + metricIdealOffset,
                               );
                             },
                           ),
@@ -150,9 +153,9 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
 }
 
 class MetricIdeal extends StatelessWidget {
-  const MetricIdeal({required this.hours, super.key});
+  const MetricIdeal({required this.ideal, super.key});
 
-  final int hours;
+  final int ideal;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +163,7 @@ class MetricIdeal extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Center(
         child: Text(
-          hours.toString(),
+          ideal < 10 ? '0$ideal' : ideal.toString(),
           style: const TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.bold,
@@ -172,9 +175,9 @@ class MetricIdeal extends StatelessWidget {
 }
 
 class MetricMinimum extends StatelessWidget {
-  const MetricMinimum({required this.mins, super.key});
+  const MetricMinimum({required this.minimum, super.key});
 
-  final int mins;
+  final int minimum;
 
   @override
   Widget build(BuildContext context) {
@@ -182,7 +185,7 @@ class MetricMinimum extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Center(
         child: Text(
-          mins < 10 ? '0$mins' : mins.toString(),
+          minimum < 10 ? '0$minimum' : minimum.toString(),
           style: const TextStyle(
             fontSize: 34,
             fontWeight: FontWeight.bold,

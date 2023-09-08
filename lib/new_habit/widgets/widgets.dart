@@ -6,4 +6,5 @@ export 'habit_quarter_form.dart';
 export 'metric_picker_widget.dart';
 export 'next_button.dart';
 export 'prev_button.dart';
+export 'selected_value_tile.dart';
 export 'time_picker_widget.dart';

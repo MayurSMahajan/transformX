@@ -14,22 +14,6 @@ class HabitQuarterForm extends StatefulWidget {
 }
 
 class _HabitQuarterFormState extends State<HabitQuarterForm> {
-  final metricMinFocusNode = FocusNode();
-  final metricIdealFocusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-    metricMinFocusNode.requestFocus();
-  }
-
-  @override
-  void dispose() {
-    metricMinFocusNode.dispose();
-    metricIdealFocusNode.dispose();
-    super.dispose();
-  }
-
   void _show(BuildContext ctx) {
     showModalBottomSheet<BottomSheet>(
       elevation: 10,
@@ -52,6 +36,7 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final progress = context.select(
       (NewHabitUICubit cubit) => cubit.state.progress,
     );
@@ -59,23 +44,45 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const VSpace(),
           CustomProgressIndicator(progress: progress),
           const VSpace(),
           const _HabitMetricTitleInput(),
           const VSpace(),
+          Text(
+            'habit metrics',
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          const VSpace(),
+          BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+            builder: (context, state) {
+              return Column(
+                children: [
+                  SelectedValueTile(
+                    label: 'minimum',
+                    amount: '${state.habitMetricMin.value}',
+                    subLabel: l10n.minutes,
+                  ),
+                  const VSpace(),
+                  SelectedValueTile(
+                    label: 'ideal',
+                    amount: '${state.habitMetricIdeal.value}',
+                    subLabel: l10n.minutes,
+                  ),
+                ],
+              );
+            },
+          ),
+          const VSpace(),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(
-                'habit metrics',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
               FilledButton.tonal(
                 onPressed: () => _show(context),
                 child: const Text('Change Metric'),
-              )
+              ),
             ],
           ),
           const Expanded(child: SizedBox()),
