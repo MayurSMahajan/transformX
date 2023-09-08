@@ -29,6 +29,7 @@ dependencies:
   intl: ^0.18.0
   local_storage_habits_api:
     path: packages/local_storage_habits_api
+  percent_indicator: ^4.2.3
   
 dev_dependencies:
   bloc_test: ^9.1.2

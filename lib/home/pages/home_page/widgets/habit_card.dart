@@ -13,7 +13,7 @@ class HabitCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12),
       child: InkWell(
-        onTap: () => context.go('/track', extra: habit),
+        onTap: () => context.go('/overview', extra: habit),
         child: Container(
           width: 165,
           height: 220,

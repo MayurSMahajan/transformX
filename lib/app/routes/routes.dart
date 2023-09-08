@@ -7,6 +7,7 @@ import 'package:transformx/home/home.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 import 'package:transformx/overview/overview.dart';
 import 'package:transformx/sign_in/sign_in.dart';
+import 'package:transformx/track/track.dart';
 
 final GoRouter routerConfig = GoRouter(
   routes: <RouteBase>[
@@ -44,7 +45,7 @@ final GoRouter routerConfig = GoRouter(
           },
         ),
         GoRoute(
-          path: 'track',
+          path: 'overview',
           pageBuilder: (context, state) {
             final habit = state.extra as Habit?;
             return CustomTransitionPage(
@@ -57,6 +58,24 @@ final GoRouter routerConfig = GoRouter(
                 return FadeTransition(
                   opacity: CurveTween(
                     curve: Curves.easeOutSine,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: 'progress',
+          pageBuilder: (context, state) {
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: const TrackPage(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(
+                    curve: Curves.easeIn,
                   ).animate(animation),
                   child: child,
                 );
