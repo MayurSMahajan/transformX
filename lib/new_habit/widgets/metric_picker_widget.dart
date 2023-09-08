@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
-import 'package:transformx/infra/infra.dart';
+import 'package:transformx/new_habit/widgets/widgets.dart';
 
 const metricMinOffset = 5;
 const metricIdealOffset = 10;
@@ -43,7 +43,7 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
     super.dispose();
   }
 
-  void submitTime(BuildContext context) {
+  void submitMetric() {
     final habitMetric = Metric(
       minimum: _minimumController.selectedItem + metricMinOffset,
       ideal: _idealController.selectedItem + metricIdealOffset,
@@ -58,80 +58,28 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
       height: 330,
       child: Column(
         children: [
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'min ',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              const HSpace(),
-              const HSpace(),
-              Text(
-                ' ideal',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-            ],
-          ),
+          const _MetricTypeLabel(),
           SizedBox(
             height: 220,
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 24),
-                  child: Container(
-                    height: 60,
-                    width: 300,
-                    decoration: BoxDecoration(
-                      color: Colors.amber.shade100,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                ),
+                const BottomSheetOverlay(),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        width: 70,
-                        child: ListWheelScrollView.useDelegate(
-                          controller: _minimumController,
-                          itemExtent: 54,
-                          perspective: 0.005,
-                          diameterRatio: 1.2,
-                          physics: const FixedExtentScrollPhysics(),
-                          childDelegate: ListWheelChildBuilderDelegate(
-                            childCount: 31,
-                            builder: (context, index) {
-                              return MetricMinimum(
-                                minimum: index + metricMinOffset,
-                              );
-                            },
-                          ),
-                        ),
+                      BottomSheetWheel(
+                        controller: _minimumController,
+                        offset: metricMinOffset,
+                        childCount: 31,
                       ),
-                      const HSpace(),
-                      const HSpace(),
-                      SizedBox(
-                        width: 70,
-                        child: ListWheelScrollView.useDelegate(
-                          controller: _idealController,
-                          itemExtent: 54,
-                          perspective: 0.005,
-                          diameterRatio: 1.2,
-                          physics: const FixedExtentScrollPhysics(),
-                          childDelegate: ListWheelChildBuilderDelegate(
-                            childCount: 56,
-                            builder: (context, index) {
-                              return MetricIdeal(
-                                ideal: index + metricIdealOffset,
-                              );
-                            },
-                          ),
-                        ),
+                      const SizedBox(width: 45),
+                      BottomSheetWheel(
+                        controller: _idealController,
+                        offset: metricIdealOffset,
+                        childCount: 56,
                       ),
                     ],
                   ),
@@ -139,59 +87,36 @@ class _MetricPickerWidgetState extends State<MetricPickerWidget> {
               ],
             ),
           ),
-          FilledButton.tonal(
-            onPressed: () => submitTime(context),
-            child: const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8),
-              child: Text('Done'),
-            ),
-          ),
+          BottomSheetButton(onPressed: submitMetric),
         ],
       ),
     );
   }
 }
 
-class MetricIdeal extends StatelessWidget {
-  const MetricIdeal({required this.ideal, super.key});
-
-  final int ideal;
+class _MetricTypeLabel extends StatelessWidget {
+  const _MetricTypeLabel();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Center(
-        child: Text(
-          ideal < 10 ? '0$ideal' : ideal.toString(),
-          style: const TextStyle(
-            fontSize: 34,
-            fontWeight: FontWeight.bold,
-          ),
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'min ',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+            const SizedBox(width: 45),
+            Text(
+              ' ideal',
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+          ],
         ),
-      ),
-    );
-  }
-}
-
-class MetricMinimum extends StatelessWidget {
-  const MetricMinimum({required this.minimum, super.key});
-
-  final int minimum;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Center(
-        child: Text(
-          minimum < 10 ? '0$minimum' : minimum.toString(),
-          style: const TextStyle(
-            fontSize: 34,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      ],
     );
   }
 }
