@@ -4,6 +4,8 @@ extension TimeFormat on Time {
   /// returns a `String` which contains `Time` in a readable format
   String toReadableString() {
     final amPmString = isAm ? 'am' : 'pm';
-    return '$hour:$mins $amPmString';
+    final hourString = hour < 10 ? '0$hour' : '$hour';
+    final minsString = mins < 10 ? '0$mins' : '$mins';
+    return '$hourString:$minsString $amPmString';
   }
 }

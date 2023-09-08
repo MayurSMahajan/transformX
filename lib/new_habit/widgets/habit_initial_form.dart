@@ -137,10 +137,24 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
                 'habit time',
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
+              BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+                builder: (context, state) {
+                  return Text(
+                    state.habitTime.toReadableString(),
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  );
+                },
+              ),
+            ],
+          ),
+          const VSpace(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
               FilledButton.tonal(
                 onPressed: () => _show(context),
                 child: const Text('Change Time'),
-              )
+              ),
             ],
           ),
           const Expanded(child: SizedBox()),
