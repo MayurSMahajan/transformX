@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/app/app.dart';
-import 'package:transformx/habit_track/habit_track.dart';
 import 'package:transformx/home/home.dart';
 import 'package:transformx/new_habit/new_habit.dart';
+import 'package:transformx/overview/overview.dart';
 import 'package:transformx/sign_in/sign_in.dart';
 
 final GoRouter routerConfig = GoRouter(
@@ -49,7 +49,7 @@ final GoRouter routerConfig = GoRouter(
             final habit = state.extra as Habit?;
             return CustomTransitionPage(
               key: state.pageKey,
-              child: HabitTrackPage(
+              child: OverviewPage(
                 habit: habit,
               ),
               transitionsBuilder:

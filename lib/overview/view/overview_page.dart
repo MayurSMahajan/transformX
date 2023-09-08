@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
-import 'package:transformx/habit_track/habit_track.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
+import 'package:transformx/overview/overview.dart';
 
-class HabitTrackPage extends StatelessWidget {
-  const HabitTrackPage({required this.habit, super.key});
+class OverviewPage extends StatelessWidget {
+  const OverviewPage({required this.habit, super.key});
 
   final Habit? habit;
 
