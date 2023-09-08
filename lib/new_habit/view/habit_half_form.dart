@@ -28,19 +28,13 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
 
   @override
   Widget build(BuildContext context) {
-    final progress = context.select(
-      (NewHabitUICubit cubit) => cubit.state.progress,
-    );
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         children: [
-          const VSpace(),
-          CustomProgressIndicator(progress: progress),
-          const VSpace(),
+          const FormProgressContainer(),
           _HabitRitualInput(focusNode: habitRitualFocusNode),
-          const Expanded(child: SizedBox()),
+          const Spacer(),
           const VSpace(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

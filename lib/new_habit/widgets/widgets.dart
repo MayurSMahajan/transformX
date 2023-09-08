@@ -2,6 +2,7 @@ export 'bottom_sheet_button.dart';
 export 'bottom_sheet_overlay.dart';
 export 'bottom_sheet_wheel.dart';
 export 'bottom_sheet_wheel_tile.dart';
+export 'form_progress_container.dart';
 export 'metric_picker_widget.dart';
 export 'next_button.dart';
 export 'prev_button.dart';

@@ -53,17 +53,12 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final progress = context.select(
-      (NewHabitUICubit cubit) => cubit.state.progress,
-    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         children: [
-          const VSpace(),
-          CustomProgressIndicator(progress: progress),
-          const VSpace(),
+          const FormProgressContainer(),
           Row(
             children: [
               Text(
@@ -157,7 +152,7 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
               ),
             ],
           ),
-          const Expanded(child: SizedBox()),
+          const Spacer(),
           const VSpace(),
           NextButton(
             onPressed: () {

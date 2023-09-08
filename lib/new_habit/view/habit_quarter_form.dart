@@ -37,18 +37,13 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final progress = context.select(
-      (NewHabitUICubit cubit) => cubit.state.progress,
-    );
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const VSpace(),
-          CustomProgressIndicator(progress: progress),
-          const VSpace(),
+          const FormProgressContainer(),
           const _HabitMetricTitleInput(),
           const VSpace(),
           Text(
@@ -85,8 +80,7 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
               ),
             ],
           ),
-          const Expanded(child: SizedBox()),
-          const VSpace(),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

@@ -22,7 +22,7 @@ class HabitCompleteForm extends StatelessWidget {
             l10n.greatSuccessText,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
-          const Expanded(child: SizedBox()),
+          const Spacer(),
           const VSpace(),
           _NextButton(),
           const VSpace(),
