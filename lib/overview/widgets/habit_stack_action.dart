@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
 
 class HabitStackAction extends StatelessWidget {
-  const HabitStackAction({super.key});
+  const HabitStackAction({required this.habit, super.key});
+
+  final Habit habit;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,7 @@ class HabitStackAction extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         PrimaryButton(
-          onPressed: () => context.go('/progress'),
+          onPressed: () => context.go('/progress', extra: habit),
           text: 'Start Tracking',
         ),
       ],

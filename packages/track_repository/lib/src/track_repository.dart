@@ -14,7 +14,7 @@ class TrackRepository {
   /// Saves a [Track].
   ///
   /// If a [Track] with the same id already exists, it will be replaced.
-  Future<void> saveHabit(Track track, String habitId) =>
+  Future<void> saveTrack(Track track, String habitId) =>
       _trackApi.saveTrack(track, habitId);
 
   /// Returns all the [Track]

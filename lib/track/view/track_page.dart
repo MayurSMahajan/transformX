@@ -74,7 +74,7 @@ class _TrackPageState extends State<TrackPage> {
                   ],
                 ),
               ),
-              const HabitTrackAction(),
+              HabitTrackAction(progress: minutes),
             ],
           ),
         ),

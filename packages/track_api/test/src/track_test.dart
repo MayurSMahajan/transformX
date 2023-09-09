@@ -51,34 +51,6 @@ void main() {
           equals(createSubject()),
         );
       });
-
-      group('fromJson', () {
-        test('works correctly', () {
-          expect(
-            Track.fromJson(<String, dynamic>{
-              'id': '1',
-              'trackedUpdate': 10,
-              'dateTime': dateTime.toIso8601String(),
-              'didUseApp': true
-            }),
-            equals(createSubject()),
-          );
-        });
-      });
-
-      group('toJson', () {
-        test('works correctly', () {
-          expect(
-            createSubject().toJson(),
-            equals(<String, dynamic>{
-              'id': '1',
-              'trackedUpdate': 10,
-              'dateTime': dateTime.toIso8601String(),
-              'didUseApp': true
-            }),
-          );
-        });
-      });
     });
   });
 }

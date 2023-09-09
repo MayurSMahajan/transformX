@@ -58,7 +58,7 @@ class HabitLoadedView extends StatelessWidget {
                 title: habit.title,
               ),
               const VSpace(),
-              const HabitStackAction(),
+              HabitStackAction(habit: habit),
             ],
           ),
         ),
