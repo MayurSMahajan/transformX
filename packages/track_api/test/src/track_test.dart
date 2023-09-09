@@ -14,6 +14,7 @@ void main() {
       bool didUseApp = true,
     }) {
       return Track(
+        id: '1',
         trackedUpdate: trackedUpdate,
         dateTime: dateTime,
         didUseApp: didUseApp,
@@ -55,6 +56,7 @@ void main() {
         test('works correctly', () {
           expect(
             Track.fromJson(<String, dynamic>{
+              'id': '1',
               'trackedUpdate': 10,
               'dateTime': dateTime.toIso8601String(),
               'didUseApp': true
@@ -69,6 +71,7 @@ void main() {
           expect(
             createSubject().toJson(),
             equals(<String, dynamic>{
+              'id': '1',
               'trackedUpdate': 10,
               'dateTime': dateTime.toIso8601String(),
               'didUseApp': true

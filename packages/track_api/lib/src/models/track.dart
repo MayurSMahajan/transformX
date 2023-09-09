@@ -13,6 +13,7 @@ class Track with _$Track {
   ///  unit metric, `dateTime` is also mandatory, `didUseApp` defaults to false
   /// meaning that the user did not open the app on that day.
   const factory Track({
+    required String id,
     required int trackedUpdate,
     required DateTime dateTime,
     @Default(false) bool didUseApp,

@@ -20,6 +20,7 @@ Track _$TrackFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Track {
+  String get id => throw _privateConstructorUsedError;
   int get trackedUpdate => throw _privateConstructorUsedError;
   DateTime get dateTime => throw _privateConstructorUsedError;
   bool get didUseApp => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $TrackCopyWith<$Res> {
   factory $TrackCopyWith(Track value, $Res Function(Track) then) =
       _$TrackCopyWithImpl<$Res, Track>;
   @useResult
-  $Res call({int trackedUpdate, DateTime dateTime, bool didUseApp});
+  $Res call({String id, int trackedUpdate, DateTime dateTime, bool didUseApp});
 }
 
 /// @nodoc
@@ -50,11 +51,16 @@ class _$TrackCopyWithImpl<$Res, $Val extends Track>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? trackedUpdate = null,
     Object? dateTime = null,
     Object? didUseApp = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       trackedUpdate: null == trackedUpdate
           ? _value.trackedUpdate
           : trackedUpdate // ignore: cast_nullable_to_non_nullable
@@ -77,7 +83,7 @@ abstract class _$$_TrackCopyWith<$Res> implements $TrackCopyWith<$Res> {
       __$$_TrackCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int trackedUpdate, DateTime dateTime, bool didUseApp});
+  $Res call({String id, int trackedUpdate, DateTime dateTime, bool didUseApp});
 }
 
 /// @nodoc
@@ -89,11 +95,16 @@ class __$$_TrackCopyWithImpl<$Res> extends _$TrackCopyWithImpl<$Res, _$_Track>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? trackedUpdate = null,
     Object? dateTime = null,
     Object? didUseApp = null,
   }) {
     return _then(_$_Track(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       trackedUpdate: null == trackedUpdate
           ? _value.trackedUpdate
           : trackedUpdate // ignore: cast_nullable_to_non_nullable
@@ -114,13 +125,16 @@ class __$$_TrackCopyWithImpl<$Res> extends _$TrackCopyWithImpl<$Res, _$_Track>
 @JsonSerializable()
 class _$_Track implements _Track {
   const _$_Track(
-      {required this.trackedUpdate,
+      {required this.id,
+      required this.trackedUpdate,
       required this.dateTime,
       this.didUseApp = false});
 
   factory _$_Track.fromJson(Map<String, dynamic> json) =>
       _$$_TrackFromJson(json);
 
+  @override
+  final String id;
   @override
   final int trackedUpdate;
   @override
@@ -131,7 +145,7 @@ class _$_Track implements _Track {
 
   @override
   String toString() {
-    return 'Track(trackedUpdate: $trackedUpdate, dateTime: $dateTime, didUseApp: $didUseApp)';
+    return 'Track(id: $id, trackedUpdate: $trackedUpdate, dateTime: $dateTime, didUseApp: $didUseApp)';
   }
 
   @override
@@ -139,6 +153,7 @@ class _$_Track implements _Track {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Track &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.trackedUpdate, trackedUpdate) ||
                 other.trackedUpdate == trackedUpdate) &&
             (identical(other.dateTime, dateTime) ||
@@ -150,7 +165,7 @@ class _$_Track implements _Track {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, trackedUpdate, dateTime, didUseApp);
+      Object.hash(runtimeType, id, trackedUpdate, dateTime, didUseApp);
 
   @JsonKey(ignore: true)
   @override
@@ -168,12 +183,15 @@ class _$_Track implements _Track {
 
 abstract class _Track implements Track {
   const factory _Track(
-      {required final int trackedUpdate,
+      {required final String id,
+      required final int trackedUpdate,
       required final DateTime dateTime,
       final bool didUseApp}) = _$_Track;
 
   factory _Track.fromJson(Map<String, dynamic> json) = _$_Track.fromJson;
 
+  @override
+  String get id;
   @override
   int get trackedUpdate;
   @override
