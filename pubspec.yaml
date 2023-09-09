@@ -14,6 +14,8 @@ dependencies:
   firebase_core: ^2.15.1
   firebase_habits_api:
     path: packages/firebase_habits_api
+  firebase_track_api:
+    path: packages/firebase_track_api
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3

@@ -15,9 +15,7 @@ abstract class TrackApi {
   /// Provides a [Stream] of all track objects for the habit.
   Stream<Iterable<Track>> getAllTrack(String habitId);
 
-  /// Provides a [Stream] of 7 track objects for the tracking weekly progress
-  Stream<Iterable<Track>> getWeeklyTrack(String habitId);
-
-  /// Provides a [Stream] of 30 track objects for the tracking weekly progress
-  Stream<Iterable<Track>> getMonthlyTrack(String habitId);
+  /// Provides a [Stream] of track objects for the tracking weekly progress
+  /// The number of `Track` objects will be equal to count
+  Stream<Iterable<Track>> getOnlyCountTrack(String habitId, int count);
 }

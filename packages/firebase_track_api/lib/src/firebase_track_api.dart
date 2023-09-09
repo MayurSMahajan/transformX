@@ -32,21 +32,9 @@ class FirebaseTrackApi implements TrackApi {
   }
 
   @override
-  Stream<Iterable<Track>> getMonthlyTrack(String habitId) {
+  Stream<Iterable<Track>> getOnlyCountTrack(String habitId, int count) {
     final tracksCollection =
-        db.doc(habitId).collection('tracks').orderBy('dateTime').limit(30);
-    final ans = tracksCollection.snapshots().map(
-          (snapshot) => snapshot.docs.map(
-            (e) => TrackEntity.fromFirestore(e).toTrack(),
-          ),
-        );
-    return ans;
-  }
-
-  @override
-  Stream<Iterable<Track>> getWeeklyTrack(String habitId) {
-    final tracksCollection =
-        db.doc(habitId).collection('tracks').orderBy('dateTime').limit(7);
+        db.doc(habitId).collection('tracks').orderBy('dateTime').limit(count);
     final ans = tracksCollection.snapshots().map(
           (snapshot) => snapshot.docs.map(
             (e) => TrackEntity.fromFirestore(e).toTrack(),
