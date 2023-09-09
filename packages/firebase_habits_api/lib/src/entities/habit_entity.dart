@@ -7,6 +7,7 @@ import 'package:habits_api/habits_api.dart';
 class HabitEntity {
   /// constructor
   const HabitEntity({
+    this.id,
     this.title,
     this.location,
     this.hour,
@@ -33,6 +34,7 @@ class HabitEntity {
   ) {
     final data = snapshot.data();
     return HabitEntity(
+      id: data?['id'] as String,
       title: data?['title'] as String,
       location: data?['location'] as String,
       hour: data?['hour'] as int,
@@ -59,6 +61,7 @@ class HabitEntity {
     Habit habit,
   ) {
     return HabitEntity(
+      id: habit.id,
       title: habit.title,
       location: habit.location,
       hour: habit.time.hour,
@@ -79,6 +82,9 @@ class HabitEntity {
       icon: habit.icon,
     );
   }
+
+  ///the id of the habit
+  final String? id;
 
   /// the title of the habit
   final String? title;
@@ -137,6 +143,7 @@ class HabitEntity {
   /// Method to convert [HabitEntity] to Map for storing in Firebase
   Map<String, dynamic> toFirestore() {
     return {
+      if (id != null) 'id': id,
       if (title != null) 'title': title,
       if (location != null) 'location': location,
       if (hour != null) 'hour': hour,
@@ -162,6 +169,7 @@ class HabitEntity {
   /// assigns some default values to handle the null case
   Habit toHabit() {
     return Habit(
+      id: id ?? '',
       title: title ?? '',
       location: location ?? '',
       time: Time(
