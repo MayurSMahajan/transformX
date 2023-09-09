@@ -32,6 +32,8 @@ dependencies:
   local_storage_habits_api:
     path: packages/local_storage_habits_api
   percent_indicator: ^4.2.3
+  track_repository:
+    path: packages/track_repository
   
 dev_dependencies:
   bloc_test: ^9.1.2

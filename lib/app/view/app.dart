@@ -2,6 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habits_repository/habits_repository.dart';
+import 'package:track_repository/track_repository.dart';
 import 'package:transformx/app/app.dart';
 import 'package:transformx/app_ui/app_ui.dart';
 import 'package:transformx/l10n/l10n.dart';
@@ -10,11 +11,15 @@ class App extends StatelessWidget {
   const App({
     required AuthenticationRepository authenticationRepository,
     required HabitsRepository habitsRepository,
+    required TrackRepository trackRepository,
     super.key,
   })  : _authenticationRepository = authenticationRepository,
-        _habitsRepository = habitsRepository;
+        _habitsRepository = habitsRepository,
+        _trackRepository = trackRepository;
+
   final AuthenticationRepository _authenticationRepository;
   final HabitsRepository _habitsRepository;
+  final TrackRepository _trackRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +27,7 @@ class App extends StatelessWidget {
       providers: [
         RepositoryProvider.value(value: _authenticationRepository),
         RepositoryProvider.value(value: _habitsRepository),
+        RepositoryProvider.value(value: _trackRepository),
       ],
       child: BlocProvider(
         create: (_) => AppBloc(
