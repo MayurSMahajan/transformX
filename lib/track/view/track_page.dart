@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:transformx/track/widgets/track_action.dart';
+import 'package:track_repository/track_repository.dart';
+import 'package:transformx/infra/infra.dart';
+import 'package:transformx/track/bloc/track_bloc.dart';
 
 class TrackPage extends StatefulWidget {
-  const TrackPage({super.key});
+  const TrackPage({this.track, super.key});
+
+  final Track? track;
 
   @override
   State<TrackPage> createState() => _TrackPageState();
@@ -14,6 +20,18 @@ class _TrackPageState extends State<TrackPage> {
   final idealTarget = 60;
 
   int minutes = 01;
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      minutes = widget.track?.trackedUpdate ?? 02;
+    });
+  }
+
+  void submitTrack(BuildContext context) {
+    context.read<TrackBloc>().add(SaveTrack(trackedUpdate: minutes));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +92,15 @@ class _TrackPageState extends State<TrackPage> {
                   ],
                 ),
               ),
-              HabitTrackAction(progress: minutes),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  PrimaryButton(
+                    onPressed: () => submitTrack(context),
+                    text: 'Submit Score',
+                  ),
+                ],
+              ),
             ],
           ),
         ),

@@ -13,16 +13,23 @@ class FirebaseTrackApi implements TrackApi {
   final db = FirebaseFirestore.instance.collection('data');
 
   @override
-  Future<void> saveTrack(Track track, String habitId) {
-    final trackDoc = db.doc(habitId).collection('tracks').doc(track.id);
+  Future<void> saveTrack({
+    required Track track,
+    required String habitId,
+    required String userId,
+  }) {
+    final trackDoc = db.doc(userId).collection(habitId).doc(track.id);
     final trackEntityMap = TrackEntity.fromTrack(track).toFirestore();
     return trackDoc.set(trackEntityMap);
   }
 
   @override
-  Stream<Iterable<Track>> getAllTrack(String habitId) {
+  Stream<Iterable<Track>> getAllTrack({
+    required String habitId,
+    required String userId,
+  }) {
     final tracksCollection =
-        db.doc(habitId).collection('tracks').orderBy('dateTime');
+        db.doc(userId).collection(habitId).orderBy('dateTime');
     final ans = tracksCollection.snapshots().map(
           (snapshot) => snapshot.docs.map(
             (e) => TrackEntity.fromFirestore(e).toTrack(),
@@ -32,9 +39,13 @@ class FirebaseTrackApi implements TrackApi {
   }
 
   @override
-  Stream<Iterable<Track>> getOnlyCountTrack(String habitId, int count) {
+  Stream<Iterable<Track>> getOnlyCountTrack({
+    required int count,
+    required String habitId,
+    required String userId,
+  }) {
     final tracksCollection =
-        db.doc(habitId).collection('tracks').orderBy('dateTime').limit(count);
+        db.doc(userId).collection(habitId).orderBy('dateTime').limit(count);
     final ans = tracksCollection.snapshots().map(
           (snapshot) => snapshot.docs.map(
             (e) => TrackEntity.fromFirestore(e).toTrack(),

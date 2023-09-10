@@ -10,7 +10,7 @@ class TrackEntity {
     this.id,
     this.trackedUpdate,
     this.didUseApp,
-    this.dateTime,
+    this.timeStamp,
   });
 
   /// factory constructor to create a [TrackEntity] from Firestore
@@ -22,7 +22,7 @@ class TrackEntity {
       id: data?['id'] as String,
       trackedUpdate: data?['trackedUpdate'] as int,
       didUseApp: data?['didUseApp'] as bool,
-      dateTime: data?['dateTime'] as DateTime,
+      timeStamp: data?['dateTime'] as Timestamp,
     );
   }
 
@@ -31,9 +31,10 @@ class TrackEntity {
     Track track,
   ) {
     return TrackEntity(
+      id: track.id,
       trackedUpdate: track.trackedUpdate,
       didUseApp: track.didUseApp,
-      dateTime: track.dateTime,
+      timeStamp: Timestamp.fromDate(track.dateTime),
     );
   }
 
@@ -47,7 +48,7 @@ class TrackEntity {
   final bool? didUseApp;
 
   /// specifies the date time.
-  final DateTime? dateTime;
+  final Timestamp? timeStamp;
 
   /// Method to convert [TrackEntity] to Map for storing in Firebase
   Map<String, dynamic> toFirestore() {
@@ -55,7 +56,7 @@ class TrackEntity {
       if (id != null) 'id': id,
       if (trackedUpdate != null) 'trackedUpdate': trackedUpdate,
       if (didUseApp != null) 'didUseApp': didUseApp,
-      if (dateTime != null) 'dateTime': dateTime,
+      if (timeStamp != null) 'dateTime': timeStamp,
     };
   }
 
@@ -65,7 +66,7 @@ class TrackEntity {
       id: id ?? '',
       trackedUpdate: trackedUpdate ?? 0,
       didUseApp: didUseApp ?? false,
-      dateTime: dateTime ?? DateTime.now(),
+      dateTime: timeStamp?.toDate() ?? DateTime.now(),
     );
   }
 }

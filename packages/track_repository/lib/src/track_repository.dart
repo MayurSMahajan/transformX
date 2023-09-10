@@ -14,24 +14,62 @@ class TrackRepository {
   /// Saves a [Track].
   ///
   /// If a [Track] with the same id already exists, it will be replaced.
-  Future<void> saveTrack(Track track, String habitId) =>
-      _trackApi.saveTrack(track, habitId);
+  Future<void> saveTrack({
+    required Track track,
+    required String habitId,
+    required String userId,
+  }) =>
+      _trackApi.saveTrack(
+        habitId: habitId,
+        userId: userId,
+        track: track,
+      );
 
   /// Returns all the [Track]
   ///
   /// Returns them as a Stream.
-  Stream<Iterable<Track>> getAllTrack(String habitId) =>
-      _trackApi.getAllTrack(habitId);
+  Stream<Iterable<Track>> getAllTrack({
+    required String habitId,
+    required String userId,
+  }) =>
+      _trackApi.getAllTrack(habitId: habitId, userId: userId);
 
   /// Returns a Iterable of only 7 [Track] objects.
   ///
   /// Returns them as a Stream.
-  Stream<Iterable<Track>> getWeeklyTrack(String habitId) =>
-      _trackApi.getOnlyCountTrack(habitId, 7);
+  Stream<Iterable<Track>> getLatestTrack({
+    required String habitId,
+    required String userId,
+  }) =>
+      _trackApi.getOnlyCountTrack(
+        habitId: habitId,
+        userId: userId,
+        count: 1,
+      );
+
+  /// Returns a Iterable of only 7 [Track] objects.
+  ///
+  /// Returns them as a Stream.
+  Stream<Iterable<Track>> getWeeklyTrack({
+    required String habitId,
+    required String userId,
+  }) =>
+      _trackApi.getOnlyCountTrack(
+        habitId: habitId,
+        userId: userId,
+        count: 7,
+      );
 
   /// Returns a Iterable of only 31 [Track] objects.
   ///
   /// Returns them as a Stream.
-  Stream<Iterable<Track>> getMonthlyTrack(String habitId) =>
-      _trackApi.getOnlyCountTrack(habitId, 31);
+  Stream<Iterable<Track>> getMonthlyTrack({
+    required String habitId,
+    required String userId,
+  }) =>
+      _trackApi.getOnlyCountTrack(
+        habitId: habitId,
+        userId: userId,
+        count: 30,
+      );
 }
