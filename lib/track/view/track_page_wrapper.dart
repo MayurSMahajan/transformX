@@ -4,6 +4,7 @@ import 'package:habits_api/habits_api.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/track/cubit/track_cubit.dart';
 import 'package:transformx/track/view/track_page.dart';
+import 'package:transformx/track/view/track_success_page.dart';
 
 class TrackPageWrapper extends StatelessWidget {
   const TrackPageWrapper({required this.habit, super.key});
@@ -36,20 +37,11 @@ class TrackPageContent extends StatelessWidget {
           return const TrackSuccess();
         }
         if (state.status == TrackStatus.error) {
-          return const TrackSuccess();
+          return const TrackError();
         }
         return const CircularProgressIndicator.adaptive();
       },
     );
-  }
-}
-
-class TrackSuccess extends StatelessWidget {
-  const TrackSuccess({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }
 

@@ -110,9 +110,9 @@ class AppTheme {
     bodySmall: UITextStyle.caption,
     labelSmall: UITextStyle.overline,
   ).apply(
-    bodyColor: AppColors.black,
-    displayColor: AppColors.black,
-    decorationColor: AppColors.black,
+    bodyColor: AppColors.liver,
+    displayColor: AppColors.liver,
+    decorationColor: AppColors.liver,
   );
 
   InputDecorationTheme get _inputDecorationTheme {
