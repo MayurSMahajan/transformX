@@ -9,13 +9,18 @@ class HabitMetricContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           HabitMetricCard(
             initialValue: metric.minimum,
-            metricBound: 'Min',
+            metricBound: 'Minimum',
+          ),
+          Container(
+            height: 55,
+            width: 1.25,
+            color: Colors.grey.shade300,
           ),
           HabitMetricCard(
             initialValue: metric.ideal,
@@ -47,11 +52,8 @@ class _HabitMetricCardState extends State<HabitMetricCard> {
   @override
   void initState() {
     super.initState();
-    setState(() => value = widget.initialValue);
+    value = widget.initialValue;
   }
-
-  void incrementValue() => setState(() => value++);
-  void decrementValue() => setState(() => value--);
 
   @override
   Widget build(BuildContext context) {
@@ -64,46 +66,11 @@ class _HabitMetricCardState extends State<HabitMetricCard> {
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
-        Container(
-          width: 140,
-          decoration: BoxDecoration(
-            color: Theme.of(context).canvasColor,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            children: [
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: IconButton(
-                  onPressed: decrementValue,
-                  icon: const Text('-'),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  '$value',
-                  style: Theme.of(context).textTheme.titleMedium,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              Container(
-                height: 60,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: IconButton(
-                  onPressed: incrementValue,
-                  icon: const Text('+'),
-                ),
-              ),
-            ],
-          ),
-        )
+        Text(
+          '$value',
+          style: Theme.of(context).textTheme.titleLarge,
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }

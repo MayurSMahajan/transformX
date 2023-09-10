@@ -21,14 +21,12 @@ class MetadataCard extends StatelessWidget {
             padding: const EdgeInsets.only(right: 8, bottom: 8),
             child: icon,
           ),
-          Expanded(
-            child: Text(
-              metadata,
-              style: Theme.of(context).textTheme.titleMedium,
-              maxLines: 1,
-              softWrap: false,
-              overflow: TextOverflow.ellipsis,
-            ),
+          Text(
+            metadata,
+            style: Theme.of(context).textTheme.titleMedium,
+            maxLines: 1,
+            softWrap: false,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),

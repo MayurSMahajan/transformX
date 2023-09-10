@@ -9,7 +9,7 @@ class HabitStackContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
           Row(
@@ -23,17 +23,9 @@ class HabitStackContainer extends StatelessWidget {
                 ),
                 metadata: 'Habit Stack',
               ),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.question_mark_outlined,
-                  color: Colors.grey,
-                  size: 16,
-                ),
-              )
             ],
           ),
-          const VSpace(),
+          const SizedBox(height: 10),
           const _HabitStackGraphic(),
           Padding(
             padding: const EdgeInsets.all(20),
