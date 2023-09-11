@@ -91,7 +91,7 @@ class HabitListContainer extends StatelessWidget {
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
-                        height: 300,
+                        height: 275,
                         width: double.infinity,
                         child: Stack(
                           alignment: Alignment.bottomRight,
@@ -155,6 +155,21 @@ class DailyStreakContainer extends StatelessWidget {
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
 
+  Widget getUserImage(BuildContext context) {
+    final userImg = context.read<AuthenticationRepository>().savedUser.photo;
+    final widget = CircleAvatar(
+      backgroundImage: userImg != null
+          ? NetworkImage(
+              userImg,
+            )
+          : null,
+      radius: 22.5,
+      child: userImg == null ? const Icon(Icons.person) : null,
+    );
+
+    return widget;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -164,28 +179,8 @@ class CustomAppBar extends StatelessWidget {
           'TransformX',
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        CircleAvatar(
-          radius: 25,
-          backgroundColor: Colors.amberAccent,
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.person_2),
-          ),
-        )
+        getUserImage(context),
       ],
-    );
-  }
-}
-
-class GreetingContainer extends StatelessWidget {
-  const GreetingContainer({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return Text(
-      l10n.goodMorningGreet,
-      style: Theme.of(context).textTheme.headlineSmall,
     );
   }
 }
