@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:transformx/home/pages/pages.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      alignment: Alignment.center,
-      child: const Text('Page 2'),
+    return const Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ProfileUserInfo(),
+        ProfileAccountSettings(),
+        ProfilePreferences(),
+      ],
     );
   }
 }
