@@ -35,75 +35,68 @@ class _TrackPageState extends State<TrackPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          CircularPercentIndicator(
+            radius: 150,
+            lineWidth: 30,
+            percent: minutes / idealTarget,
+            center: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '$minutes',
+                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                        fontSize: 52,
+                      ),
+                ),
+                Text(
+                  'minutes',
+                  style: Theme.of(context).textTheme.labelMedium,
+                ),
+              ],
+            ),
+            backgroundColor: Colors.amber.shade100,
+            progressColor: Colors.amber,
+            circularStrokeCap: CircularStrokeCap.round,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              children: [
+                Text(
+                  'drag the slider to specify minutes',
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
+                const SizedBox(height: 4),
+                Slider.adaptive(
+                  thumbColor: Colors.orange,
+                  activeColor: Colors.amber.shade300,
+                  inactiveColor: Colors.amber.shade100,
+                  max: idealTarget.toDouble(),
+                  value: minutes.toDouble(),
+                  onChanged: (value) {
+                    setState(
+                      () => minutes = value.toInt(),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularPercentIndicator(
-                radius: 150,
-                lineWidth: 30,
-                percent: minutes / idealTarget,
-                center: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '$minutes',
-                      style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                            fontSize: 52,
-                          ),
-                    ),
-                    Text(
-                      'minutes',
-                      style: Theme.of(context).textTheme.labelMedium,
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.amber.shade100,
-                progressColor: Colors.amber,
-                circularStrokeCap: CircularStrokeCap.round,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    Text(
-                      'drag the slider to specify minutes',
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
-                    const SizedBox(height: 4),
-                    Slider.adaptive(
-                      thumbColor: Colors.orange,
-                      activeColor: Colors.amber.shade300,
-                      inactiveColor: Colors.amber.shade100,
-                      max: idealTarget.toDouble(),
-                      value: minutes.toDouble(),
-                      onChanged: (value) {
-                        setState(
-                          () => minutes = value.toInt(),
-                        );
-                      },
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  PrimaryButton(
-                    onPressed: () => submitTrack(context),
-                    text: 'Submit Score',
-                  ),
-                ],
+              PrimaryButton(
+                onPressed: () => submitTrack(context),
+                text: 'Submit Score',
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

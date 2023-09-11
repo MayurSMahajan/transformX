@@ -1,7 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:habits_api/habits_api.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/track/bloc/track_bloc.dart';
@@ -20,7 +19,7 @@ class TrackPageWrapper extends StatelessWidget {
         habitsRepository: context.read<HabitsRepository>(),
         tracksRepository: context.read<TrackRepository>(),
         userId: context.read<AuthenticationRepository>().savedUser.id,
-        habitId: habit.id,
+        habit: habit,
       )..add(FetchLatestTrack()),
       child: const TrackPageContent(),
     );
@@ -32,21 +31,25 @@ class TrackPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrackBloc, TrackState>(
-      builder: (context, state) {
-        if (state.status == TrackStatus.fetched) {
-          return TrackPage(
-            track: state.tracks.isEmpty ? null : state.tracks.first,
-          );
-        }
-        if (state.status == TrackStatus.success) {
-          return const TrackSuccess();
-        }
-        if (state.status == TrackStatus.error) {
-          return const TrackError();
-        }
-        return const WaitingIndicator();
-      },
+    return Scaffold(
+      body: SafeArea(
+        child: BlocBuilder<TrackBloc, TrackState>(
+          builder: (context, state) {
+            if (state.status == TrackStatus.fetched) {
+              return TrackPage(
+                track: state.tracks.isEmpty ? null : state.tracks.first,
+              );
+            }
+            if (state.status == TrackStatus.success) {
+              return const TrackSuccess();
+            }
+            if (state.status == TrackStatus.error) {
+              return const TrackError();
+            }
+            return const WaitingIndicator();
+          },
+        ),
+      ),
     );
   }
 }
@@ -56,10 +59,8 @@ class TrackError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Some problem occured'),
-      ),
+    return const Center(
+      child: Text('Some problem occured'),
     );
   }
 }
@@ -69,10 +70,8 @@ class WaitingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: CircularProgressIndicator.adaptive(),
-      ),
+    return const Center(
+      child: CircularProgressIndicator.adaptive(),
     );
   }
 }

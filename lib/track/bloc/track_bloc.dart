@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:habits_api/habits_api.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/infra/extensions/extensions.dart';
@@ -12,18 +13,18 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
     required TrackRepository tracksRepository,
     required HabitsRepository habitsRepository,
     required String userId,
-    required String habitId,
+    required Habit habit,
   })  : _trackRepository = tracksRepository,
         _habitsRepository = habitsRepository,
         _userId = userId,
-        _habitId = habitId,
+        _habit = habit,
         super(const TrackState()) {
     on<FetchLatestTrack>(_fetchLatestTrack);
     on<SaveTrack>(_saveTrack);
   }
 
   final String _userId;
-  final String _habitId;
+  final Habit _habit;
   final TrackRepository _trackRepository;
   final HabitsRepository _habitsRepository;
 
@@ -33,33 +34,43 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
   ) async {
     emit(state.copyWith(status: () => TrackStatus.loading));
     try {
-      Track track;
-      if (state.tracks.isEmpty) {
-        track = Track(trackedUpdate: 0);
-      } else {
-        // now check if the track fetched is not of current date.
+      var track = Track(trackedUpdate: 0);
+      if (state.tracks.isNotEmpty) {
         track = state.tracks.first;
-        if (track.dateTime.isNotSameDate()) {
+        if (track.isNotSameDate()) {
+          _udpateHabitStats(track);
           track = Track(trackedUpdate: 0);
-          if (track.dateTime.shouldResetStreak()) {
-            // call the habits api and reset the streak.
-          } else {
-            // call the habits api and increment the streak.
-          }
         }
+      } else {
+        // this means there are no track for this habit
+        // thus we will create a new track and update the stats.
+        _udpateHabitStats(track);
       }
       await _trackRepository.saveTrack(
         track: track.copyWith(
           didUseApp: true,
           trackedUpdate: event.trackedUpdate,
         ),
-        habitId: _habitId,
+        habitId: _habit.id,
         userId: _userId,
       );
       emit(state.copyWith(status: () => TrackStatus.success));
     } catch (_) {
       emit(state.copyWith(status: () => TrackStatus.error));
     }
+  }
+
+  /// Increments the stats members and saves them.
+  /// resets the streak to 1 if there was a gap of more than 24 hours
+  void _udpateHabitStats(Track track) {
+    final stats = Stats(
+      streak: track.shouldResetStreak() ? 1 : _habit.stats.streak + 1,
+      weeklyRecord: (_habit.stats.weeklyRecord + 1) % 7,
+      monthlyRecord: (_habit.stats.monthlyRecord + 1) % 30,
+      yearlyRecord: (_habit.stats.yearlyRecord + 1) % 365,
+      allTimeRecord: _habit.stats.allTimeRecord + 1,
+    );
+    _habitsRepository.udpateHabitStats(_habit, _userId, stats);
   }
 
   Future<void> _fetchLatestTrack(
@@ -71,7 +82,7 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
     await emit.forEach<Iterable<Track>>(
       _trackRepository.getLatestTrack(
         userId: _userId,
-        habitId: _habitId,
+        habitId: _habit.id,
       ),
       onData: (tracks) => state.copyWith(
         status: () => TrackStatus.fetched,

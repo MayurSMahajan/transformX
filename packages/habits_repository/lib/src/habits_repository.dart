@@ -27,4 +27,14 @@ class HabitsRepository {
   ///  error is thrown.
   Future<void> deleteHabit(String id, String userId) =>
       _habitsApi.deleteHabit(id, userId);
+
+  /// Updates the stats of a  [Habit].
+  ///
+  /// the stats of the habit will be updated.
+  Future<void> udpateHabitStats(Habit habit, String userId, Stats stats) async {
+    final newHabit = habit.copyWith(
+      stats: stats,
+    );
+    await _habitsApi.saveHabit(newHabit, userId);
+  }
 }

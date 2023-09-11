@@ -9,58 +9,52 @@ class TrackSuccess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ColoredBox(
-          color: AppColors.fireBackground,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return ColoredBox(
+      color: AppColors.fireBackground,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const VSpace(),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: SvgPicture.asset(
+                'assets/icons/fire.svg',
+                semanticsLabel: 'fire illustration',
+                width: 200,
+                height: 200,
+              ),
+            ),
+            Column(
               children: [
+                Text(
+                  'Amazing!',
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
                 const VSpace(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: SvgPicture.asset(
-                    'assets/icons/fire.svg',
-                    semanticsLabel: 'fire illustration',
-                    width: 200,
-                    height: 200,
-                  ),
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'Amazing!',
-                      style:
-                          Theme.of(context).textTheme.displayMedium?.copyWith(
-                                color: Colors.white,
-                              ),
-                    ),
-                    const VSpace(),
-                    Text(
-                      ' Habit nailed! Time to celebrate your awesome self!',
-                      textAlign: TextAlign.center,
-                      style:
-                          Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                color: Colors.white,
-                              ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    PrimaryButton(
-                      onPressed: () => context.go('/'),
-                      text: 'Continue',
-                      color: Colors.orange.shade100,
-                    ),
-                  ],
+                Text(
+                  ' Habit nailed! Time to celebrate your awesome self!',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        color: Colors.white,
+                      ),
                 ),
               ],
             ),
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PrimaryButton(
+                  onPressed: () => context.go('/'),
+                  text: 'Continue',
+                  color: Colors.orange.shade100,
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
