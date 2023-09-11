@@ -44,7 +44,9 @@ class ProfileUserInfo extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           FilledButton.tonal(
-              onPressed: () {}, child: const Text('Edit Profile')),
+            onPressed: () {},
+            child: const Text('Edit Profile'),
+          ),
         ],
       ),
     );

@@ -35,7 +35,9 @@ class ProfileAccountSettings extends StatelessWidget {
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.logout)),
+                        onPressed: () {},
+                        icon: const Icon(Icons.logout),
+                      ),
                     ],
                   ),
                   Row(

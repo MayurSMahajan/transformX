@@ -47,6 +47,7 @@ class AppView extends StatelessWidget {
     return MaterialApp.router(
       themeMode: ThemeMode.light,
       theme: const AppTheme().themeData,
+      // darkTheme: const AppDarkTheme().themeData,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       debugShowCheckedModeBanner: false,
       supportedLocales: AppLocalizations.supportedLocales,

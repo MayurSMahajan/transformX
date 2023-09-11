@@ -35,29 +35,79 @@ class ProfilePreferences extends StatelessWidget {
                         'Language',
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
-                      FilledButton.tonal(
-                        onPressed: () {},
-                        child: const Text('English'),
-                      )
+                      const LanguageDropdown(),
                     ],
                   ),
                   const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Dark Mode',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                      CupertinoSwitch(value: false, onChanged: (_) {}),
-                    ],
-                  )
+                  const DarkModeOption()
                 ],
               ),
             ),
           )
         ],
       ),
+    );
+  }
+}
+
+class DarkModeOption extends StatefulWidget {
+  const DarkModeOption({
+    super.key,
+  });
+
+  @override
+  State<DarkModeOption> createState() => _DarkModeOptionState();
+}
+
+class _DarkModeOptionState extends State<DarkModeOption> {
+  bool value = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Dark Mode',
+          style: Theme.of(context).textTheme.headlineSmall,
+        ),
+        CupertinoSwitch(
+          activeColor: Colors.amber,
+          value: value,
+          onChanged: (v) => setState(
+            () => value = v,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+const List<String> list = ['English', 'Hindi', 'Japanese', 'German'];
+
+class LanguageDropdown extends StatefulWidget {
+  const LanguageDropdown({super.key});
+
+  @override
+  State<LanguageDropdown> createState() => _LanguageDropdownState();
+}
+
+class _LanguageDropdownState extends State<LanguageDropdown> {
+  String dropdownValue = list.first;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownMenu<String>(
+      initialSelection: list.first,
+      onSelected: (String? value) {
+        // This is called when the user selects an item.
+        setState(() {
+          dropdownValue = value!;
+        });
+      },
+      dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String v) {
+        return DropdownMenuEntry<String>(value: v, label: v);
+      }).toList(),
     );
   }
 }

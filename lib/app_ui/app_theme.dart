@@ -277,6 +277,13 @@ class AppDarkTheme extends AppTheme {
   const AppDarkTheme();
 
   @override
+  ThemeData get themeData {
+    return ThemeData.dark().copyWith(
+      canvasColor: Colors.amber.shade700,
+    );
+  }
+
+  @override
   ColorScheme get _colorScheme {
     return const ColorScheme.dark().copyWith(
       primary: AppColors.white,
