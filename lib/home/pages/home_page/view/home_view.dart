@@ -2,26 +2,10 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/home/pages/home_page/bloc/habits_bloc.dart';
 import 'package:transformx/home/pages/home_page/widgets/widgets.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
-
-class HomeViewWrapper extends StatelessWidget {
-  const HomeViewWrapper({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HabitsBloc(
-        habitsRepository: context.read<HabitsRepository>(),
-        userId: context.read<AuthenticationRepository>().savedUser.id,
-      )..add(const HabitsSubscriptionRequested()),
-      child: const HomeView(),
-    );
-  }
-}
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

@@ -1,4 +1,8 @@
+import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habits_repository/habits_repository.dart';
+import 'package:transformx/home/pages/home_page/bloc/habits_bloc.dart';
 import 'package:transformx/home/pages/pages.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,7 +10,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeScreenView();
+    return BlocProvider(
+      create: (context) => HabitsBloc(
+        habitsRepository: context.read<HabitsRepository>(),
+        userId: context.read<AuthenticationRepository>().savedUser.id,
+      )..add(const HabitsSubscriptionRequested()),
+      child: const HomeScreenView(),
+    );
   }
 }
 
@@ -52,7 +62,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
           ],
         ),
         body: <Widget>[
-          const HomeViewWrapper(),
+          const HomeView(),
           const StatsPage(),
           const ProfilePage(),
         ][currentPageIndex],
