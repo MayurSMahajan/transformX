@@ -48,23 +48,23 @@ class HabitLoadedView extends StatelessWidget {
                 time: habit.time.toReadableString(),
                 streak: habit.stats.streak,
               ),
-              const VSpace(),
+              const SizedBox(height: 14),
               HabitRecordContainer(
                 stats: habit.stats,
               ),
-              const VSpace(),
+              const SizedBox(height: 14),
               HabitMetricContainer(
                 metric: habit.metric,
               ),
-              const VSpace(),
-              HabitRitualContainer(
-                ritual: habit.ritual,
-              ),
-              const VSpace(),
+              const SizedBox(height: 14),
               HabitStackContainer(
                 title: habit.title,
               ),
-              const VSpace(),
+              const SizedBox(height: 14),
+              HabitRitualContainer(
+                ritual: habit.ritual,
+              ),
+              const SizedBox(height: 28),
               HabitStackAction(habit: habit),
             ],
           ),

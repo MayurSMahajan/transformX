@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
-import 'package:transformx/l10n/l10n.dart';
+// import 'package:transformx/l10n/l10n.dart';
 
-class HabitRecordContainer extends StatelessWidget {
+const List<String> recordLabels = ['weekly', 'monthly', 'yearly', 'all time'];
+
+class HabitRecordContainer extends StatefulWidget {
   const HabitRecordContainer({
     required this.stats,
     super.key,
@@ -12,8 +14,15 @@ class HabitRecordContainer extends StatelessWidget {
   final Stats stats;
 
   @override
+  State<HabitRecordContainer> createState() => _HabitRecordContainerState();
+}
+
+class _HabitRecordContainerState extends State<HabitRecordContainer> {
+  String dropdownValue = recordLabels.first;
+
+  @override
   Widget build(BuildContext context) {
-    final l10n = context.l10n;
+    // final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -29,23 +38,35 @@ class HabitRecordContainer extends StatelessWidget {
                 ),
                 metadata: 'Record',
               ),
-              TextButton(
-                child: Text(l10n.weekly),
-                onPressed: () {},
+              DropdownMenu<String>(
+                inputDecorationTheme: const InputDecorationTheme(
+                  enabledBorder: InputBorder.none,
+                ),
+                initialSelection: recordLabels.first,
+                onSelected: (String? value) {
+                  // This is called when the user selects an item.
+                  setState(() {
+                    dropdownValue = value!;
+                  });
+                },
+                dropdownMenuEntries:
+                    recordLabels.map<DropdownMenuEntry<String>>((String v) {
+                  return DropdownMenuEntry<String>(value: v, label: v);
+                }).toList(),
               ),
             ],
           ),
           Stack(
             children: [
               CustomProgressIndicator(
-                progress: (stats.weeklyRecord / 7) - 0.21,
+                progress: (widget.stats.weeklyRecord / 7) - 0.21,
                 minHeight: 24,
               ),
               Positioned(
                 left: 30,
                 bottom: 1,
                 child: Text(
-                  '${stats.weeklyRecord} days',
+                  _getStatsAccordingToLabel(),
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
@@ -54,5 +75,18 @@ class HabitRecordContainer extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  String _getStatsAccordingToLabel() {
+    switch (dropdownValue) {
+      case 'weekly':
+        return '${widget.stats.weeklyRecord} days';
+      case 'monthly':
+        return '${widget.stats.monthlyRecord} days';
+      case 'yearly':
+        return '${widget.stats.yearlyRecord} days';
+      default:
+        return '${widget.stats.allTimeRecord} days';
+    }
   }
 }

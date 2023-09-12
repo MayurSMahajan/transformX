@@ -25,28 +25,36 @@ class HabitStackContainer extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 4),
           const _HabitStackGraphic(),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(6),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Brush',
-                  textAlign: TextAlign.center,
-                ),
-                Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
+                const Expanded(
+                  child: Text(
+                    'Brush',
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                const Text(
-                  'Bath',
-                  textAlign: TextAlign.center,
+                Expanded(
+                  child: Text(
+                    title,
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                const Expanded(
+                  child: Text(
+                    'Get ready',
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 )
               ],
             ),
@@ -62,6 +70,8 @@ class _HabitStackGraphic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final canvasColor = Theme.of(context).canvasColor;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       child: Stack(
@@ -77,19 +87,32 @@ class _HabitStackGraphic extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CircleAvatar(
-                backgroundColor: Theme.of(context).canvasColor,
+                backgroundColor: canvasColor,
                 foregroundColor:
                     Theme.of(context).textTheme.headlineSmall!.color,
                 child: const Text('1'),
               ),
-              CircleAvatar(
-                backgroundColor: Theme.of(context).canvasColor,
-                foregroundColor:
-                    Theme.of(context).textTheme.headlineSmall!.color,
-                child: const Text('2'),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  border: Border.all(
+                    color: canvasColor,
+                    width: 2.25,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: CircleAvatar(
+                    backgroundColor: canvasColor,
+                    foregroundColor:
+                        Theme.of(context).textTheme.headlineSmall!.color,
+                    child: const Text('2'),
+                  ),
+                ),
               ),
               CircleAvatar(
-                backgroundColor: Theme.of(context).canvasColor,
+                backgroundColor: canvasColor,
                 foregroundColor:
                     Theme.of(context).textTheme.headlineSmall!.color,
                 child: const Text('3'),

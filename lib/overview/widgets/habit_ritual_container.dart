@@ -38,7 +38,7 @@ class _HabitRitualContainerState extends State<HabitRitualContainer> {
               Text(
                 widget.ritual,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w500,
                       decoration: isChecked ? TextDecoration.lineThrough : null,
                     ),
               ),
