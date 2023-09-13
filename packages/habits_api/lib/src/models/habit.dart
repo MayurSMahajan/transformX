@@ -141,4 +141,15 @@ class Habit extends Equatable {
         shortReward,
         longReward,
       ];
+
+  /// Returns a dummy or empty habit.
+  static Habit get empty => Habit(
+        title: '',
+        location: '',
+        time: const Time(hour: 0, mins: 0),
+        metric: const Metric(),
+        ritual: '',
+        shortReward: '',
+        longReward: '',
+      );
 }

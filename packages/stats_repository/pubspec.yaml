@@ -1,0 +1,20 @@
+name: stats_repository
+description: A stats repository which facilitates the creation of stats for stats view
+version: 0.1.0+1
+publish_to: none
+
+dependencies:
+  equatable: ^2.0.5
+  fl_chart: ^0.63.0
+  habits_repository:
+    path: ../habits_repository
+  track_repository:
+    path: ../track_repository
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dev_dependencies:
+  mocktail: ^0.3.0
+  test: ^1.19.2
+  very_good_analysis: ^5.0.0
