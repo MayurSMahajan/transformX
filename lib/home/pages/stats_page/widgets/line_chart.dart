@@ -39,12 +39,18 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4),
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey.shade200),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      clipBehavior: Clip.hardEdge,
       child: AspectRatio(
-        aspectRatio: 1,
+        aspectRatio: 1.25,
         child: LineChart(
           LineChartData(
+            lineTouchData: const LineTouchData(enabled: false),
             lineBarsData: lines,
             minX: 0,
             maxX: 8,
@@ -119,30 +125,29 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
       fontWeight: FontWeight.bold,
       fontSize: 16,
     );
-    Widget text;
+    String text;
     switch (value.toInt()) {
       case 1:
-        text = const Text('Mo', style: style);
+        text = 'Mo';
       case 2:
-        text = const Text('Tu', style: style);
+        text = 'Tu';
       case 3:
-        text = const Text('We', style: style);
+        text = 'We';
       case 4:
-        text = const Text('Th', style: style);
+        text = 'Th';
       case 5:
-        text = const Text('Fr', style: style);
+        text = 'Fr';
       case 6:
-        text = const Text('Sa', style: style);
+        text = 'Sa';
       case 7:
-        text = const Text('Su', style: style);
+        text = 'Su';
       default:
-        text = const Text('', style: style);
-        break;
+        return Container();
     }
 
     return SideTitleWidget(
       axisSide: meta.axisSide,
-      child: text,
+      child: Text(text, style: style),
     );
   }
 }

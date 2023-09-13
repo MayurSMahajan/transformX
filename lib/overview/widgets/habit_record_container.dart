@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:transformx/infra/infra.dart';
 // import 'package:transformx/l10n/l10n.dart';
 
@@ -19,6 +20,17 @@ class HabitRecordContainer extends StatefulWidget {
 
 class _HabitRecordContainerState extends State<HabitRecordContainer> {
   String dropdownValue = recordLabels.first;
+  late final double weeklyPercent;
+  late final double monthlyPercent;
+  late final double yearlyPercent;
+
+  @override
+  void initState() {
+    super.initState();
+    weeklyPercent = widget.stats.weeklyRecord / 7;
+    monthlyPercent = widget.stats.monthlyRecord / 30;
+    yearlyPercent = widget.stats.yearlyRecord / 365;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,37 +68,44 @@ class _HabitRecordContainerState extends State<HabitRecordContainer> {
               ),
             ],
           ),
-          Stack(
-            children: [
-              CustomProgressIndicator(
-                progress: (widget.stats.weeklyRecord / 7) - 0.21,
-                minHeight: 24,
-              ),
-              Positioned(
-                left: 30,
-                bottom: 1,
-                child: Text(
-                  _getStatsAccordingToLabel(),
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-            ],
-          )
+          LinearPercentIndicator(
+            animation: true,
+            animationDuration: 1000,
+            lineHeight: 24,
+            percent: _getPercentValue(),
+            center: Text(_getPercentText()),
+            progressColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme.of(context).canvasColor,
+            barRadius: const Radius.circular(4),
+          ),
         ],
       ),
     );
   }
 
-  String _getStatsAccordingToLabel() {
+  String _getPercentText() {
     switch (dropdownValue) {
       case 'weekly':
-        return '${widget.stats.weeklyRecord} days';
+        return '${(weeklyPercent * 100).toStringAsFixed(2)}%';
       case 'monthly':
-        return '${widget.stats.monthlyRecord} days';
+        return '${(monthlyPercent * 100).toStringAsFixed(2)}%';
       case 'yearly':
-        return '${widget.stats.yearlyRecord} days';
+        return '${(yearlyPercent * 100).toStringAsFixed(2)}%';
       default:
         return '${widget.stats.allTimeRecord} days';
+    }
+  }
+
+  double _getPercentValue() {
+    switch (dropdownValue) {
+      case 'weekly':
+        return weeklyPercent;
+      case 'monthly':
+        return monthlyPercent;
+      case 'yearly':
+        return yearlyPercent;
+      default:
+        return 0.95;
     }
   }
 }
