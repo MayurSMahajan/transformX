@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_constructors_over_static_methods
+
 import 'package:equatable/equatable.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:json_annotation/json_annotation.dart';

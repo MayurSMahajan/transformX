@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:habits_api/habits_api.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/new_habit/models/models.dart';
 

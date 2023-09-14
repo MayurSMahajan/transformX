@@ -1,5 +1,5 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:habits_repository/habits_repository.dart';
+import 'package:stats_repository/src/entities/spot.dart';
 import 'package:stats_repository/src/entities/statistics.dart';
 import 'package:track_repository/track_repository.dart';
 
@@ -17,8 +17,27 @@ class StatsRepository {
   final HabitsRepository _habitsRepository;
   final TrackRepository _trackRepository;
 
+  /// Returns the Statistics of all Habits for the user
+  Future<List<Statistics>> getAllStatistics({
+    required String userId,
+  }) async {
+    final statistics = <Statistics>[];
+    final habits = await _habitsRepository.getHabits(userId).first;
+
+    for (final h in habits) {
+      final habitStats = await getHabitStatistics(
+        userId: userId,
+        habitId: h.id,
+      );
+      if (habitStats != null) {
+        statistics.add(habitStats);
+      }
+    }
+    return statistics;
+  }
+
   /// Returns an appropriate Statistics object for habitid
-  Future<Statistics?> getStatistics({
+  Future<Statistics?> getHabitStatistics({
     required String userId,
     required String habitId,
   }) async {
@@ -45,22 +64,23 @@ class StatsRepository {
         .first;
 
     // create spots for the last 7 tracks.
-    final spots = <FlSpot>[];
+    final spots = <Spot>[];
     var xIndex = 0;
     for (var i = tracks.length - 1; i > -1; i--) {
-      final spot = FlSpot(
-        xIndex.toDouble(),
-        tracks.elementAt(i).trackedUpdate / 10,
+      final spot = Spot(
+        x: xIndex.toDouble(),
+        y: tracks.elementAt(i).trackedUpdate / 10,
       );
       xIndex++;
       spots.add(spot);
     }
 
     return Statistics(
-        habitId: habitId,
-        habitName: habit.title,
-        stats: habit.stats,
-        spots: spots);
+      habitId: habitId,
+      habitName: habit.title,
+      stats: habit.stats,
+      spots: spots,
+    );
   }
 
   /// Returns a bool list which represents the streak in weekdays.

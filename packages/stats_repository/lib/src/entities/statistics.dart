@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:habits_repository/habits_repository.dart';
-
-/// A list of Track object
-typedef Spots = List<FlSpot>;
+import 'package:stats_repository/src/entities/spot.dart';
 
 /// This is a mixture of two entities that we store in our database.
 /// This contains the Stats data from the Habit model

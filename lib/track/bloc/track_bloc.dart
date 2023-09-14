@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:habits_api/habits_api.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/infra/extensions/extensions.dart';
