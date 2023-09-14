@@ -12,8 +12,8 @@ class ProfilePreferences extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'PREFERENCES',
-            style: Theme.of(context).textTheme.bodyLarge,
+            'Preferences',
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 12),
           Container(
@@ -33,7 +33,7 @@ class ProfilePreferences extends StatelessWidget {
                     children: [
                       Text(
                         'Language',
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       const LanguageDropdown(),
                     ],
@@ -69,7 +69,7 @@ class _DarkModeOptionState extends State<DarkModeOption> {
       children: [
         Text(
           'Dark Mode',
-          style: Theme.of(context).textTheme.headlineSmall,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         CupertinoSwitch(
           activeColor: Colors.amber,

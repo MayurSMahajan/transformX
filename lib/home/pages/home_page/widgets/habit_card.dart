@@ -48,15 +48,23 @@ class HabitCard extends StatelessWidget {
                     child: Text(
                       habit.title,
                       style: Theme.of(context).textTheme.headlineMedium,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
                 MetadataCard(
-                  icon: const Icon(Icons.timer_outlined),
+                  icon: const Icon(
+                    Icons.timer_outlined,
+                    color: Colors.grey,
+                  ),
                   metadata: habit.time.toReadableString(),
                 ),
                 MetadataCard(
-                  icon: const Icon(Icons.pin_drop_outlined),
+                  icon: const Icon(
+                    Icons.pin_drop_outlined,
+                    color: Colors.grey,
+                  ),
                   metadata: habit.location,
                 ),
               ],

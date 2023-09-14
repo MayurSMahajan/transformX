@@ -11,8 +11,8 @@ class ProfileAccountSettings extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'ACCOUNT SETTINGS',
-            style: Theme.of(context).textTheme.bodyLarge,
+            'Account Settings',
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 12),
           Container(
@@ -32,7 +32,7 @@ class ProfileAccountSettings extends StatelessWidget {
                     children: [
                       Text(
                         'Logout',
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       IconButton(
                         onPressed: () {},
@@ -45,7 +45,7 @@ class ProfileAccountSettings extends StatelessWidget {
                     children: [
                       Text(
                         'Change Email',
-                        style: Theme.of(context).textTheme.headlineSmall,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       IconButton(
                         onPressed: () {},
