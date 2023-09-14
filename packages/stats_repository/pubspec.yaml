@@ -3,22 +3,22 @@ description: A stats repository which facilitates the creation of stats for stat
 version: 0.1.0+1
 publish_to: none
 
-dependencies:
-  equatable: ^2.0.5
-  freezed: ^2.4.2
-  freezed_annotation: ^2.4.1
-  habits_repository:
-    path: ../habits_repository
-  json_annotation: ^4.8.1
-  track_repository:
-    path: ../track_repository
-
 environment:
   sdk: ">=3.0.0 <4.0.0"
 
+dependencies:
+  equatable: ^2.0.5
+  freezed_annotation: ^2.4.1
+  habits_repository:
+    path: ../habits_repository
+  json_annotation: ^4.6.0
+  track_repository:
+    path: ../track_repository
+
 dev_dependencies:
-  build_runner: ^2.4.6
-  json_serializable: ^6.7.1
+  build_runner: ^2.2.0
+  freezed: ^2.4.2
+  json_serializable: ^6.3.1
   mocktail: ^0.3.0
   test: ^1.19.2
   very_good_analysis: ^5.0.0
