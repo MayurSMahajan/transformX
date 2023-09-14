@@ -40,14 +40,14 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade200),
         borderRadius: BorderRadius.circular(10),
       ),
       clipBehavior: Clip.hardEdge,
       child: AspectRatio(
-        aspectRatio: 1.25,
+        aspectRatio: 1.4,
         child: LineChart(
           LineChartData(
             lineTouchData: const LineTouchData(enabled: false),
@@ -65,13 +65,7 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
                 ),
               ),
               rightTitles: const AxisTitles(),
-              bottomTitles: AxisTitles(
-                sideTitles: SideTitles(
-                  reservedSize: 32,
-                  showTitles: true,
-                  getTitlesWidget: bottomTitleWidgets,
-                ),
-              ),
+              bottomTitles: const AxisTitles(),
               topTitles: const AxisTitles(),
             ),
             gridData: const FlGridData(
@@ -93,11 +87,12 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
     const style = TextStyle(
-      fontWeight: FontWeight.bold,
       fontSize: 15,
     );
     String text;
     switch (value.toInt()) {
+      case 0:
+        text = 'Min';
       case 1:
         text = '10';
       case 2:
@@ -117,37 +112,6 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
     return Padding(
       padding: const EdgeInsets.only(right: 2),
       child: Text(text, style: style, textAlign: TextAlign.left),
-    );
-  }
-
-  Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    const style = TextStyle(
-      fontWeight: FontWeight.bold,
-      fontSize: 16,
-    );
-    String text;
-    switch (value.toInt()) {
-      case 1:
-        text = 'Mo';
-      case 2:
-        text = 'Tu';
-      case 3:
-        text = 'We';
-      case 4:
-        text = 'Th';
-      case 5:
-        text = 'Fr';
-      case 6:
-        text = 'Sa';
-      case 7:
-        text = 'Su';
-      default:
-        return Container();
-    }
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: Text(text, style: style),
     );
   }
 }

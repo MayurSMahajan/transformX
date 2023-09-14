@@ -63,7 +63,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         ),
         body: <Widget>[
           const HomeView(),
-          const StatsPage(),
+          const StatsPageWrapper(),
           const ProfilePage(),
         ][currentPageIndex],
       ),

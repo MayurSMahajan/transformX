@@ -8,6 +8,7 @@ import 'package:firebase_habits_api/firebase_habits_api.dart';
 import 'package:firebase_track_api/firebase_track_api.dart';
 import 'package:flutter/widgets.dart';
 import 'package:habits_repository/habits_repository.dart';
+import 'package:stats_repository/stats_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/app/view/app.dart';
 import 'package:transformx/firebase_options.dart';
@@ -60,6 +61,11 @@ Future<void> bootstrap() async {
   final habitsRepository = HabitsRepository(habitsApi: FirebaseHabitsApi());
 
   final trackRepository = TrackRepository(trackApi: FirebaseTrackApi());
+
+  final statsRepository = StatsRepository(
+    habitsRepository: habitsRepository,
+    trackRepository: trackRepository,
+  );
   // Add cross-flavor configuration here
 
   runApp(
@@ -67,6 +73,7 @@ Future<void> bootstrap() async {
       authenticationRepository: authenticationRepository,
       habitsRepository: habitsRepository,
       trackRepository: trackRepository,
+      statsRepository: statsRepository,
     ),
   );
 }
