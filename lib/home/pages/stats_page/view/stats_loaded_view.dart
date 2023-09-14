@@ -16,6 +16,19 @@ class _StatsLoadedViewState extends State<StatsLoadedView> {
   int pageIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_handlePageChange);
+  }
+
+  void _handlePageChange() {
+    final currentPage = _controller.page!.toInt();
+    setState(() {
+      pageIndex = currentPage;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(20),
