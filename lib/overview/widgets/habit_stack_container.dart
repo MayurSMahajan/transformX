@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transformx/infra/infra.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HabitStackContainer extends StatelessWidget {
   const HabitStackContainer({required this.title, super.key});
@@ -12,16 +12,13 @@ class HabitStackContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              MetadataCard(
-                icon: Image.asset(
-                  'assets/icons/stack.png',
-                  width: 22,
-                  height: 22,
-                ),
-                metadata: 'Habit Stack',
+              FaIcon(
+                FontAwesomeIcons.layerGroup,
+                size: 20,
+                color: Colors.grey,
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/sign_in/cubit/sign_in_cubit.dart';
@@ -72,7 +73,7 @@ class _GoogleLoginButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
       ),
-      icon: const Text('G', style: TextStyle(color: Colors.white)),
+      icon: const FaIcon(FontAwesomeIcons.google, size: 24),
       onPressed: () => context.read<SignInCubit>().logInWithGoogle(),
     );
   }

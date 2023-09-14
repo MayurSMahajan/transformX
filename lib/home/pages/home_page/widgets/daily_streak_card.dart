@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transformx/infra/widgets/vspace.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DailyStreakCard extends StatelessWidget {
   const DailyStreakCard({
@@ -19,18 +19,20 @@ class DailyStreakCard extends StatelessWidget {
           day,
           style: Theme.of(context).textTheme.titleMedium,
         ),
-        const VSpace(),
+        const SizedBox(
+          height: 20,
+        ),
         if (isActive)
-          Image.asset(
-            'assets/icons/streak_active.png',
-            width: 28,
-            height: 28,
+          const FaIcon(
+            FontAwesomeIcons.fire,
+            size: 20,
+            color: Colors.orange,
           )
         else
-          Image.asset(
-            'assets/icons/streak_inactive.png',
-            width: 28,
-            height: 28,
+          const FaIcon(
+            FontAwesomeIcons.fire,
+            size: 20,
+            color: Colors.grey,
           )
       ],
     );

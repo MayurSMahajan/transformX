@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:transformx/infra/infra.dart';
@@ -42,11 +43,11 @@ class _HabitRecordContainerState extends State<HabitRecordContainer> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              MetadataCard(
-                icon: Image.asset(
-                  'assets/icons/badge.png',
-                  width: 22,
-                  height: 22,
+              const MetadataCard(
+                icon: FaIcon(
+                  FontAwesomeIcons.medal,
+                  color: Colors.grey,
+                  size: 22,
                 ),
                 metadata: 'Record',
               ),

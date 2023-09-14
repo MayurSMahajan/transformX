@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transformx/infra/infra.dart';
 
 class HabitRitualContainer extends StatefulWidget {
@@ -19,14 +20,14 @@ class _HabitRitualContainerState extends State<HabitRitualContainer> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          Row(
+          const Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               MetadataCard(
-                icon: Image.asset(
-                  'assets/icons/stack.png',
-                  width: 22,
-                  height: 22,
+                icon: FaIcon(
+                  FontAwesomeIcons.anchor,
+                  size: 22,
+                  color: Colors.grey,
                 ),
                 metadata: 'Habit Ritual',
               ),
