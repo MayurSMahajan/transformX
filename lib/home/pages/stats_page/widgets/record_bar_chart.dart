@@ -33,7 +33,6 @@ class RecordBarChart extends StatelessWidget {
           children: [
             LinearPercentIndicator(
               animation: true,
-              animationDuration: 1000,
               lineHeight: 20,
               percent: weeklyPercent,
               center: Text('${(weeklyPercent * 100).toStringAsFixed(2)}%'),
@@ -48,7 +47,6 @@ class RecordBarChart extends StatelessWidget {
             const SizedBox(height: 5),
             LinearPercentIndicator(
               animation: true,
-              animationDuration: 1000,
               lineHeight: 20,
               percent: monthlyPercent,
               center: Text('${(monthlyPercent * 100).toStringAsFixed(2)}%'),
@@ -63,7 +61,6 @@ class RecordBarChart extends StatelessWidget {
             const SizedBox(height: 5),
             LinearPercentIndicator(
               animation: true,
-              animationDuration: 1000,
               lineHeight: 20,
               percent: yearlyPercent,
               center: Text('${(yearlyPercent * 100).toStringAsFixed(2)}%'),

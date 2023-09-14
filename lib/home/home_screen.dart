@@ -2,19 +2,31 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habits_repository/habits_repository.dart';
+import 'package:stats_repository/stats_repository.dart';
 import 'package:transformx/home/pages/home_page/bloc/habits_bloc.dart';
 import 'package:transformx/home/pages/pages.dart';
+import 'package:transformx/home/pages/stats_page/bloc/statistics_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HabitsBloc(
-        habitsRepository: context.read<HabitsRepository>(),
-        userId: context.read<AuthenticationRepository>().savedUser.id,
-      )..add(const HabitsSubscriptionRequested()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HabitsBloc>(
+          create: (context) => HabitsBloc(
+            habitsRepository: context.read<HabitsRepository>(),
+            userId: context.read<AuthenticationRepository>().savedUser.id,
+          )..add(const HabitsSubscriptionRequested()),
+        ),
+        BlocProvider<StatisticsBloc>(
+          create: (context) => StatisticsBloc(
+            statsRepository: context.read<StatsRepository>(),
+            userId: context.read<AuthenticationRepository>().savedUser.id,
+          )..add(const StatisticsRequestedEvent()),
+        ),
+      ],
       child: const HomeScreenView(),
     );
   }
@@ -63,7 +75,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
         ),
         body: <Widget>[
           const HomeView(),
-          const StatsPageWrapper(),
+          const StatsPageView(),
           const ProfilePage(),
         ][currentPageIndex],
       ),
