@@ -28,8 +28,11 @@ class FirebaseTrackApi implements TrackApi {
     required String habitId,
     required String userId,
   }) {
-    final tracksCollection =
-        db.doc(userId).collection(habitId).orderBy('dateTime');
+    final tracksCollection = db
+        .doc(userId)
+        .collection(habitId)
+        .orderBy('dateTime', descending: true);
+
     final ans = tracksCollection.snapshots().map(
           (snapshot) => snapshot.docs.map(
             (e) => TrackEntity.fromFirestore(e).toTrack(),
@@ -44,8 +47,12 @@ class FirebaseTrackApi implements TrackApi {
     required String habitId,
     required String userId,
   }) {
-    final tracksCollection =
-        db.doc(userId).collection(habitId).orderBy('dateTime').limit(count);
+    final tracksCollection = db
+        .doc(userId)
+        .collection(habitId)
+        .orderBy('dateTime', descending: true)
+        .limit(count);
+
     final ans = tracksCollection.snapshots().map(
           (snapshot) => snapshot.docs.map(
             (e) => TrackEntity.fromFirestore(e).toTrack(),

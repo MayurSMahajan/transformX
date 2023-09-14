@@ -34,16 +34,18 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
     emit(state.copyWith(status: () => TrackStatus.loading));
     try {
       var track = Track(trackedUpdate: 0);
-      if (state.tracks.isNotEmpty) {
+      if (state.tracks.isEmpty) {
+        // this means there are no track for this habit
+        // thus we will create a new track and update the stats.
+        _udpateHabitStats(track);
+      } else {
         track = state.tracks.first;
+        // if there is no track for today, then update stats & create new track
         if (track.isNotSameDate()) {
           _udpateHabitStats(track);
           track = Track(trackedUpdate: 0);
         }
-      } else {
-        // this means there are no track for this habit
-        // thus we will create a new track and update the stats.
-        _udpateHabitStats(track);
+        // if there is a track for today, then override it with new trackedValue
       }
       await _trackRepository.saveTrack(
         track: track.copyWith(
