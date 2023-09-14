@@ -1,7 +1,8 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/sign_in/cubit/sign_in_cubit.dart';
@@ -40,6 +41,16 @@ class SignInPageView extends StatelessWidget {
               ),
             );
         }
+        if (state.status == SignInStatus.success) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Signed In Successfully'),
+              ),
+            );
+          context.go('/');
+        }
       },
       child: const Align(
         alignment: Alignment(0, 0.8),
@@ -62,18 +73,16 @@ class _GoogleLoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return ElevatedButton.icon(
+    return OutlinedButton.icon(
       key: const Key('loginForm_googleLogin_raisedButton'),
       label: Text(
         l10n.signInWithGoogle,
-        style: const TextStyle(color: Colors.white),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-        ),
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(color: Colors.grey.shade700, width: 1.25),
       ),
-      icon: const FaIcon(FontAwesomeIcons.google, size: 24),
+      icon: SvgPicture.asset('assets/icons/google.svg', width: 22, height: 22),
       onPressed: () => context.read<SignInCubit>().logInWithGoogle(),
     );
   }
