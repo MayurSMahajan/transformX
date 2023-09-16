@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
@@ -136,27 +137,31 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
                 builder: (context, state) {
                   return InkWell(
                     onTap: () => _show(context),
-                    child: Text(
-                      state.habitTime.toReadableString(),
-                      style: Theme.of(context).textTheme.headlineSmall,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          state.habitTime.toReadableString(),
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        const SizedBox(width: 12),
+                        CircleAvatar(
+                          radius: 16,
+                          backgroundColor: Theme.of(context).primaryColor,
+                          child: const Icon(
+                            Icons.edit_rounded,
+                            size: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
               ),
             ],
           ),
-          const VSpace(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FilledButton.tonal(
-                onPressed: () => _show(context),
-                child: const Text('Change Time'),
-              ),
-            ],
-          ),
           const Spacer(),
-          const VSpace(),
           NextButton(
             onPressed: () {
               context.read<NewHabitUICubit>().setStatusAndProgress(

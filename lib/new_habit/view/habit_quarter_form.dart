@@ -46,9 +46,26 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
           const FormProgressContainer(),
           const _HabitMetricTitleInput(),
           const VSpace(),
-          Text(
-            'habit metrics',
-            style: Theme.of(context).textTheme.bodyLarge,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'habit metrics',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              InkWell(
+                onTap: () => _show(context),
+                child: CircleAvatar(
+                  radius: 16,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: const Icon(
+                    Icons.edit_rounded,
+                    size: 18,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ],
           ),
           const VSpace(),
           BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
@@ -69,16 +86,6 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
                 ],
               );
             },
-          ),
-          const VSpace(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              FilledButton.tonal(
-                onPressed: () => _show(context),
-                child: const Text('Change Metric'),
-              ),
-            ],
           ),
           const Spacer(),
           Row(
