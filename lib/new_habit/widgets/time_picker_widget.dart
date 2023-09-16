@@ -56,7 +56,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).canvasColor,
-      height: 300,
+      height: 320,
       child: Column(
         children: [
           SizedBox(
@@ -64,7 +64,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                const BottomSheetOverlay(),
+                const BottomSheetOverlay(paddingTop: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -109,6 +109,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
               ],
             ),
           ),
+          const SizedBox(height: 6),
           BottomSheetButton(onPressed: submitTime),
         ],
       ),

@@ -134,9 +134,12 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
               ),
               BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
                 builder: (context, state) {
-                  return Text(
-                    state.habitTime.toReadableString(),
-                    style: Theme.of(context).textTheme.headlineSmall,
+                  return InkWell(
+                    onTap: () => _show(context),
+                    child: Text(
+                      state.habitTime.toReadableString(),
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
                   );
                 },
               ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/new_habit/widgets/widgets.dart';
 
-const metricMinOffset = 5;
+const metricMinOffset = 1;
 const metricIdealOffset = 10;
 
 class MetricPickerWidgetWrapper extends StatelessWidget {

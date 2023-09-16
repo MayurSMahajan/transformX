@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class BottomSheetOverlay extends StatelessWidget {
-  const BottomSheetOverlay({super.key});
+  const BottomSheetOverlay({super.key, this.paddingTop = 20});
+
+  final double paddingTop;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24),
+      padding: EdgeInsets.only(top: paddingTop),
       child: Container(
         height: 60,
         width: 300,
