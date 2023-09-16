@@ -13,6 +13,8 @@ class HabitHalfForm extends StatefulWidget {
 
 class _HabitHalfFormState extends State<HabitHalfForm> {
   final habitRitualFocusNode = FocusNode();
+  final habitRitualController = TextEditingController();
+  final _habitRitualForm = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -23,53 +25,71 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
   @override
   void dispose() {
     habitRitualFocusNode.dispose();
+    habitRitualController.dispose();
     super.dispose();
+  }
+
+  void submitInputs() {
+    if (_habitRitualForm.currentState!.validate()) {
+      context.read<NewHabitUICubit>().setStatusAndProgress(
+            NewHabitUIStatus.quarterAndHalf,
+            0.70,
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitRitualChanged(habitRitualController.text),
+          );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: Column(
-        children: [
-          const FormProgressContainer(),
-          _HabitRitualInput(focusNode: habitRitualFocusNode),
-          const Spacer(),
-          const VSpace(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              PrevButton(
-                onPressed: () {
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.quarter,
-                        0.25,
-                      );
-                },
+      child: Form(
+        key: _habitRitualForm,
+        child: Column(
+          children: [
+            const FormProgressContainer(),
+            const _HabitRitualLabel(),
+            const VSpace(),
+            TextFormField(
+              key: const Key('habitForm_ritualInput_textField'),
+              focusNode: habitRitualFocusNode,
+              controller: habitRitualController,
+              decoration: InputDecoration(
+                hintText: l10n.habitRitual,
               ),
-              NextButton(
-                onPressed: () {
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.quarterAndHalf,
-                        0.70,
-                      );
-                },
-              ),
-            ],
-          ),
-          const VSpace(),
-        ],
+              validator: HabitStringValidator.validateInput,
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                PrevButton(
+                  onPressed: () {
+                    context.read<NewHabitUICubit>().setStatusAndProgress(
+                          NewHabitUIStatus.quarter,
+                          0.25,
+                        );
+                  },
+                ),
+                ElevatedButton(
+                  onPressed: submitInputs,
+                  child: Text(l10n.nextActionButton),
+                )
+              ],
+            ),
+            const VSpace(),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _HabitRitualInput extends StatelessWidget {
-  const _HabitRitualInput({
-    required this.focusNode,
-  });
-
-  final FocusNode focusNode;
+class _HabitRitualLabel extends StatelessWidget {
+  const _HabitRitualLabel();
 
   @override
   Widget build(BuildContext context) {
@@ -96,25 +116,6 @@ class _HabitRitualInput extends StatelessWidget {
               ),
             )
           ],
-        ),
-        BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-          buildWhen: (previous, current) =>
-              previous.habitRitual != current.habitRitual,
-          builder: (context, state) {
-            return TextField(
-              key: const Key('habitForm_habitRitualInput_textField'),
-              focusNode: focusNode,
-              decoration: InputDecoration(
-                hintText: l10n.habitRitual,
-                errorText: state.habitRitual.displayError != null
-                    ? l10n.invalidHabitRitual
-                    : null,
-              ),
-              onChanged: (ritual) => context.read<NewHabitFormBloc>().add(
-                    HabitRitualChanged(ritual),
-                  ),
-            );
-          },
         ),
       ],
     );

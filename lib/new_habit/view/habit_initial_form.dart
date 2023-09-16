@@ -56,16 +56,6 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
     Navigator.of(context).pop();
   }
 
-  String? validateInput(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter some text';
-    }
-    if (value.contains(RegExp(r'^[0-9]+$'))) {
-      return 'Should contain some alphabets';
-    }
-    return null;
-  }
-
   void submitInputs() {
     if (_habitCueForm.currentState!.validate()) {
       context.read<NewHabitUICubit>().setStatusAndProgress(
@@ -110,7 +100,7 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
                       habitNameFocusNode.unfocus();
                       habitLocationFocusNode.requestFocus();
                     },
-                    validator: validateInput,
+                    validator: HabitStringValidator.validateInput,
                   ),
                 ),
               ],
@@ -130,7 +120,7 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
                     decoration: InputDecoration(
                       hintText: l10n.habitLocation,
                     ),
-                    validator: validateInput,
+                    validator: HabitStringValidator.validateInput,
                   ),
                 ),
               ],
