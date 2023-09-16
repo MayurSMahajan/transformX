@@ -15,6 +15,10 @@ class HabitQuarterAndHalfForm extends StatefulWidget {
 class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
   final shortRewardFocusNode = FocusNode();
   final longRewardFocusNode = FocusNode();
+  final shortRewardController = TextEditingController();
+  final longRewardController = TextEditingController();
+
+  final _habitRewardForm = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -26,7 +30,25 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
   void dispose() {
     shortRewardFocusNode.dispose();
     longRewardFocusNode.dispose();
+    shortRewardController.dispose();
+    longRewardController.dispose();
     super.dispose();
+  }
+
+  void submitInputs() {
+    if (_habitRewardForm.currentState!.validate()) {
+      context.read<NewHabitUICubit>().setStatusAndProgress(
+            NewHabitUIStatus.complete,
+            0.95,
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitShortRewardChanged(shortRewardController.text),
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitLongRewardChanged(shortRewardController.text),
+          );
+      context.read<NewHabitFormBloc>().add(const HabitSubmitted());
+    }
   }
 
   @override
@@ -35,123 +57,97 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: Column(
-        children: [
-          const FormProgressContainer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                l10n.afterIHitMyDailyGoalRewardText,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    l10n.iWillRewardMyselfRewardText,
-                    style: Theme.of(context).textTheme.headlineSmall,
+      child: Form(
+        key: _habitRewardForm,
+        child: Column(
+          children: [
+            const FormProgressContainer(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.afterIHitMyDailyGoalRewardText,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      l10n.iWillRewardMyselfRewardText,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.question_mark_rounded,
+                        size: 14,
+                      ),
+                    )
+                  ],
+                ),
+                TextFormField(
+                  key: const Key('habitForm_shortRewardInput_textField'),
+                  focusNode: shortRewardFocusNode,
+                  decoration: InputDecoration(
+                    hintText: l10n.habitShortReward,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.question_mark_rounded,
-                      size: 14,
+                  onEditingComplete: () {
+                    shortRewardFocusNode.unfocus();
+                    longRewardFocusNode.requestFocus();
+                  },
+                  validator: HabitStringValidator.validateInput,
+                ),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      l10n.myLongTermRewardRewardText,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                  )
-                ],
-              ),
-              BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-                buildWhen: (previous, current) =>
-                    previous.habitShortReward != current.habitShortReward,
-                builder: (context, state) {
-                  return TextField(
-                    key: const Key('habitForm_habitShortRewardInput_textField'),
-                    focusNode: shortRewardFocusNode,
-                    decoration: InputDecoration(
-                      hintText: l10n.habitShortReward,
-                      errorText: state.habitShortReward.displayError != null
-                          ? l10n.invalidHabitShortReward
-                          : null,
-                    ),
-                    onChanged: (reward) => context.read<NewHabitFormBloc>().add(
-                          HabitShortRewardChanged(reward),
-                        ),
-                    onEditingComplete: () {
-                      shortRewardFocusNode.unfocus();
-                      longRewardFocusNode.requestFocus();
-                    },
-                  );
-                },
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    l10n.myLongTermRewardRewardText,
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.question_mark_rounded,
+                        size: 14,
+                      ),
+                    )
+                  ],
+                ),
+                TextFormField(
+                  key: const Key('habitForm_longRewardInput_textField'),
+                  focusNode: longRewardFocusNode,
+                  decoration: InputDecoration(
+                    hintText: l10n.habitLongReward,
                   ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.question_mark_rounded,
-                      size: 14,
-                    ),
-                  )
-                ],
-              ),
-              BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-                buildWhen: (previous, current) =>
-                    previous.habitShortReward != current.habitShortReward,
-                builder: (context, state) {
-                  return TextField(
-                    key: const Key('habitForm_habitLongRewardInput_textField'),
-                    focusNode: longRewardFocusNode,
-                    decoration: InputDecoration(
-                      hintText: l10n.habitLongReward,
-                      errorText: state.habitLongReward.displayError != null
-                          ? l10n.invalidhHabitLongReward
-                          : null,
-                    ),
-                    onChanged: (reward) => context.read<NewHabitFormBloc>().add(
-                          HabitLongRewardChanged(reward),
-                        ),
-                  );
-                },
-              ),
-            ],
-          ),
-          const Spacer(),
-          const VSpace(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              PrevButton(
-                onPressed: () {
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.half,
-                        0.5,
-                      );
-                },
-              ),
-              NextButton(
-                onPressed: () {
-                  context.read<NewHabitFormBloc>().add(const HabitSubmitted());
-                  context.read<NewHabitUICubit>().setStatusAndProgress(
-                        NewHabitUIStatus.complete,
-                        0.95,
-                      );
-                },
-              ),
-            ],
-          ),
-          const VSpace(),
-        ],
+                  validator: HabitStringValidator.validateInput,
+                ),
+              ],
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                PrevButton(
+                  onPressed: () {
+                    context.read<NewHabitUICubit>().setStatusAndProgress(
+                          NewHabitUIStatus.half,
+                          0.5,
+                        );
+                  },
+                ),
+                NextButton(
+                  onPressed: submitInputs,
+                ),
+              ],
+            ),
+            const VSpace(),
+          ],
+        ),
       ),
     );
   }

@@ -1,9 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 import 'package:habits_repository/habits_repository.dart';
-import 'package:transformx/new_habit/models/models.dart';
 
 part 'new_habit_form_event.dart';
 part 'new_habit_form_state.dart';
@@ -33,10 +30,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitNameChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitName = event.habitName;
     emit(
       state.copyWith(
-        habitName: habitName,
+        habitName: event.habitName,
       ),
     );
   }
@@ -45,10 +41,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitLocationChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitLocation = event.habitLocation;
     emit(
       state.copyWith(
-        habitLocation: habitLocation,
+        habitLocation: event.habitLocation,
       ),
     );
   }
@@ -74,10 +69,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitMetricMinChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitMetricMin = event.habitMetricMin;
     emit(
       state.copyWith(
-        habitMetricMin: habitMetricMin,
+        habitMetricMin: event.habitMetricMin,
       ),
     );
   }
@@ -86,10 +80,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitMetricIdealChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitMetricIdeal = event.habitMetricIdeal;
     emit(
       state.copyWith(
-        habitMetricIdeal: habitMetricIdeal,
+        habitMetricIdeal: event.habitMetricIdeal,
       ),
     );
   }
@@ -98,13 +91,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitRitualChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitRitual = HabitRitual.dirty(event.habitRitual);
     emit(
       state.copyWith(
-        habitRitual: habitRitual,
-        isValid: Formz.validate([
-          habitRitual,
-        ]),
+        habitRitual: event.habitRitual,
       ),
     );
   }
@@ -113,14 +102,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitShortRewardChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitShortReward = HabitShortReward.dirty(event.habitShortReward);
     emit(
       state.copyWith(
-        habitShortReward: habitShortReward,
-        isValid: Formz.validate([
-          habitShortReward,
-          state.habitLongReward,
-        ]),
+        habitShortReward: event.habitShortReward,
       ),
     );
   }
@@ -129,14 +113,9 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitLongRewardChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitLongReward = HabitLongReward.dirty(event.habitLongReward);
     emit(
       state.copyWith(
-        habitLongReward: habitLongReward,
-        isValid: Formz.validate([
-          state.habitShortReward,
-          habitLongReward,
-        ]),
+        habitLongReward: event.habitLongReward,
       ),
     );
   }
@@ -146,9 +125,8 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     Emitter<NewHabitFormState> emit,
   ) async {
     if (state.isValid) {
-      emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+      emit(state.copyWith(status: NewHabitFormStatus.progress));
       try {
-        debugPrint('onHabitSubmitted: ${state.habitTime}');
         final finalHabit = Habit(
           title: state.habitName,
           location: state.habitLocation,
@@ -157,15 +135,15 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
             minimum: state.habitMetricMin,
             ideal: state.habitMetricIdeal,
           ),
-          ritual: state.habitRitual.value,
-          shortReward: state.habitShortReward.value,
-          longReward: state.habitLongReward.value,
+          ritual: state.habitRitual,
+          shortReward: state.habitShortReward,
+          longReward: state.habitLongReward,
           icon: 'assets/gym',
         );
         await _habitsRepository.saveHabit(finalHabit, _userId);
-        emit(state.copyWith(status: FormzSubmissionStatus.success));
+        emit(state.copyWith(status: NewHabitFormStatus.success));
       } catch (_) {
-        emit(state.copyWith(status: FormzSubmissionStatus.failure));
+        emit(state.copyWith(status: NewHabitFormStatus.failure));
       }
     }
   }

@@ -1,40 +1,47 @@
 part of 'new_habit_form_bloc.dart';
 
+enum NewHabitFormStatus {
+  initial,
+  progress,
+  success,
+  failure,
+}
+
 class NewHabitFormState extends Equatable {
   const NewHabitFormState({
-    this.status = FormzSubmissionStatus.initial,
+    this.status = NewHabitFormStatus.initial,
     this.habitName = '',
     this.habitLocation = '',
     this.habitTime = const Time(hour: 0, mins: 0),
     this.habitMetricMin = 1,
     this.habitMetricIdeal = 10,
-    this.habitRitual = const HabitRitual.pure(),
-    this.habitShortReward = const HabitShortReward.pure(),
-    this.habitLongReward = const HabitLongReward.pure(),
+    this.habitRitual = '',
+    this.habitShortReward = '',
+    this.habitLongReward = '',
     this.isValid = false,
   });
 
-  final FormzSubmissionStatus status;
+  final NewHabitFormStatus status;
   final String habitName;
   final String habitLocation;
   final Time habitTime;
   final int habitMetricMin;
   final int habitMetricIdeal;
-  final HabitRitual habitRitual;
-  final HabitShortReward habitShortReward;
-  final HabitLongReward habitLongReward;
+  final String habitRitual;
+  final String habitShortReward;
+  final String habitLongReward;
   final bool isValid;
 
   NewHabitFormState copyWith({
-    FormzSubmissionStatus? status,
+    NewHabitFormStatus? status,
     String? habitName,
     String? habitLocation,
     Time? habitTime,
     int? habitMetricMin,
     int? habitMetricIdeal,
-    HabitRitual? habitRitual,
-    HabitShortReward? habitShortReward,
-    HabitLongReward? habitLongReward,
+    String? habitRitual,
+    String? habitShortReward,
+    String? habitLongReward,
     bool? isValid,
   }) {
     return NewHabitFormState(
