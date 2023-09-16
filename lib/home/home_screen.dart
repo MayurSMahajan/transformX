@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:stats_repository/stats_repository.dart';
-import 'package:transformx/home/pages/home_page/bloc/habits_bloc.dart';
 import 'package:transformx/home/pages/pages.dart';
 import 'package:transformx/home/pages/stats_page/bloc/statistics_bloc.dart';
 
