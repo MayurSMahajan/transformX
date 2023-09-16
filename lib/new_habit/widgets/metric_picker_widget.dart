@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habits_api/habits_api.dart';
+import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/new_habit/widgets/widgets.dart';
 
 const metricMinOffset = 1;

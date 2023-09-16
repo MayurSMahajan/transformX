@@ -74,14 +74,10 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitMetricMinChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitMetricMin = HabitMetricMin.dirty(event.habitMetricMin);
+    final habitMetricMin = event.habitMetricMin;
     emit(
       state.copyWith(
         habitMetricMin: habitMetricMin,
-        isValid: Formz.validate([
-          habitMetricMin,
-          state.habitMetricIdeal,
-        ]),
       ),
     );
   }
@@ -90,14 +86,10 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitMetricIdealChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitMetricIdeal = HabitMetricIdeal.dirty(event.habitMetricIdeal);
+    final habitMetricIdeal = event.habitMetricIdeal;
     emit(
       state.copyWith(
         habitMetricIdeal: habitMetricIdeal,
-        isValid: Formz.validate([
-          state.habitMetricMin,
-          habitMetricIdeal,
-        ]),
       ),
     );
   }
@@ -162,8 +154,8 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
           location: state.habitLocation,
           time: state.habitTime,
           metric: Metric(
-            minimum: state.habitMetricMin.value,
-            ideal: state.habitMetricIdeal.value,
+            minimum: state.habitMetricMin,
+            ideal: state.habitMetricIdeal,
           ),
           ritual: state.habitRitual.value,
           shortReward: state.habitShortReward.value,

@@ -6,8 +6,8 @@ class NewHabitFormState extends Equatable {
     this.habitName = '',
     this.habitLocation = '',
     this.habitTime = const Time(hour: 0, mins: 0),
-    this.habitMetricMin = const HabitMetricMin.pure(),
-    this.habitMetricIdeal = const HabitMetricIdeal.pure(),
+    this.habitMetricMin = 1,
+    this.habitMetricIdeal = 10,
     this.habitRitual = const HabitRitual.pure(),
     this.habitShortReward = const HabitShortReward.pure(),
     this.habitLongReward = const HabitLongReward.pure(),
@@ -18,8 +18,8 @@ class NewHabitFormState extends Equatable {
   final String habitName;
   final String habitLocation;
   final Time habitTime;
-  final HabitMetricMin habitMetricMin;
-  final HabitMetricIdeal habitMetricIdeal;
+  final int habitMetricMin;
+  final int habitMetricIdeal;
   final HabitRitual habitRitual;
   final HabitShortReward habitShortReward;
   final HabitLongReward habitLongReward;
@@ -30,8 +30,8 @@ class NewHabitFormState extends Equatable {
     String? habitName,
     String? habitLocation,
     Time? habitTime,
-    HabitMetricMin? habitMetricMin,
-    HabitMetricIdeal? habitMetricIdeal,
+    int? habitMetricMin,
+    int? habitMetricIdeal,
     HabitRitual? habitRitual,
     HabitShortReward? habitShortReward,
     HabitLongReward? habitLongReward,

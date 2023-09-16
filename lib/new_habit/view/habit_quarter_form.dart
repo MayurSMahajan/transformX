@@ -66,13 +66,13 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
                 children: [
                   SelectedValueTile(
                     label: 'minimum',
-                    amount: '${state.habitMetricMin.value}',
+                    amount: '${state.habitMetricMin}',
                     subLabel: l10n.minutes,
                   ),
                   const VSpace(),
                   SelectedValueTile(
                     label: 'ideal',
-                    amount: '${state.habitMetricIdeal.value}',
+                    amount: '${state.habitMetricIdeal}',
                     subLabel: l10n.minutes,
                   ),
                 ],
@@ -91,13 +91,14 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
                       );
                 },
               ),
-              NextButton(
+              ElevatedButton(
                 onPressed: () {
                   context.read<NewHabitUICubit>().setStatusAndProgress(
                         NewHabitUIStatus.half,
                         0.5,
                       );
                 },
+                child: Text(l10n.nextActionButton),
               ),
             ],
           ),
