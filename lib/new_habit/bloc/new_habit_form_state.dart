@@ -3,8 +3,8 @@ part of 'new_habit_form_bloc.dart';
 class NewHabitFormState extends Equatable {
   const NewHabitFormState({
     this.status = FormzSubmissionStatus.initial,
-    this.habitName = const HabitName.pure(),
-    this.habitLocation = const HabitLocation.pure(),
+    this.habitName = '',
+    this.habitLocation = '',
     this.habitTime = const Time(hour: 0, mins: 0),
     this.habitMetricMin = const HabitMetricMin.pure(),
     this.habitMetricIdeal = const HabitMetricIdeal.pure(),
@@ -15,8 +15,8 @@ class NewHabitFormState extends Equatable {
   });
 
   final FormzSubmissionStatus status;
-  final HabitName habitName;
-  final HabitLocation habitLocation;
+  final String habitName;
+  final String habitLocation;
   final Time habitTime;
   final HabitMetricMin habitMetricMin;
   final HabitMetricIdeal habitMetricIdeal;
@@ -27,8 +27,8 @@ class NewHabitFormState extends Equatable {
 
   NewHabitFormState copyWith({
     FormzSubmissionStatus? status,
-    HabitName? habitName,
-    HabitLocation? habitLocation,
+    String? habitName,
+    String? habitLocation,
     Time? habitTime,
     HabitMetricMin? habitMetricMin,
     HabitMetricIdeal? habitMetricIdeal,

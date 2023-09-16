@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habits_api/habits_api.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
@@ -16,6 +15,10 @@ class HabitInitialForm extends StatefulWidget {
 class _HabitInitialFormState extends State<HabitInitialForm> {
   final habitNameFocusNode = FocusNode();
   final habitLocationFocusNode = FocusNode();
+  final habitNameController = TextEditingController();
+  final habitLocationController = TextEditingController();
+
+  final _habitCueForm = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -27,6 +30,8 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
   void dispose() {
     habitNameFocusNode.dispose();
     habitLocationFocusNode.dispose();
+    habitNameController.dispose();
+    habitLocationController.dispose();
     super.dispose();
   }
 
@@ -51,127 +56,122 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
     Navigator.of(context).pop();
   }
 
+  String? validateInput(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter some text';
+    }
+    if (value.contains(RegExp(r'^[0-9]+$'))) {
+      return 'Should contain some alphabets';
+    }
+    return null;
+  }
+
+  void submitInputs() {
+    if (_habitCueForm.currentState!.validate()) {
+      context.read<NewHabitUICubit>().setStatusAndProgress(
+            NewHabitUIStatus.quarter,
+            0.25,
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitNameChanged(habitNameController.text),
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitLocationChanged(habitLocationController.text),
+          );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: Column(
-        children: [
-          const FormProgressContainer(),
-          Row(
-            children: [
-              Text(
-                l10n.iWillCueText,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              Expanded(
-                child: BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-                  buildWhen: (previous, current) =>
-                      previous.habitName != current.habitName,
-                  builder: (context, state) {
-                    return TextField(
-                      key: const Key('habitForm_habitNameInput_textField'),
-                      focusNode: habitNameFocusNode,
-                      decoration: InputDecoration(
-                        hintText: l10n.habitName,
-                        errorText: state.habitName.displayError != null
-                            ? l10n.invalidHabitName
-                            : null,
-                      ),
-                      onChanged: (name) => context.read<NewHabitFormBloc>().add(
-                            HabitNameChanged(name),
-                          ),
-                      onEditingComplete: () {
-                        habitNameFocusNode.unfocus();
-                        habitLocationFocusNode.requestFocus();
-                      },
-                    );
-                  },
+      child: Form(
+        key: _habitCueForm,
+        child: Column(
+          children: [
+            const FormProgressContainer(),
+            Row(
+              children: [
+                Text(
+                  l10n.iWillCueText,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
-              ),
-            ],
-          ),
-          const VSpace(),
-          Row(
-            children: [
-              Text(
-                l10n.inCueText,
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              Expanded(
-                child: BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-                  buildWhen: (previous, current) =>
-                      previous.habitLocation != current.habitLocation,
-                  builder: (context, state) {
-                    return TextField(
-                      key: const Key('habitForm_habitLocationInput_textField'),
-                      focusNode: habitLocationFocusNode,
-                      decoration: InputDecoration(
-                        hintText: l10n.habitLocation,
-                        errorText: state.habitLocation.displayError != null
-                            ? l10n.invalidLocation
-                            : null,
-                      ),
-                      onChanged: (location) =>
-                          context.read<NewHabitFormBloc>().add(
-                                HabitLocationChanged(location),
-                              ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-          const VSpace(),
-          const VSpace(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'habit time',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-              BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-                builder: (context, state) {
-                  return InkWell(
-                    onTap: () => _show(context),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          state.habitTime.toReadableString(),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        const SizedBox(width: 12),
-                        CircleAvatar(
-                          radius: 16,
-                          backgroundColor: Theme.of(context).primaryColor,
-                          child: const Icon(
-                            Icons.edit_rounded,
-                            size: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
+                Expanded(
+                  child: TextFormField(
+                    key: const Key('habitForm_nameInput_textField'),
+                    controller: habitNameController,
+                    focusNode: habitNameFocusNode,
+                    decoration: InputDecoration(
+                      hintText: l10n.habitName,
                     ),
-                  );
-                },
-              ),
-            ],
-          ),
-          const Spacer(),
-          NextButton(
-            onPressed: () {
-              context.read<NewHabitUICubit>().setStatusAndProgress(
-                    NewHabitUIStatus.quarter,
-                    0.25,
-                  );
-            },
-          ),
-          const VSpace(),
-        ],
+                    onEditingComplete: () {
+                      habitNameFocusNode.unfocus();
+                      habitLocationFocusNode.requestFocus();
+                    },
+                    validator: validateInput,
+                  ),
+                ),
+              ],
+            ),
+            const VSpace(),
+            Row(
+              children: [
+                Text(
+                  l10n.inCueText,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    key: const Key('habitForm_locationInput_textField'),
+                    controller: habitLocationController,
+                    focusNode: habitLocationFocusNode,
+                    decoration: InputDecoration(
+                      hintText: l10n.habitLocation,
+                    ),
+                    validator: validateInput,
+                  ),
+                ),
+              ],
+            ),
+            const VSpace(),
+            const VSpace(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'habit time',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+                  builder: (context, state) {
+                    return InkWell(
+                      onTap: () => _show(context),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            state.habitTime.toReadableString(),
+                            style: Theme.of(context).textTheme.headlineSmall,
+                          ),
+                          const SizedBox(width: 12),
+                          const EditRoundedButton(),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const Spacer(),
+            ElevatedButton(
+              onPressed: submitInputs,
+              child: Text(l10n.nextActionButton),
+            ),
+            const VSpace(),
+          ],
+        ),
       ),
     );
   }

@@ -33,14 +33,10 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitNameChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitName = HabitName.dirty(event.habitName);
+    final habitName = event.habitName;
     emit(
       state.copyWith(
         habitName: habitName,
-        isValid: Formz.validate([
-          habitName,
-          state.habitLocation,
-        ]),
       ),
     );
   }
@@ -49,14 +45,10 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitLocationChanged event,
     Emitter<NewHabitFormState> emit,
   ) {
-    final habitLocation = HabitLocation.dirty(event.habitLocation);
+    final habitLocation = event.habitLocation;
     emit(
       state.copyWith(
         habitLocation: habitLocation,
-        isValid: Formz.validate([
-          state.habitName,
-          habitLocation,
-        ]),
       ),
     );
   }
@@ -74,10 +66,6 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     emit(
       state.copyWith(
         habitTime: habitTime,
-        isValid: Formz.validate([
-          state.habitName,
-          state.habitLocation,
-        ]),
       ),
     );
   }
@@ -170,8 +158,8 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
       try {
         debugPrint('onHabitSubmitted: ${state.habitTime}');
         final finalHabit = Habit(
-          title: state.habitName.value,
-          location: state.habitLocation.value,
+          title: state.habitName,
+          location: state.habitLocation,
           time: state.habitTime,
           metric: Metric(
             minimum: state.habitMetricMin.value,

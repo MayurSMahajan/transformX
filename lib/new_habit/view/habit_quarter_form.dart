@@ -55,15 +55,7 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
               ),
               InkWell(
                 onTap: () => _show(context),
-                child: CircleAvatar(
-                  radius: 16,
-                  backgroundColor: Theme.of(context).primaryColor,
-                  child: const Icon(
-                    Icons.edit_rounded,
-                    size: 18,
-                    color: Colors.white,
-                  ),
-                ),
+                child: const EditRoundedButton(),
               ),
             ],
           ),
