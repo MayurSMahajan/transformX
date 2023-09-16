@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:transformx/infra/infra.dart';
 
 class StatsLoadingView extends StatelessWidget {
   const StatsLoadingView({super.key});
@@ -8,8 +9,8 @@ class StatsLoadingView extends StatelessWidget {
     return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircularProgressIndicator.adaptive(),
-        SizedBox(height: 16),
+        ProgressCircle(),
+        VSpace(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

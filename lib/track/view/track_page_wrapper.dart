@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
+import 'package:transformx/infra/infra.dart';
 import 'package:transformx/track/bloc/track_bloc.dart';
 import 'package:transformx/track/view/track_page.dart';
 import 'package:transformx/track/view/track_success_page.dart';
@@ -46,7 +47,7 @@ class TrackPageContent extends StatelessWidget {
             if (state.status == TrackStatus.error) {
               return const TrackError();
             }
-            return const WaitingIndicator();
+            return const ProgressCircle();
           },
         ),
       ),
@@ -61,17 +62,6 @@ class TrackError extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: Text('Some problem occured'),
-    );
-  }
-}
-
-class WaitingIndicator extends StatelessWidget {
-  const WaitingIndicator({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator.adaptive(),
     );
   }
 }

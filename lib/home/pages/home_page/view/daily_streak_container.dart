@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stats_repository/stats_repository.dart';
 import 'package:transformx/home/pages/home_page/cubit/streak_cubit.dart';
 import 'package:transformx/home/pages/home_page/widgets/widgets.dart';
+import 'package:transformx/infra/infra.dart';
 
 class DailyStreakContainerWrapper extends StatelessWidget {
   const DailyStreakContainerWrapper({super.key});
@@ -54,7 +55,7 @@ class DailyStreakContainer extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               );
             }
-            return const Center(child: CircularProgressIndicator.adaptive());
+            return const ProgressCircle();
           },
         ),
       ),

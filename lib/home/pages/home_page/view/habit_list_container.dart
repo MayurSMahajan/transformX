@@ -67,8 +67,10 @@ class HabitListContainer extends StatelessWidget {
                 }
               }
               if (state.status == AllHabitsStatus.failure) {
-                return Container(
-                  color: Colors.red,
+                return Text(
+                  'Could Not Load your Habits, Try again later',
+                  style: Theme.of(context).textTheme.titleMedium,
+                  textAlign: TextAlign.center,
                 );
               }
               return const ProgressCircle();
