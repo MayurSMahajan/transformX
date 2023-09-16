@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
             VSpace(),
             GreetingContainer(),
             VSpace(),
-            DailyStreakContainer(),
+            DailyStreakContainerWrapper(),
             VSpace(),
             HabitListContainer(),
           ],

@@ -115,21 +115,24 @@ class StatsRepository {
         .first;
 
     final streak = List.filled(7, false);
-    var trackIndex = 0;
     final today = DateTime.now();
 
-    //handle te edge case that these weekdays are from different weeks
+    //handle the edge case that these weekdays are from different weeks
     //if the difference between today's date and last tracked date
     if (today.difference(tracks.first.dateTime).inDays > 7) {
       return streak;
     }
 
-    for (var i = today.weekday; i > 0; i--) {
+    var i = today.weekday;
+    var trackIndex = 0;
+
+    while (trackIndex < tracks.length && i > 1) {
       final top = tracks.elementAt(trackIndex);
       if (top.dateTime.weekday == i) {
         streak[i - 1] = true;
         trackIndex++;
       }
+      i--;
     }
 
     return streak;
