@@ -41,6 +41,7 @@ dependencies:
 dev_dependencies:
   bloc_test: ^9.1.2
   flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.2
   flutter_test:
     sdk: flutter
   mockingjay: ^0.3.0
