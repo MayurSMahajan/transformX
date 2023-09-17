@@ -13,11 +13,9 @@ enum NewHabitUIStatus {
 @immutable
 class NewHabitUIState extends Equatable {
   const NewHabitUIState({
-    this.status = NewHabitUIStatus.complete,
+    this.status = NewHabitUIStatus.initial,
     this.progress = 0.0,
   });
-
-  //TODO: make the initial status as initial.
 
   final NewHabitUIStatus status;
   final double progress;
