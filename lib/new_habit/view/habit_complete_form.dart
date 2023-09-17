@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
-import 'package:transformx/new_habit/bloc/new_habit_form_bloc.dart';
+import 'package:transformx/new_habit/new_habit.dart';
 
 class HabitCompleteForm extends StatelessWidget {
   const HabitCompleteForm({super.key});
@@ -11,38 +10,51 @@ class HabitCompleteForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      child: Column(
+      color: const Color(0xFFF6F6EA),
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          const VSpace(),
-          const CustomProgressIndicator(progress: 1),
-          const VSpace(),
-          Text(
-            l10n.greatSuccessText,
-            style: Theme.of(context).textTheme.headlineSmall,
+          Column(
+            children: [
+              const VSpace(),
+              const CustomProgressIndicator(progress: 1),
+              const VSpace(),
+              Image.asset('assets/illustrations/baloon.png', height: 350),
+            ],
           ),
-          const Spacer(),
-          const VSpace(),
-          _NextButton(),
-          const VSpace(),
+          Positioned(
+            bottom: 40,
+            child: SizedBox(
+              height: 240,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    'New Habit Added!',
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                  Text(
+                    l10n.greatSuccessText,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 64),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      NextButton(
+                        onPressed: () => context.go('/'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
-    );
-  }
-}
-
-class _NextButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final l10n = context.l10n;
-    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
-      builder: (context, state) {
-        return ElevatedButton(
-          onPressed: () => context.go('/'),
-          child: Text(l10n.nextActionButton),
-        );
-      },
     );
   }
 }

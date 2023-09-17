@@ -49,6 +49,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/icons/
+    - assets/illustrations/
 
   fonts:
     - family: Rubik
