@@ -126,7 +126,7 @@ class StatsRepository {
     var i = today.weekday;
     var trackIndex = 0;
 
-    while (trackIndex < tracks.length && i > 1) {
+    while (trackIndex < tracks.length && i > 0) {
       final top = tracks.elementAt(trackIndex);
       if (top.dateTime.weekday == i) {
         streak[i - 1] = true;
