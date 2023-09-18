@@ -42,7 +42,7 @@ class _ProgressLineChartState extends State<ProgressLineChart> {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(width: 0.2),
         borderRadius: BorderRadius.circular(10),
       ),
       clipBehavior: Clip.hardEdge,

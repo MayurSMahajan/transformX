@@ -19,14 +19,14 @@ class StatsContainer extends StatelessWidget {
       children: [
         Text(
           'Last few performances',
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         const SizedBox(height: 12),
         ProgressLineChart(spots: statistics.spots.getFlSpots()),
         const SizedBox(height: 12),
         Text(
           'Records',
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
         const SizedBox(height: 12),
         RecordBarChart(
