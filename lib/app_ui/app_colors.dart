@@ -21,7 +21,7 @@ abstract class AppColors {
   static const MaterialColor grey = Colors.grey;
 
   /// The liver color.
-  static const Color liver = Color(0xFF4D4D4D);
+  static const Color liver = Color(0xFF5D5D5D);
 
   /// The green primary color and swatch.
   static const MaterialColor green = Colors.green;
@@ -163,5 +163,7 @@ abstract class AppColors {
   /// The fire background color.
   static const Color fireBackground = Color(0xFFFFC148);
 
-  static const Color faintYellow = Color(0xFFF6F6EA);
+  static const Color faintYellowBackground = Color(0xFFF6F6EA);
+
+  static const Color faintYellowAccent = Color(0xFFFEF3D0);
 }

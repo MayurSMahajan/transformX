@@ -12,24 +12,21 @@ class MetadataCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 160,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8, bottom: 8),
-            child: icon,
-          ),
-          Text(
-            metadata,
-            style: Theme.of(context).textTheme.titleMedium,
-            maxLines: 1,
-            softWrap: false,
-            overflow: TextOverflow.ellipsis,
-          ),
-        ],
-      ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(right: 4),
+          child: icon,
+        ),
+        Text(
+          metadata,
+          style: Theme.of(context).textTheme.titleMedium,
+          maxLines: 1,
+          softWrap: false,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
     );
   }
 }

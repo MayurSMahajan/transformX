@@ -41,7 +41,7 @@ class AppTheme {
     return ColorScheme.fromSeed(
       seedColor: AppColors.primaryYellow,
     ).copyWith(
-      background: AppColors.faintYellow,
+      background: AppColors.faintYellowBackground,
     );
   }
 
@@ -60,9 +60,9 @@ class AppTheme {
     );
   }
 
-  Color get _backgroundColor => const Color(0xFFFFFFFF);
+  Color get _backgroundColor => AppColors.faintYellowBackground;
 
-  Color get _canvasColor => const Color(0xFFFFF7D5);
+  Color get _canvasColor => AppColors.faintYellowAccent;
 
   AppBarTheme get _appBarTheme {
     return AppBarTheme(

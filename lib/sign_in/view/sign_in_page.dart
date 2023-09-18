@@ -13,7 +13,6 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: BlocProvider(
@@ -60,7 +59,7 @@ class SignInPageView extends StatelessWidget {
           Column(
             children: [
               const VSpace(),
-              Image.asset('assets/icons/logo.png', height: 264, width: 264),
+              Image.asset('assets/logo/logo.png', height: 264, width: 264),
               const VSpace(),
               Text(
                 'Start Transforming',
