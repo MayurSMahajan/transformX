@@ -160,6 +160,8 @@ abstract class AppColors {
   /// The orange color.
   static const Color orange = Color(0xFFFB8B24);
 
-  /// The orange color.
+  /// The fire background color.
   static const Color fireBackground = Color(0xFFFFC148);
+
+  static const Color faintYellow = Color(0xFFF6F6EA);
 }

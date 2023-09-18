@@ -40,6 +40,8 @@ class AppTheme {
   ColorScheme get _colorScheme {
     return ColorScheme.fromSeed(
       seedColor: AppColors.primaryYellow,
+    ).copyWith(
+      background: AppColors.faintYellow,
     );
   }
 
