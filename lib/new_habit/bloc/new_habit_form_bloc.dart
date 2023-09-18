@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habits_repository/habits_repository.dart';
@@ -124,27 +126,27 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
     HabitSubmitted event,
     Emitter<NewHabitFormState> emit,
   ) async {
-    if (state.isValid) {
-      emit(state.copyWith(status: NewHabitFormStatus.progress));
-      try {
-        final finalHabit = Habit(
-          title: state.habitName,
-          location: state.habitLocation,
-          time: state.habitTime,
-          metric: Metric(
-            minimum: state.habitMetricMin,
-            ideal: state.habitMetricIdeal,
-          ),
-          ritual: state.habitRitual,
-          shortReward: state.habitShortReward,
-          longReward: state.habitLongReward,
-          icon: 'assets/gym',
-        );
-        await _habitsRepository.saveHabit(finalHabit, _userId);
-        emit(state.copyWith(status: NewHabitFormStatus.success));
-      } catch (_) {
-        emit(state.copyWith(status: NewHabitFormStatus.failure));
-      }
+    emit(state.copyWith(status: NewHabitFormStatus.progress));
+    try {
+      final finalHabit = Habit(
+        title: state.habitName,
+        location: state.habitLocation,
+        time: state.habitTime,
+        metric: Metric(
+          minimum: state.habitMetricMin,
+          ideal: state.habitMetricIdeal,
+        ),
+        ritual: state.habitRitual,
+        shortReward: state.habitShortReward,
+        longReward: state.habitLongReward,
+        icon: 'assets/gym',
+      );
+      log('\n\n $finalHabit \n\n');
+      await _habitsRepository.saveHabit(finalHabit, _userId);
+
+      emit(state.copyWith(status: NewHabitFormStatus.success));
+    } catch (_) {
+      emit(state.copyWith(status: NewHabitFormStatus.failure));
     }
   }
 }

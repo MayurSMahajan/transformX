@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
@@ -6,6 +7,25 @@ import 'package:transformx/new_habit/new_habit.dart';
 
 class HabitCompleteForm extends StatelessWidget {
   const HabitCompleteForm({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewHabitFormBloc, NewHabitFormState>(
+      builder: (context, state) {
+        if (state.status == NewHabitFormStatus.success) {
+          return const HabitCompleteFormSuccessfull();
+        }
+        if (state.status == NewHabitFormStatus.failure) {
+          return const HabitCompleteFailure();
+        }
+        return const ProgressCircle();
+      },
+    );
+  }
+}
+
+class HabitCompleteFormSuccessfull extends StatelessWidget {
+  const HabitCompleteFormSuccessfull({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +72,35 @@ class HabitCompleteForm extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HabitCompleteFailure extends StatelessWidget {
+  const HabitCompleteFailure({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Some problem occured',
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 64),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NextButton(
+                onPressed: () => context.go('/'),
+              ),
+            ],
           ),
         ],
       ),

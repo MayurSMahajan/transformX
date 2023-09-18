@@ -18,7 +18,6 @@ class NewHabitFormState extends Equatable {
     this.habitRitual = '',
     this.habitShortReward = '',
     this.habitLongReward = '',
-    this.isValid = false,
   });
 
   final NewHabitFormStatus status;
@@ -30,7 +29,6 @@ class NewHabitFormState extends Equatable {
   final String habitRitual;
   final String habitShortReward;
   final String habitLongReward;
-  final bool isValid;
 
   NewHabitFormState copyWith({
     NewHabitFormStatus? status,
@@ -42,7 +40,6 @@ class NewHabitFormState extends Equatable {
     String? habitRitual,
     String? habitShortReward,
     String? habitLongReward,
-    bool? isValid,
   }) {
     return NewHabitFormState(
       status: status ?? this.status,
@@ -54,7 +51,6 @@ class NewHabitFormState extends Equatable {
       habitRitual: habitRitual ?? this.habitRitual,
       habitShortReward: habitShortReward ?? this.habitShortReward,
       habitLongReward: habitLongReward ?? this.habitLongReward,
-      isValid: isValid ?? this.isValid,
     );
   }
 
@@ -71,6 +67,5 @@ class NewHabitFormState extends Equatable {
         habitLongReward,
         habitShortReward,
         habitRitual,
-        isValid,
       ];
 }
