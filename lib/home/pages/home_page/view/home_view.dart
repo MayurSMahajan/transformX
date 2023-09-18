@@ -40,7 +40,7 @@ class CustomAppBar extends StatelessWidget {
               userImg,
             )
           : null,
-      radius: 22.5,
+      radius: 20,
       child: userImg == null ? const Icon(Icons.person) : null,
     );
 
@@ -52,10 +52,8 @@ class CustomAppBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          'TransformX',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
+        Image.asset('assets/icons/logo.png', width: 50, height: 50),
+        Text('transformX', style: Theme.of(context).textTheme.bodyMedium),
         getUserImage(context),
       ],
     );

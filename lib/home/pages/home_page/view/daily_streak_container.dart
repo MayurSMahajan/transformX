@@ -28,8 +28,8 @@ class DailyStreakContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).canvasColor,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(width: 0.25),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),

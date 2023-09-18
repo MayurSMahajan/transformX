@@ -176,5 +176,7 @@
     "createYourFirstHabitByClickingPlus": "create your first habit by clicking +",
     "newHabit": "new habit",
     "authenticationFailure": "Authentication Failure",
-    "signInWithGoogle": "SIGN IN WITH GOOGLE"
+    "signInWithGoogle": "SIGN IN WITH GOOGLE",
+
+    "whyTrackHabit": "Tracking your habit progress daily gives you the motivation to sustain them"
 }

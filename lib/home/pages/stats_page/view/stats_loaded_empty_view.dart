@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:transformx/home/pages/home_page/home_page.dart';
-
-const whyTrackHabits =
-    'Tracking your habit progress daily gives you the motivation to sustain them';
+import 'package:transformx/l10n/l10n.dart';
 
 class StatsLoadedEmptyView extends StatelessWidget {
   const StatsLoadedEmptyView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -19,7 +18,7 @@ class StatsLoadedEmptyView extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            whyTrackHabits,
+            l10n.whyTrackHabit,
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
