@@ -4,3 +4,4 @@ export 'habit_record_container.dart';
 export 'habit_ritual_container.dart';
 export 'habit_stack_action.dart';
 export 'habit_stack_container.dart';
+export 'habit_streak_card.dart';

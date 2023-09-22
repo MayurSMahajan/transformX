@@ -46,7 +46,6 @@ class HabitLoadedView extends StatelessWidget {
                 title: habit.title,
                 location: habit.location,
                 time: habit.time.toReadableString(),
-                streak: habit.stats.streak,
               ),
               const SizedBox(height: 14),
               HabitRecordContainer(

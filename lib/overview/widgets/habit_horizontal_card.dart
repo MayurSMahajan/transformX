@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:transformx/infra/infra.dart';
+import 'package:transformx/overview/widgets/widgets.dart';
 
 class HabitHorizontalCard extends StatelessWidget {
   const HabitHorizontalCard({
@@ -8,15 +8,13 @@ class HabitHorizontalCard extends StatelessWidget {
     required this.title,
     required this.location,
     required this.time,
-    required this.streak,
     super.key,
   });
 
-  final Object id;
+  final String id;
   final String title;
   final String location;
   final String time;
-  final int streak;
 
   @override
   Widget build(BuildContext context) {
@@ -84,23 +82,7 @@ class HabitHorizontalCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: 100,
-                  height: 60,
-                  child: Column(
-                    children: [
-                      const FaIcon(
-                        FontAwesomeIcons.fire,
-                        size: 32,
-                        color: Colors.orange,
-                      ),
-                      Text(
-                        streak.toString(),
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                    ],
-                  ),
-                )
+                HabitStreakWrapper(habitId: id),
               ],
             ),
           ),
