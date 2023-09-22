@@ -2,6 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stats_repository/stats_repository.dart';
+import 'package:transformx/app_ui/app_ui.dart';
 import 'package:transformx/home/pages/home_page/cubit/streak_cubit.dart';
 import 'package:transformx/home/pages/home_page/widgets/widgets.dart';
 import 'package:transformx/infra/infra.dart';
@@ -26,7 +27,7 @@ class DailyStreakContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final child = Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 0.25),
@@ -50,13 +51,25 @@ class DailyStreakContainer extends StatelessWidget {
               );
             }
             if (state.status == StreakStatus.failure) {
-              return Text(
-                'Could Not Fetch your streak, try again',
-                style: Theme.of(context).textTheme.bodyMedium,
+              return Center(
+                child: Text(
+                  'Could Not Fetch your streak, try again',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
               );
             }
             return const ProgressCircle();
           },
+        ),
+      ),
+    );
+
+    return ResponsiveLayout(
+      mobileBody: child,
+      desktopBody: Center(
+        child: SizedBox(
+          width: 500,
+          child: child,
         ),
       ),
     );

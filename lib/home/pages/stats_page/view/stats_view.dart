@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transformx/app_ui/app_ui.dart';
 import 'package:transformx/home/pages/pages.dart';
 import 'package:transformx/home/pages/stats_page/bloc/statistics_bloc.dart';
 
@@ -8,7 +9,7 @@ class StatsPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StatisticsBloc, StatisticsState>(
+    final child = BlocBuilder<StatisticsBloc, StatisticsState>(
       builder: (context, state) {
         if (state.status == StatisticsStatus.success) {
           if (state.stats.isEmpty) {
@@ -21,6 +22,17 @@ class StatsPageView extends StatelessWidget {
         }
         return const StatsLoadingView();
       },
+    );
+
+    return ResponsiveLayout(
+      mobileBody: child,
+      desktopBody: Center(
+        child: SizedBox(
+          width: 500,
+          height: 800,
+          child: SingleChildScrollView(child: child),
+        ),
+      ),
     );
   }
 }
