@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:habits_repository/habits_repository.dart';
@@ -71,6 +73,7 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
       yearlyRecord: (_habit.stats.yearlyRecord + 1) % 365,
       allTimeRecord: _habit.stats.allTimeRecord + 1,
     );
+    log('New Streak: ${stats.streak}');
     _habitsRepository.udpateHabitStats(_habit, _userId, stats);
   }
 

@@ -60,11 +60,10 @@ class HabitLoadedView extends StatelessWidget {
                 title: habit.title,
               ),
               const SizedBox(height: 14),
-              HabitRitualContainer(
-                ritual: habit.ritual,
+              AspectRatio(
+                aspectRatio: 4 / 3,
+                child: HabitStackAction(habit: habit),
               ),
-              const SizedBox(height: 28),
-              HabitStackAction(habit: habit),
             ],
           ),
         ),

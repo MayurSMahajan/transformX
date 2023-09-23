@@ -81,7 +81,7 @@ class _HabitStackGraphic extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
             child: Container(
               height: 2,
-              color: Theme.of(context).primaryColor.withOpacity(0.5),
+              color: Colors.amber.shade100,
             ),
           ),
           Row(

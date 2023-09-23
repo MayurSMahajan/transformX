@@ -57,6 +57,7 @@ class TrackPageContent extends StatelessWidget {
             if (state.status == TrackStatus.fetched) {
               return TrackPage(
                 track: state.tracks.isEmpty ? null : state.tracks.first,
+                habit: habit,
               );
             }
             if (state.status == TrackStatus.success) {

@@ -7,17 +7,19 @@ const pauseTimerLabel = 'Pause Timer';
 
 class TimerWithActions extends StatefulWidget {
   const TimerWithActions({
-    required this.skipMethod,
-    required this.primaryMethod,
+    required this.navigateMethod,
+    required this.submitProgress,
     required this.maxSeconds,
-    this.actionText = 'Start Habit',
+    this.primaryLabel = 'Start Habit',
+    this.secondaryLabel = 'Skip',
     super.key,
   });
 
-  final VoidCallback skipMethod;
-  final VoidCallback primaryMethod;
+  final ValueSetter<int> submitProgress;
+  final VoidCallback navigateMethod;
   final int maxSeconds;
-  final String actionText;
+  final String primaryLabel;
+  final String secondaryLabel;
 
   @override
   State<TimerWithActions> createState() => _TimerWithActionsState();
@@ -54,7 +56,7 @@ class _TimerWithActionsState extends State<TimerWithActions>
 
   void toggleTimer() {
     if (isTimerCompleted) {
-      widget.primaryMethod();
+      submitProgress();
     } else {
       if (_controller.isAnimating) {
         _controller.stop();
@@ -64,6 +66,16 @@ class _TimerWithActionsState extends State<TimerWithActions>
         setState(() => timerActionLabel = pauseTimerLabel);
       }
     }
+  }
+
+  void secondaryMethod() {
+    submitProgress();
+  }
+
+  void submitProgress() {
+    final mins = _controller.value * widget.maxSeconds ~/ 60;
+    widget.submitProgress(mins);
+    widget.navigateMethod();
   }
 
   @override
@@ -120,8 +132,8 @@ class _TimerWithActionsState extends State<TimerWithActions>
           children: [
             Expanded(
               child: SecondaryButton(
-                label: 'Skip',
-                onPressed: widget.skipMethod,
+                label: widget.secondaryLabel,
+                onPressed: secondaryMethod,
               ),
             ),
             const SizedBox(width: 12),
@@ -129,7 +141,7 @@ class _TimerWithActionsState extends State<TimerWithActions>
               flex: 2,
               child: PrimaryButton(
                 onPressed: toggleTimer,
-                text: isTimerCompleted ? widget.actionText : timerActionLabel,
+                text: isTimerCompleted ? widget.primaryLabel : timerActionLabel,
               ),
             ),
           ],

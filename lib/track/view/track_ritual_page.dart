@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
@@ -7,6 +9,10 @@ class TrackRitualPage extends StatelessWidget {
   const TrackRitualPage({required this.habit, super.key});
 
   final Habit habit;
+
+  void ritualProgress(int num) {
+    log('RitualProgress: $num');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +45,9 @@ class TrackRitualPage extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               TimerWithActions(
-                skipMethod: () => context.go('/progress', extra: habit),
-                primaryMethod: () => context.go('/progress', extra: habit),
                 maxSeconds: 60,
+                submitProgress: ritualProgress,
+                navigateMethod: () => context.go('/progress', extra: habit),
               )
             ],
           ),

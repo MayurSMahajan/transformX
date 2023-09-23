@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:track_repository/track_repository.dart';
 
 extension DateEquality on Track {
@@ -10,6 +12,8 @@ extension DateEquality on Track {
 
   bool shouldResetStreak() {
     final diff = DateTime.now().difference(dateTime);
-    return diff > const Duration(hours: 24);
+    final ans = diff > const Duration(hours: 24);
+    log('shouldResetStreak: $ans');
+    return ans;
   }
 }
