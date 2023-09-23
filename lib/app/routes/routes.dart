@@ -71,7 +71,7 @@ final GoRouter routerConfig = GoRouter(
             final habit = state.extra! as Habit;
             return CustomTransitionPage(
               key: state.pageKey,
-              child: TrackPageWrapper(habit: habit),
+              child: TrackRitualPage(habit: habit),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
