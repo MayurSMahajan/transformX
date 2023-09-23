@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:track_repository/track_repository.dart';
-import 'package:transformx/infra/infra.dart';
-import 'package:transformx/track/bloc/track_bloc.dart';
+import 'package:transformx/track/track.dart';
 
 class TrackPage extends StatefulWidget {
   const TrackPage({this.track, super.key});
@@ -27,8 +25,21 @@ class _TrackPageState extends State<TrackPage> {
     });
   }
 
-  void submitTrack(BuildContext context) {
-    context.read<TrackBloc>().add(SaveTrack(trackedUpdate: minutes));
+  void _show(BuildContext ctx) {
+    showModalBottomSheet<BottomSheet>(
+      elevation: 10,
+      context: ctx,
+      builder: (ctx) => SkipTimerPopup(
+        minutes: widget.track?.trackedUpdate ?? 02,
+        ideal: 60,
+        submitProgress: submitTrack,
+      ),
+    );
+  }
+
+  void submitTrack(int submittedMins) {
+    print('Submitted mins: $submittedMins');
+    // context.read<TrackBloc>().add(SaveTrack(trackedUpdate: submittedMins));
   }
 
   @override
@@ -36,38 +47,13 @@ class _TrackPageState extends State<TrackPage> {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                Text(
-                  'drag the slider to specify minutes',
-                  style: Theme.of(context).textTheme.labelLarge,
-                ),
-                const SizedBox(height: 4),
-                Slider.adaptive(
-                  thumbColor: Colors.orange,
-                  activeColor: Colors.amber.shade300,
-                  inactiveColor: Colors.amber.shade100,
-                  max: idealTarget.toDouble(),
-                  value: minutes.toDouble(),
-                  onChanged: (value) {
-                    setState(
-                      () => minutes = value.toInt(),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              PrimaryButton(
-                onPressed: () => submitTrack(context),
-                text: 'Submit Score',
+              TextButton(
+                onPressed: () => _show(context),
+                child: const Text('Skip and Submit'),
               ),
             ],
           ),

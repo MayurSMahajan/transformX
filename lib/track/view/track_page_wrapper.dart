@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/infra/infra.dart';
@@ -22,17 +23,34 @@ class TrackPageWrapper extends StatelessWidget {
         userId: context.read<AuthenticationRepository>().savedUser.id,
         habit: habit,
       )..add(FetchLatestTrack()),
-      child: const TrackPageContent(),
+      child: TrackPageContent(habit: habit),
     );
   }
 }
 
 class TrackPageContent extends StatelessWidget {
-  const TrackPageContent({super.key});
+  const TrackPageContent({required this.habit, super.key});
+
+  final Habit habit;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () => context.go('/overview', extra: habit),
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+        ),
+        title: Text(
+          'Track your habit progress',
+          style: Theme.of(context).textTheme.bodyLarge,
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: BlocBuilder<TrackBloc, TrackState>(
           builder: (context, state) {
