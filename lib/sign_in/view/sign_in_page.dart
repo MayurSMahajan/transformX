@@ -94,9 +94,6 @@ class _GoogleLoginButton extends StatelessWidget {
           l10n.signInWithGoogle,
           style: Theme.of(context).textTheme.bodyLarge,
         ),
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: Colors.grey.shade700, width: 1.25),
-        ),
         icon:
             SvgPicture.asset('assets/icons/google.svg', width: 22, height: 22),
         onPressed: () => context.read<SignInCubit>().logInWithGoogle(),

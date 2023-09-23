@@ -109,9 +109,14 @@ class _TimerWithActionsState extends State<TimerWithActions>
           },
         ),
         const AspectRatio(aspectRatio: 1.8, child: SizedBox()),
-        PrimaryButton(
-          onPressed: toggleTimer,
-          text: isTimerCompleted ? widget.actionText : timerActionLabel,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            PrimaryButton(
+              onPressed: toggleTimer,
+              text: isTimerCompleted ? widget.actionText : timerActionLabel,
+            ),
+          ],
         ),
       ],
     );

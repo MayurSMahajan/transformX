@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 // import 'package:transformx/l10n/l10n.dart';
 
 class PrevButton extends StatelessWidget {
-  const PrevButton({required this.onPressed, super.key});
+  const PrevButton({
+    required this.label,
+    required this.onPressed,
+    super.key,
+  });
 
   final VoidCallback onPressed;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
