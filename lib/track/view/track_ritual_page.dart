@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:transformx/track/track.dart';
 
@@ -11,15 +12,25 @@ class TrackRitualPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            onPressed: () => context.go('/overview', extra: habit),
+            icon: const Icon(
+              Icons.arrow_back,
+            ),
+          ),
+          title: Text(
+            'Complete Your 1-min Ritual',
+            style: Theme.of(context).textTheme.bodyLarge,
+            textAlign: TextAlign.center,
+          ),
+          centerTitle: true,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              Text(
-                'Complete Your 1-min Ritual',
-                style: Theme.of(context).textTheme.bodyLarge,
-                textAlign: TextAlign.center,
-              ),
               const SizedBox(height: 40),
               Text(
                 habit.ritual,
@@ -27,7 +38,11 @@ class TrackRitualPage extends StatelessWidget {
                 textAlign: TextAlign.left,
               ),
               const SizedBox(height: 40),
-              const TimerWithActions(skipPath: '/track', maxSeconds: 1 * 60),
+              TimerWithActions(
+                skipMethod: () => context.go('/progress', extra: habit),
+                primaryMethod: () => context.go('/progress', extra: habit),
+                maxSeconds: 60,
+              )
             ],
           ),
         ),

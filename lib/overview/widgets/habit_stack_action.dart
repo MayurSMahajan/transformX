@@ -14,7 +14,7 @@ class HabitStackAction extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         PrimaryButton(
-          onPressed: () => context.go('/progress', extra: habit),
+          onPressed: () => context.go('/ritual', extra: habit),
           text: 'Start Tracking',
         ),
       ],

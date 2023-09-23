@@ -66,12 +66,31 @@ final GoRouter routerConfig = GoRouter(
           },
         ),
         GoRoute(
-          path: 'progress',
+          path: 'ritual',
           pageBuilder: (context, state) {
             final habit = state.extra! as Habit;
             return CustomTransitionPage(
               key: state.pageKey,
               child: TrackRitualPage(habit: habit),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                return FadeTransition(
+                  opacity: CurveTween(
+                    curve: Curves.easeIn,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+            );
+          },
+        ),
+        GoRoute(
+          path: 'progress',
+          pageBuilder: (context, state) {
+            final habit = state.extra! as Habit;
+            return CustomTransitionPage(
+              key: state.pageKey,
+              child: TrackPageWrapper(habit: habit),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

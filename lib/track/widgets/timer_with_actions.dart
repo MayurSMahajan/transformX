@@ -7,13 +7,15 @@ const pauseTimerLabel = 'Pause Timer';
 
 class TimerWithActions extends StatefulWidget {
   const TimerWithActions({
-    required this.skipPath,
+    required this.skipMethod,
+    required this.primaryMethod,
     required this.maxSeconds,
-    this.actionText = 'Submit Time',
+    this.actionText = 'Start Habit',
     super.key,
   });
 
-  final String skipPath;
+  final VoidCallback skipMethod;
+  final VoidCallback primaryMethod;
   final int maxSeconds;
   final String actionText;
 
@@ -51,12 +53,16 @@ class _TimerWithActionsState extends State<TimerWithActions>
   }
 
   void toggleTimer() {
-    if (_controller.isAnimating) {
-      _controller.stop();
-      setState(() => timerActionLabel = startTimerLabel);
+    if (isTimerCompleted) {
+      widget.primaryMethod();
     } else {
-      _controller.forward();
-      setState(() => timerActionLabel = pauseTimerLabel);
+      if (_controller.isAnimating) {
+        _controller.stop();
+        setState(() => timerActionLabel = startTimerLabel);
+      } else {
+        _controller.forward();
+        setState(() => timerActionLabel = pauseTimerLabel);
+      }
     }
   }
 
@@ -108,13 +114,23 @@ class _TimerWithActionsState extends State<TimerWithActions>
             );
           },
         ),
-        const AspectRatio(aspectRatio: 1.8, child: SizedBox()),
+        const AspectRatio(aspectRatio: 2, child: SizedBox()),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            PrimaryButton(
-              onPressed: toggleTimer,
-              text: isTimerCompleted ? widget.actionText : timerActionLabel,
+            Expanded(
+              child: SecondaryButton(
+                label: 'Skip',
+                onPressed: widget.skipMethod,
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              flex: 2,
+              child: PrimaryButton(
+                onPressed: toggleTimer,
+                text: isTimerCompleted ? widget.actionText : timerActionLabel,
+              ),
             ),
           ],
         ),
