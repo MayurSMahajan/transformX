@@ -43,36 +43,36 @@ class _HomeScreenViewState extends State<HomeScreenView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: NavigationBar(
-          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
-          elevation: 2,
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          selectedIndex: currentPageIndex,
-          destinations: const <Widget>[
-            NavigationDestination(
-              selectedIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(Icons.graphic_eq),
-              icon: Icon(Icons.graphic_eq_outlined),
-              label: 'Stats',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(Icons.person_2),
-              icon: Icon(Icons.person_2_outlined),
-              label: 'Settings',
-            ),
-          ],
-        ),
-        body: <Widget>[
+    return Scaffold(
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
+        elevation: 2,
+        onDestinationSelected: (int index) {
+          setState(() {
+            currentPageIndex = index;
+          });
+        },
+        selectedIndex: currentPageIndex,
+        destinations: const <Widget>[
+          NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.graphic_eq),
+            icon: Icon(Icons.graphic_eq_outlined),
+            label: 'Stats',
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.person_2),
+            icon: Icon(Icons.person_2_outlined),
+            label: 'Settings',
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: <Widget>[
           const HomeView(),
           const StatsPageView(),
           const ProfilePage(),

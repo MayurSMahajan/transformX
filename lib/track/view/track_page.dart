@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/track/bloc/track_bloc.dart';
@@ -40,29 +38,6 @@ class _TrackPageState extends State<TrackPage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          CircularPercentIndicator(
-            radius: 150,
-            lineWidth: 30,
-            percent: minutes / idealTarget,
-            center: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  '$minutes',
-                  style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        fontSize: 52,
-                      ),
-                ),
-                Text(
-                  'minutes',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-              ],
-            ),
-            backgroundColor: Colors.amber.shade100,
-            progressColor: Colors.amber,
-            circularStrokeCap: CircularStrokeCap.round,
-          ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: Column(

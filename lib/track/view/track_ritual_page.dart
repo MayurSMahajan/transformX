@@ -10,24 +10,24 @@ class TrackRitualPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () => context.go('/overview', extra: habit),
-            icon: const Icon(
-              Icons.arrow_back,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () => context.go('/overview', extra: habit),
+          icon: const Icon(
+            Icons.arrow_back,
           ),
-          title: Text(
-            'Complete Your 1-min Ritual',
-            style: Theme.of(context).textTheme.bodyLarge,
-            textAlign: TextAlign.center,
-          ),
-          centerTitle: true,
         ),
-        body: Padding(
+        title: Text(
+          'Complete Your 1-min Ritual',
+          style: Theme.of(context).textTheme.bodyLarge,
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
