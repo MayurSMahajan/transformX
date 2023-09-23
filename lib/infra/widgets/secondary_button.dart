@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:transformx/l10n/l10n.dart';
 
-class PrevButton extends StatelessWidget {
-  const PrevButton({
+class SecondaryButton extends StatelessWidget {
+  const SecondaryButton({
     required this.label,
     required this.onPressed,
     super.key,
@@ -16,7 +16,7 @@ class PrevButton extends StatelessWidget {
     // final l10n = context.l10n;
     return OutlinedButton(
       onPressed: onPressed,
-      child: const Text('back'),
+      child: Text(label),
     );
   }
 }

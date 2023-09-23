@@ -147,14 +147,14 @@ class AppTheme {
   ElevatedButtonThemeData get _elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        elevation: 1,
+        elevation: 0,
         minimumSize: const Size(200, 50),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         padding: const EdgeInsets.all(AppSpacing.lg),
         textStyle: _textTheme.labelLarge,
-        backgroundColor: AppColors.primaryYellow,
+        backgroundColor: Colors.amber,
         foregroundColor: AppColors.black,
       ),
     );

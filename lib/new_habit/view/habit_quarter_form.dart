@@ -84,7 +84,7 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
-                child: PrevButton(
+                child: SecondaryButton(
                   onPressed: () {
                     context.read<NewHabitUICubit>().setStatusAndProgress(
                           NewHabitUIStatus.initial,
@@ -97,14 +97,13 @@ class _HabitQuarterFormState extends State<HabitQuarterForm> {
               const SizedBox(width: 12),
               Expanded(
                 flex: 2,
-                child: ElevatedButton(
+                child: NextButton(
                   onPressed: () {
                     context.read<NewHabitUICubit>().setStatusAndProgress(
                           NewHabitUIStatus.half,
                           0.5,
                         );
                   },
-                  child: Text(l10n.nextActionButton),
                 ),
               ),
             ],

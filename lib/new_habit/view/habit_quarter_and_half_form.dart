@@ -133,7 +133,7 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                  child: PrevButton(
+                  child: SecondaryButton(
                     onPressed: () {
                       context.read<NewHabitUICubit>().setStatusAndProgress(
                             NewHabitUIStatus.half,

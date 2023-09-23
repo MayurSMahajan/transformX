@@ -67,7 +67,7 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Expanded(
-                  child: PrevButton(
+                  child: SecondaryButton(
                     onPressed: () {
                       context.read<NewHabitUICubit>().setStatusAndProgress(
                             NewHabitUIStatus.quarter,
@@ -80,9 +80,8 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
                 const SizedBox(width: 12),
                 Expanded(
                   flex: 2,
-                  child: ElevatedButton(
+                  child: NextButton(
                     onPressed: submitInputs,
-                    child: Text(l10n.nextActionButton),
                   ),
                 )
               ],

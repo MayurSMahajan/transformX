@@ -155,9 +155,8 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
               ],
             ),
             const Spacer(),
-            ElevatedButton(
+            NextButton(
               onPressed: submitInputs,
-              child: Text(l10n.nextActionButton),
             ),
             const VSpace(),
           ],
