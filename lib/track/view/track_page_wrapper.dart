@@ -1,12 +1,11 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/infra/infra.dart';
-import 'package:transformx/track/bloc/track_bloc.dart';
-import 'package:transformx/track/view/track_page.dart';
-import 'package:transformx/track/view/track_success_page.dart';
+import 'package:transformx/track/track.dart';
 
 class TrackPageWrapper extends StatelessWidget {
   const TrackPageWrapper({required this.habit, super.key});
@@ -34,16 +33,22 @@ class TrackPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrackBloc, TrackState>(
+    return BlocConsumer<TrackBloc, TrackState>(
+      listenWhen: (p, c) => c.status == TrackStatus.success,
+      listener: (context, state) {
+        if (state.status == TrackStatus.success) {
+          context.go('/success');
+        }
+      },
+      buildWhen: (p, c) {
+        return p.status != c.status && c.status != TrackStatus.success;
+      },
       builder: (context, state) {
         if (state.status == TrackStatus.fetched) {
           return TrackPage(
             track: state.tracks.isEmpty ? null : state.tracks.first,
             habit: habit,
           );
-        }
-        if (state.status == TrackStatus.success) {
-          return TrackSuccess(streak: state.streak);
         }
         if (state.status == TrackStatus.error) {
           return const TrackError();

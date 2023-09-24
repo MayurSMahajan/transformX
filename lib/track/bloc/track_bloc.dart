@@ -35,16 +35,15 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
     try {
       // any new track instance has a today's date time set as it's datetime.
       var track = Track(trackedUpdate: 0);
-      var streak = 0;
       if (state.tracks.isEmpty) {
         // this means there are no track for this habit
         // thus we will create a new track and update the stats.
-        streak = _udpateHabitStats(track);
+        _udpateHabitStats(track);
       } else {
         track = state.tracks.first;
         // if there is no track for today, then update stats & create new track
         if (track.isNotSameDate()) {
-          streak = _udpateHabitStats(track);
+          _udpateHabitStats(track);
           track = Track(trackedUpdate: 0);
         }
         // if there is a track for today, then override it with new trackedValue
@@ -60,7 +59,6 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
       emit(
         state.copyWith(
           status: () => TrackStatus.success,
-          streak: () => streak,
         ),
       );
     } catch (_) {
@@ -70,7 +68,7 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
 
   /// Increments the stats members and saves them.
   /// resets the streak to 1 if there was a gap of more than 24 hours
-  int _udpateHabitStats(Track track) {
+  void _udpateHabitStats(Track track) {
     final streak = track.shouldResetStreak() ? 1 : _habit.stats.streak + 1;
     final stats = Stats(
       streak: streak,
@@ -80,7 +78,6 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
       allTimeRecord: _habit.stats.allTimeRecord + 1,
     );
     _habitsRepository.udpateHabitStats(_habit, _userId, stats);
-    return streak;
   }
 
   Future<void> _fetchLatestTrack(
