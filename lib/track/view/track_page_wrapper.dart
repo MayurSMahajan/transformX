@@ -43,7 +43,7 @@ class TrackPageContent extends StatelessWidget {
           );
         }
         if (state.status == TrackStatus.success) {
-          return const TrackSuccess();
+          return TrackSuccess(streak: state.streak);
         }
         if (state.status == TrackStatus.error) {
           return const TrackError();

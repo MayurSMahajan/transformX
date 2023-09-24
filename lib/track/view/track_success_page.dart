@@ -5,7 +5,9 @@ import 'package:transformx/app_ui/app_colors.dart';
 import 'package:transformx/infra/infra.dart';
 
 class TrackSuccess extends StatelessWidget {
-  const TrackSuccess({super.key});
+  const TrackSuccess({required this.streak, super.key});
+
+  final int streak;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class TrackSuccess extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Amazing!',
+                  'Streak Continued to $streak',
                   style: Theme.of(context).textTheme.displayMedium?.copyWith(
                         color: Colors.white,
                       ),
