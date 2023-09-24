@@ -35,6 +35,7 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
   ) async {
     emit(state.copyWith(status: () => TrackStatus.loading));
     try {
+      // any new track instance has a today's date time set as it's datetime.
       var track = Track(trackedUpdate: 0);
       if (state.tracks.isEmpty) {
         // this means there are no track for this habit
@@ -66,14 +67,14 @@ class TrackBloc extends Bloc<TrackEvent, TrackState> {
   /// Increments the stats members and saves them.
   /// resets the streak to 1 if there was a gap of more than 24 hours
   void _udpateHabitStats(Track track) {
+    final streak = track.shouldResetStreak() ? 1 : _habit.stats.streak + 1;
     final stats = Stats(
-      streak: track.shouldResetStreak() ? 1 : _habit.stats.streak + 1,
+      streak: streak,
       weeklyRecord: (_habit.stats.weeklyRecord + 1) % 7,
       monthlyRecord: (_habit.stats.monthlyRecord + 1) % 30,
       yearlyRecord: (_habit.stats.yearlyRecord + 1) % 365,
       allTimeRecord: _habit.stats.allTimeRecord + 1,
     );
-    log('New Streak: ${stats.streak}');
     _habitsRepository.udpateHabitStats(_habit, _userId, stats);
   }
 

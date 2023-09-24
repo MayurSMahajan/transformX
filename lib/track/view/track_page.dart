@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/track/bloc/track_bloc.dart';
@@ -58,28 +59,47 @@ class _TrackPageState extends State<TrackPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () => context.go('/overview', extra: widget.habit),
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+        ),
+        title: Text(
+          'Track your habit progress',
+          style: Theme.of(context).textTheme.bodyLarge,
+          textAlign: TextAlign.center,
+        ),
+        centerTitle: true,
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
             children: [
-              TextButton(
-                onPressed: () => _show(context),
-                child: const Text('Skip and Submit'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => _show(context),
+                    child: const Text('Skip and Submit'),
+                  ),
+                ],
               ),
+              const SizedBox(height: 62),
+              TimerWithActions(
+                maxSeconds: widget.habit.metric.ideal * 60,
+                primaryLabel: 'Submit Progress',
+                secondaryLabel: 'Submit',
+                submitProgress: submitTrack,
+                navigateMethod: () {},
+              )
             ],
           ),
-          const SizedBox(height: 62),
-          TimerWithActions(
-            maxSeconds: widget.habit.metric.ideal * 60,
-            primaryLabel: 'Submit Progress',
-            secondaryLabel: 'Submit',
-            submitProgress: submitTrack,
-            navigateMethod: () {},
-          )
-        ],
+        ),
       ),
     );
   }
