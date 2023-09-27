@@ -1,11 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:local_storage_preferences_api/local_storage_preferences_api.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:local_preferences_repository/local_preferences_repository.dart';
 
 void main() {
-  group('LocalStoragePreferencesApi Tests', () {
+  group('LocalPreferencesRepository Tests', () {
     late SharedPreferences sharedPreferences;
-    late LocalStoragePreferencesApi preferencesApi;
+    late LocalPreferencesRepository preferencesApi;
 
     setUpAll(() async {
       SharedPreferences.setMockInitialValues({});
@@ -13,7 +12,7 @@ void main() {
 
     setUp(() async {
       sharedPreferences = await SharedPreferences.getInstance();
-      preferencesApi = LocalStoragePreferencesApi(prefs: sharedPreferences);
+      preferencesApi = LocalPreferencesRepository(prefs: sharedPreferences);
     });
 
     tearDown(() async {

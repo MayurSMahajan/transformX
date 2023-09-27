@@ -1,11 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// {@template local_storage_preferences_api}
+/// {@template local_preferences_repository}
 /// A Flutter package that uses local storage to store user preferences.
 /// {@endtemplate}
-class LocalStoragePreferencesApi {
-  /// {@macro local_storage_preferences_api}
-  const LocalStoragePreferencesApi({
+class LocalPreferencesRepository {
+  /// {@macro local_preferences_repository}
+  const LocalPreferencesRepository({
     required SharedPreferences prefs,
   }) : _prefs = prefs;
 

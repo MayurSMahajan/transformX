@@ -16,6 +16,6 @@
   ],
   "useGitignore": true,
   "words": [
-    "local_storage_preferences_api"
+    "local_preferences_repository"
   ]
 }

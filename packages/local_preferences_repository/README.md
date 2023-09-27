@@ -1,4 +1,4 @@
-# Local Storage Preferences Api
+# Local Preferences Repository
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
 [![Powered by Mason](https://img.shields.io/endpoint?url=https%3A%2F%2Ftinyurl.com%2Fmason-badge)](https://github.com/felangel/mason)
@@ -8,26 +8,19 @@ A Flutter package that uses local storage to store user preferences.
 
 ## Installation 💻
 
-**❗ In order to start using Local Storage Preferences Api you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
+**❗ In order to start using Local Preferences Repository you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
 
-Add `local_storage_preferences_api` to your `pubspec.yaml`:
-
-```yaml
-dependencies:
-  local_storage_preferences_api:
-```
-
-Install it:
+Install via `flutter pub add`:
 
 ```sh
-flutter packages get
+dart pub add local_preferences_repository
 ```
 
 ---
 
 ## Continuous Integration 🤖
 
-Local Storage Preferences Api comes with a built-in [GitHub Actions workflow][github_actions_link] powered by [Very Good Workflows][very_good_workflows_link] but you can also add your preferred CI/CD solution.
+Local Preferences Repository comes with a built-in [GitHub Actions workflow][github_actions_link] powered by [Very Good Workflows][very_good_workflows_link] but you can also add your preferred CI/CD solution.
 
 Out of the box, on each pull request and push, the CI `formats`, `lints`, and `tests` the code. This ensures the code remains consistent and behaves correctly as you add functionality or make changes. The project uses [Very Good Analysis][very_good_analysis_link] for a strict set of analysis options used by our team. Code coverage is enforced using the [Very Good Workflows][very_good_coverage_link].
 
