@@ -8,6 +8,7 @@ import 'package:firebase_habits_api/firebase_habits_api.dart';
 import 'package:firebase_track_api/firebase_track_api.dart';
 import 'package:flutter/widgets.dart';
 import 'package:habits_repository/habits_repository.dart';
+import 'package:local_preferences_repository/local_preferences_repository.dart';
 import 'package:stats_repository/stats_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/app/view/app.dart';
@@ -66,6 +67,10 @@ Future<void> bootstrap() async {
     habitsRepository: habitsRepository,
     trackRepository: trackRepository,
   );
+
+  final preferencesRepository = LocalPreferencesRepository(
+    prefs: await SharedPreferences.getInstance(),
+  );
   // Add cross-flavor configuration here
 
   runApp(
@@ -74,6 +79,7 @@ Future<void> bootstrap() async {
       habitsRepository: habitsRepository,
       trackRepository: trackRepository,
       statsRepository: statsRepository,
+      preferencesRepository: preferencesRepository,
     ),
   );
 }
