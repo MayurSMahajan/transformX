@@ -20,7 +20,7 @@ class TrackRitualPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () => context.go('/overview', extra: habit),
+          onPressed: () => context.pop(),
           icon: const Icon(
             Icons.arrow_back,
           ),
@@ -47,7 +47,7 @@ class TrackRitualPage extends StatelessWidget {
               TimerWithActions(
                 maxSeconds: 60,
                 submitProgress: ritualProgress,
-                navigateMethod: () => context.go('/progress', extra: habit),
+                navigateMethod: () => context.push('/progress', extra: habit),
               )
             ],
           ),

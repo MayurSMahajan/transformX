@@ -34,7 +34,6 @@ class TrackPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<TrackBloc, TrackState>(
-      listenWhen: (p, c) => c.status == TrackStatus.success,
       listener: (context, state) {
         if (state.status == TrackStatus.success) {
           context.go('/success');

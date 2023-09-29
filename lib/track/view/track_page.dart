@@ -62,7 +62,7 @@ class _TrackPageState extends State<TrackPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () => context.go('/overview', extra: widget.habit),
+          onPressed: () => context.pop(),
           icon: const Icon(
             Icons.arrow_back,
           ),
