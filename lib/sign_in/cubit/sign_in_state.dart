@@ -2,6 +2,7 @@ part of 'sign_in_cubit.dart';
 
 enum SignInStatus {
   initial,
+  onboarding,
   inProgress,
   success,
   failure,
