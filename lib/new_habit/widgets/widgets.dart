@@ -6,5 +6,6 @@ export 'edit_rounded_button.dart';
 export 'form_progress_container.dart';
 export 'metric_picker_widget.dart';
 export 'next_button.dart';
+export 'question_with_tooltip.dart';
 export 'selected_value_tile.dart';
 export 'time_picker_widget.dart';

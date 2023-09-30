@@ -129,19 +129,15 @@ class _HabitMetricTitleInput extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge,
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
               l10n.habitCanBeTrackedInCraveText,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.question_mark_rounded,
-                size: 14,
-              ),
-            )
+            const QuestionWithTooltip(
+              message:
+                  'Metrics is a unit in which you will track your progress',
+            ),
           ],
         ),
         Text(

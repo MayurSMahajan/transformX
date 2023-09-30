@@ -139,7 +139,6 @@ class _HabitInitialFormState extends State<HabitInitialForm> {
                     return InkWell(
                       onTap: () => _show(context),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             state.habitTime.toReadableString(),

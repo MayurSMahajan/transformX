@@ -26,6 +26,7 @@ class AppTheme {
       elevatedButtonTheme: _elevatedButtonTheme,
       outlinedButtonTheme: _outlinedButtonTheme,
       textButtonTheme: _textButtonTheme,
+      filledButtonTheme: _filledButtonTheme,
       colorScheme: _colorScheme,
       bottomSheetTheme: _bottomSheetTheme,
       listTileTheme: _listTileTheme,
@@ -144,6 +145,14 @@ class AppTheme {
     );
   }
 
+  FilledButtonThemeData get _filledButtonTheme {
+    return FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        backgroundColor: AppColors.overlayYellow,
+      ),
+    );
+  }
+
   ElevatedButtonThemeData get _elevatedButtonTheme {
     return ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -210,7 +219,7 @@ class AppTheme {
       thumbColor:
           MaterialStateProperty.resolveWith((Set<MaterialState> states) {
         if (states.contains(MaterialState.selected)) {
-          return AppColors.darkAqua;
+          return AppColors.blueDress;
         }
         return AppColors.eerieBlack;
       }),
@@ -226,7 +235,7 @@ class AppTheme {
 
   ProgressIndicatorThemeData get _progressIndicatorTheme {
     return const ProgressIndicatorThemeData(
-      color: AppColors.darkAqua,
+      color: AppColors.primaryYellow,
       circularTrackColor: AppColors.borderOutline,
     );
   }
@@ -234,7 +243,7 @@ class AppTheme {
   TabBarTheme get _tabBarTheme {
     return TabBarTheme(
       labelStyle: UITextStyle.button,
-      labelColor: AppColors.darkAqua,
+      labelColor: AppColors.blueDress,
       labelPadding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.lg,
         vertical: AppSpacing.md + AppSpacing.xxs,
@@ -244,7 +253,7 @@ class AppTheme {
       indicator: const UnderlineTabIndicator(
         borderSide: BorderSide(
           width: 3,
-          color: AppColors.darkAqua,
+          color: AppColors.blueDress,
         ),
       ),
       indicatorSize: TabBarIndicatorSize.label,

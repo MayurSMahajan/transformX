@@ -6,11 +6,11 @@ class EditRoundedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 16,
+      radius: 24,
       backgroundColor: Theme.of(context).primaryColor,
       child: const Icon(
         Icons.edit_rounded,
-        size: 18,
+        size: 24,
         color: Colors.white,
       ),
     );

@@ -35,7 +35,7 @@ class PageViewLayout extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 subtitle,
-                style: Theme.of(context).textTheme.bodyMedium,
+                style: Theme.of(context).textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
             ],

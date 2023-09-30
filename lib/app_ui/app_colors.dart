@@ -30,7 +30,7 @@ abstract class AppColors {
   static const MaterialColor teal = Colors.teal;
 
   /// The dark aqua color.
-  static const Color darkAqua = Color(0xFF00677F);
+  static Color overlayYellow = Colors.amber.shade200;
 
   /// The blue primary color and swatch.
   static const Color blue = Color(0xFF3898EC);

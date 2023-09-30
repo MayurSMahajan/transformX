@@ -51,8 +51,8 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
         child: Column(
           children: [
             const FormProgressContainer(),
+            const SizedBox(height: 50),
             const _HabitRitualLabel(),
-            const VSpace(),
             TextFormField(
               key: const Key('habitForm_ritualInput_textField'),
               focusNode: habitRitualFocusNode,
@@ -108,19 +108,14 @@ class _HabitRitualLabel extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
               l10n.iWillDo1MinRitualResponseText,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.question_mark_rounded,
-                size: 14,
-              ),
-            )
+            const QuestionWithTooltip(
+              message: 'Ritual meaning',
+            ),
           ],
         ),
       ],

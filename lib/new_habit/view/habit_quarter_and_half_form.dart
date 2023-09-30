@@ -70,19 +70,14 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       l10n.iWillRewardMyselfRewardText,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.question_mark_rounded,
-                        size: 14,
-                      ),
-                    )
+                    const QuestionWithTooltip(
+                      message: 'Long Term Reward Meaning',
+                    ),
                   ],
                 ),
                 TextFormField(
@@ -99,23 +94,19 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
                 ),
               ],
             ),
+            const VSpace(),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       l10n.myLongTermRewardRewardText,
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.question_mark_rounded,
-                        size: 14,
-                      ),
-                    )
+                    const QuestionWithTooltip(
+                      message: 'Long Term Reward Meaning',
+                    ),
                   ],
                 ),
                 TextFormField(

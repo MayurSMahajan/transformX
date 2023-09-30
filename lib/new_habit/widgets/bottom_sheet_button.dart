@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 
 class BottomSheetButton extends StatelessWidget {
-  const BottomSheetButton({required this.onPressed, super.key});
+  const BottomSheetButton({
+    required this.onPressed,
+    this.label = 'Done',
+    super.key,
+  });
 
   final VoidCallback onPressed;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
     return FilledButton.tonal(
       onPressed: onPressed,
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8),
-        child: Text('Done'),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: Text(label),
       ),
     );
   }
