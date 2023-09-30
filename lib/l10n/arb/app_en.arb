@@ -4,6 +4,14 @@
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
     },
+
+    "journeyTitle":"Your Journey",
+    "journeySubTitle":"to better habits begins here. Take small steps today and go the distance in long term. ",
+    "loopTitle":"Habit Loop",
+    "loopSubTitle":"Harness the power of the Habit Loop. Track your habits, and visualize your progress as you grow. ",
+    "gardenTitle":"Cultivate habits",
+    "gardenSubTitle":"nurture them, nurture yourself and grow as a person with better habits",
+
     "goodMorningGreet":"good morning",
     "goodAfternoonGreet":"good afternoon",
     "goodEveningGreet":"good Evening",
@@ -20,7 +28,6 @@
     "idealText": "ideal",
     "rewardText": "Reward",
     "editText": "edit",
-
 
     "nextActionButton" : "Next",
     "startMyHabitActionButton" : "start my habit",

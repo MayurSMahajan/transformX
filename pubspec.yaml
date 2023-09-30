@@ -36,6 +36,7 @@ dependencies:
   local_storage_habits_api:
     path: packages/local_storage_habits_api
   percent_indicator: ^4.2.3
+  smooth_page_indicator: ^1.1.0
   stats_repository:
     path: packages/stats_repository
   track_repository:

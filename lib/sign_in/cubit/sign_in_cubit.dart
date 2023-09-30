@@ -31,9 +31,9 @@ class SignInCubit extends Cubit<SignInState> {
     }
   }
 
-  Future<void> setShowOnboarding() async {
+  Future<void> setShowOnboarding({bool show = false}) async {
     try {
-      await _preferencesRepository.setShowOnboarding();
+      await _preferencesRepository.setShowOnboarding(show: show);
     } catch (_) {
       log('Could not set Show Onboarding to false');
     }

@@ -128,7 +128,7 @@ final GoRouter routerConfig = GoRouter(
       pageBuilder: (context, state) {
         return CustomTransitionPage(
           key: state.pageKey,
-          child: const SignInPage(),
+          child: const SignInPageBuilder(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return FadeTransition(
               opacity: CurveTween(
