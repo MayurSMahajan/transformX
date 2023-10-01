@@ -12,11 +12,13 @@ class TimerWithActions extends StatefulWidget {
     required this.maxSeconds,
     this.primaryLabel = 'Start Habit',
     this.secondaryLabel = 'Skip',
+    this.isRitual = false,
     super.key,
   });
 
   final ValueSetter<int> submitProgress;
   final VoidCallback navigateMethod;
+  final bool isRitual;
   final int maxSeconds;
   final String primaryLabel;
   final String secondaryLabel;
@@ -80,10 +82,6 @@ class _TimerWithActionsState extends State<TimerWithActions>
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.displayLarge?.copyWith(
-          fontSize: 56,
-        );
-
     return Column(
       children: [
         AnimatedBuilder(
@@ -94,31 +92,10 @@ class _TimerWithActionsState extends State<TimerWithActions>
               radius: 150,
               lineWidth: 30,
               percent: _controller.value,
-              center: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${seconds ~/ 60}',
-                        style: textStyle,
-                      ),
-                      SizedBox(
-                        width: 20,
-                        child: Center(child: Text('.', style: textStyle)),
-                      ),
-                      Text(
-                        (seconds % 60).toStringAsFixed(0),
-                        style: textStyle,
-                      ),
-                    ],
-                  ),
-                  Text(
-                    'minutes',
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                ],
+              center: TimerText(
+                maxSeconds: widget.maxSeconds,
+                isRitual: widget.isRitual,
+                seconds: seconds,
               ),
               backgroundColor: Colors.amber.shade100,
               progressColor: Colors.amber,
@@ -145,6 +122,63 @@ class _TimerWithActionsState extends State<TimerWithActions>
               ),
             ),
           ],
+        ),
+      ],
+    );
+  }
+}
+
+class TimerText extends StatelessWidget {
+  const TimerText({
+    required this.maxSeconds,
+    required this.seconds,
+    required this.isRitual,
+    super.key,
+  });
+
+  final int maxSeconds;
+  final double seconds;
+  final bool isRitual;
+
+  @override
+  Widget build(BuildContext context) {
+    final textStyle = Theme.of(context).textTheme.displayLarge?.copyWith(
+          fontSize: 56,
+        );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        if (isRitual)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                (60 - (seconds % 60)).toStringAsFixed(0),
+                style: textStyle,
+              ),
+            ],
+          )
+        else
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${(maxSeconds ~/ 60) - (seconds ~/ 60)}',
+                style: textStyle,
+              ),
+              SizedBox(
+                width: 20,
+                child: Center(child: Text('.', style: textStyle)),
+              ),
+              Text(
+                (60 - (seconds % 60)).toStringAsFixed(0),
+                style: textStyle,
+              ),
+            ],
+          ),
+        Text(
+          isRitual ? 'seconds' : 'minutes',
+          style: Theme.of(context).textTheme.labelMedium,
         ),
       ],
     );

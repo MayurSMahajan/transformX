@@ -48,7 +48,8 @@ class TrackRitualPage extends StatelessWidget {
                 maxSeconds: 60,
                 submitProgress: ritualProgress,
                 navigateMethod: () => context.push('/progress', extra: habit),
-              )
+                isRitual: true,
+              ),
             ],
           ),
         ),
