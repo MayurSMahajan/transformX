@@ -57,7 +57,7 @@ class RecordCard extends StatelessWidget {
       children: [
         Text(
           label,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         const SizedBox(height: 4),
         Icon(

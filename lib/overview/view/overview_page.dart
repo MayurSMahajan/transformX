@@ -47,22 +47,45 @@ class HabitLoadedView extends StatelessWidget {
                 location: habit.location,
                 time: habit.time.toReadableString(),
               ),
-              const SizedBox(height: 14),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 20,
+                  right: 20,
+                  top: 16,
+                  bottom: 12,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    MetadataCard(
+                      icon: Icon(
+                        Icons.scatter_plot_outlined,
+                        color: Colors.grey,
+                      ),
+                      metadata: 'Habit Stats',
+                    ),
+                  ],
+                ),
+              ),
               HabitRecordContainer(
                 record: habit.record,
                 streak: habit.streak,
+              ),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+                child: Divider(color: Colors.grey.shade300),
               ),
               const SizedBox(height: 14),
               HabitMetricContainer(
                 metric: habit.metric,
               ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 18),
               HabitStackContainer(
                 title: habit.title,
               ),
-              const SizedBox(height: 14),
               AspectRatio(
-                aspectRatio: 4 / 3,
+                aspectRatio: 2,
                 child: HabitStackAction(habit: habit),
               ),
             ],

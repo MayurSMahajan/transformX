@@ -59,27 +59,21 @@ class HabitHorizontalCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const SizedBox(width: 38),
-                Expanded(
-                  child: Column(
-                    children: [
-                      MetadataCard(
-                        icon: const Icon(
-                          Icons.timer_outlined,
-                          color: Colors.grey,
-                        ),
-                        metadata: time,
-                      ),
-                      MetadataCard(
-                        icon: const Icon(
-                          Icons.pin_drop_outlined,
-                          color: Colors.grey,
-                        ),
-                        metadata: location,
-                      ),
-                    ],
+                MetadataCard(
+                  icon: const Icon(
+                    Icons.timer_outlined,
+                    color: Colors.grey,
                   ),
+                  metadata: time,
+                ),
+                MetadataCard(
+                  icon: const Icon(
+                    Icons.pin_drop_outlined,
+                    color: Colors.grey,
+                  ),
+                  metadata: location,
                 ),
               ],
             ),

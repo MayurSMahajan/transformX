@@ -25,7 +25,7 @@ class ProfilePreferences extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(vertical: 8),
               child: Column(
                 children: [
                   Row(

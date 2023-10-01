@@ -14,7 +14,7 @@ class HabitMetricContainer extends StatelessWidget {
         Expanded(
           flex: 2,
           child: HabitMetricCard(
-            initialValue: metric.minimum,
+            value: metric.minimum,
             metricBound: 'Minimum',
           ),
         ),
@@ -26,7 +26,7 @@ class HabitMetricContainer extends StatelessWidget {
         Expanded(
           flex: 2,
           child: HabitMetricCard(
-            initialValue: metric.ideal,
+            value: metric.ideal,
             metricBound: 'Ideal',
           ),
         ),
@@ -35,28 +35,15 @@ class HabitMetricContainer extends StatelessWidget {
   }
 }
 
-class HabitMetricCard extends StatefulWidget {
+class HabitMetricCard extends StatelessWidget {
   const HabitMetricCard({
-    required this.initialValue,
+    required this.value,
     required this.metricBound,
     super.key,
   });
 
-  final int initialValue;
+  final int value;
   final String metricBound;
-
-  @override
-  State<HabitMetricCard> createState() => _HabitMetricCardState();
-}
-
-class _HabitMetricCardState extends State<HabitMetricCard> {
-  int value = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    value = widget.initialValue;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,8 +52,8 @@ class _HabitMetricCardState extends State<HabitMetricCard> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 6),
           child: Text(
-            widget.metricBound,
-            style: Theme.of(context).textTheme.titleMedium,
+            metricBound,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         Text(

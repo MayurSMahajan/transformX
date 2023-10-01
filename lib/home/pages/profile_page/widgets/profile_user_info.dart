@@ -29,7 +29,7 @@ class ProfileUserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Theme.of(context).canvasColor,
-      height: 300,
+      height: 240,
       width: double.maxFinite,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
