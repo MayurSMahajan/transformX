@@ -45,7 +45,7 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
             HabitShortRewardChanged(shortRewardController.text),
           );
       context.read<NewHabitFormBloc>().add(
-            HabitLongRewardChanged(shortRewardController.text),
+            HabitLongRewardChanged(longRewardController.text),
           );
       context.read<NewHabitFormBloc>().add(const HabitSubmitted());
     }
@@ -82,6 +82,7 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
                 ),
                 TextFormField(
                   key: const Key('habitForm_shortRewardInput_textField'),
+                  controller: shortRewardController,
                   focusNode: shortRewardFocusNode,
                   decoration: InputDecoration(
                     hintText: l10n.habitShortReward,
@@ -111,6 +112,7 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
                 ),
                 TextFormField(
                   key: const Key('habitForm_longRewardInput_textField'),
+                  controller: longRewardController,
                   focusNode: longRewardFocusNode,
                   decoration: InputDecoration(
                     hintText: l10n.habitLongReward,

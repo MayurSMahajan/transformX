@@ -12,7 +12,7 @@ class HabitEntity {
     this.location,
     this.hour,
     this.mins,
-    this.isAM,
+    this.isAm,
     this.is24hour,
     this.metricTitle,
     this.metricMin,
@@ -36,7 +36,7 @@ class HabitEntity {
       location: data?['location'] as String,
       hour: data?['hour'] as int,
       mins: data?['mins'] as int,
-      isAM: data?['isAM'] as bool,
+      isAm: data?['isAm'] as bool,
       is24hour: data?['is24hour'] as bool,
       metricTitle: data?['metricTitle'] as String,
       metricMin: data?['metricMin'] as int,
@@ -60,7 +60,7 @@ class HabitEntity {
       location: habit.location,
       hour: habit.time.hour,
       mins: habit.time.mins,
-      isAM: habit.time.isAm,
+      isAm: habit.time.isAm,
       is24hour: habit.time.is24hour,
       metricTitle: habit.metric.title,
       metricMin: habit.metric.minimum,
@@ -90,7 +90,7 @@ class HabitEntity {
   final int? mins;
 
   /// is Am format or PM format, a subfield of Time object
-  final bool? isAM;
+  final bool? isAm;
 
   /// is 24 hour format, a subfield of Time object
   final bool? is24hour;
@@ -130,7 +130,7 @@ class HabitEntity {
       if (location != null) 'location': location,
       if (hour != null) 'hour': hour,
       if (mins != null) 'mins': mins,
-      if (isAM != null) 'isAM': isAM,
+      if (isAm != null) 'isAm': isAm,
       if (is24hour != null) 'is24hour': is24hour,
       if (metricTitle != null) 'metricTitle': metricTitle,
       if (metricMin != null) 'metricMin': metricMin,
@@ -154,6 +154,7 @@ class HabitEntity {
       time: Time(
         hour: hour ?? 0,
         mins: mins ?? 0,
+        isAm: isAm ?? false,
       ),
       metric: Metric(
         title: metricTitle ?? '',
