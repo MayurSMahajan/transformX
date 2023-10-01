@@ -14,9 +14,8 @@ Habit _$HabitFromJson(Map<String, dynamic> json) => Habit(
       ritual: json['ritual'] as String,
       shortReward: json['shortReward'] as String,
       longReward: json['longReward'] as String,
-      stats: json['stats'] == null
-          ? null
-          : Stats.fromJson(json['stats'] as Map<String, dynamic>),
+      streak: json['streak'] as int? ?? 0,
+      record: json['record'] as int? ?? 0,
       id: json['id'] as String?,
       icon: json['icon'] as String?,
     );
@@ -31,5 +30,6 @@ Map<String, dynamic> _$HabitToJson(Habit instance) => <String, dynamic>{
       'ritual': instance.ritual,
       'shortReward': instance.shortReward,
       'longReward': instance.longReward,
-      'stats': instance.stats.toJson(),
+      'streak': instance.streak,
+      'record': instance.record,
     };

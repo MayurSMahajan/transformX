@@ -1,5 +1,5 @@
 /// A repository that handles habits related requests.
 library habits_repository;
 
-export 'package:habits_api/habits_api.dart' show Habit, Metric, Stats, Time;
+export 'package:habits_api/habits_api.dart' show Habit, Metric, Time;
 export 'src/habits_repository.dart';

@@ -4,7 +4,6 @@ import 'package:test/test.dart';
 void main() {
   const metric = Metric(minimum: 25, ideal: 60);
   const time = Time(hour: 12, mins: 55);
-  const stats = Stats();
 
   group('Habit', () {
     Habit createSubject({
@@ -17,7 +16,8 @@ void main() {
       String ritual = 'ritual',
       String shortReward = 'shortReward',
       String longReward = 'longReward',
-      Stats stats = stats,
+      int streak = 0,
+      int record = 0,
     }) {
       return Habit(
         id: id,
@@ -29,7 +29,8 @@ void main() {
         ritual: ritual,
         shortReward: shortReward,
         longReward: longReward,
-        stats: stats,
+        streak: streak,
+        record: record,
       );
     }
 
@@ -78,7 +79,9 @@ void main() {
           60,
           'ritual',
           'shortReward',
-          'longReward'
+          'longReward',
+          0,
+          0
         ]),
       );
     });
@@ -110,7 +113,8 @@ void main() {
             ritual: 'new ritual',
             shortReward: 'new shortReward',
             longReward: 'new longReward',
-            stats: stats.copyWith(weeklyRecord: 10),
+            streak: 20,
+            record: 23,
           ),
           equals(
             createSubject(
@@ -123,7 +127,8 @@ void main() {
               ritual: 'new ritual',
               shortReward: 'new shortReward',
               longReward: 'new longReward',
-              stats: stats.copyWith(weeklyRecord: 10),
+              streak: 20,
+              record: 23,
             ),
           ),
         );
@@ -143,7 +148,8 @@ void main() {
             'ritual': 'ritual',
             'shortReward': 'shortReward',
             'longReward': 'longReward',
-            'stats': stats.toJson(),
+            'streak': 0,
+            'record': 0,
           }),
           equals(createSubject()),
         );
@@ -164,7 +170,8 @@ void main() {
             'ritual': 'ritual',
             'shortReward': 'shortReward',
             'longReward': 'longReward',
-            'stats': stats.toJson(),
+            'streak': 0,
+            'record': 0,
           }),
         );
       });

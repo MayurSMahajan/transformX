@@ -1,112 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:habits_api/habits_api.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:transformx/infra/infra.dart';
-// import 'package:transformx/l10n/l10n.dart';
 
-const List<String> recordLabels = ['weekly', 'monthly', 'yearly', 'all time'];
-
-class HabitRecordContainer extends StatefulWidget {
+class HabitRecordContainer extends StatelessWidget {
   const HabitRecordContainer({
-    required this.stats,
+    required this.record,
+    required this.streak,
     super.key,
   });
 
-  final Stats stats;
-
-  @override
-  State<HabitRecordContainer> createState() => _HabitRecordContainerState();
-}
-
-class _HabitRecordContainerState extends State<HabitRecordContainer> {
-  String dropdownValue = recordLabels.first;
-  late final double weeklyPercent;
-  late final double monthlyPercent;
-  late final double yearlyPercent;
-
-  @override
-  void initState() {
-    super.initState();
-    weeklyPercent = widget.stats.weeklyRecord / 7;
-    monthlyPercent = widget.stats.monthlyRecord / 30;
-    yearlyPercent = widget.stats.yearlyRecord / 365;
-  }
+  final int record;
+  final int streak;
 
   @override
   Widget build(BuildContext context) {
-    // final l10n = context.l10n;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const MetadataCard(
-                icon: FaIcon(
-                  FontAwesomeIcons.medal,
-                  color: Colors.grey,
-                  size: 22,
-                ),
-                metadata: 'Record',
-              ),
-              DropdownMenu<String>(
-                inputDecorationTheme: const InputDecorationTheme(
-                  enabledBorder: InputBorder.none,
-                ),
-                initialSelection: recordLabels.first,
-                onSelected: (String? value) {
-                  // This is called when the user selects an item.
-                  setState(() {
-                    dropdownValue = value!;
-                  });
-                },
-                dropdownMenuEntries:
-                    recordLabels.map<DropdownMenuEntry<String>>((String v) {
-                  return DropdownMenuEntry<String>(value: v, label: v);
-                }).toList(),
-              ),
-            ],
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          child: RecordCard(
+            label: 'Streak',
+            value: streak,
+            iconData: Icons.local_fire_department,
           ),
-          LinearPercentIndicator(
-            animation: true,
-            animationDuration: 1000,
-            lineHeight: 24,
-            percent: _getPercentValue(),
-            center: Text(_getPercentText()),
-            progressColor: Theme.of(context).primaryColor,
-            backgroundColor: Theme.of(context).canvasColor,
-            barRadius: const Radius.circular(4),
+        ),
+        Container(
+          height: 55,
+          width: 1.25,
+          color: Colors.grey.shade300,
+        ),
+        Expanded(
+          child: RecordCard(
+            label: 'Record',
+            value: streak,
+            iconData: Icons.military_tech,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
+}
 
-  String _getPercentText() {
-    switch (dropdownValue) {
-      case 'weekly':
-        return '${(weeklyPercent * 100).toStringAsFixed(2)}%';
-      case 'monthly':
-        return '${(monthlyPercent * 100).toStringAsFixed(2)}%';
-      case 'yearly':
-        return '${(yearlyPercent * 100).toStringAsFixed(2)}%';
-      default:
-        return '${widget.stats.allTimeRecord} days';
-    }
-  }
+class RecordCard extends StatelessWidget {
+  const RecordCard({
+    required this.label,
+    required this.value,
+    required this.iconData,
+    super.key,
+  });
 
-  double _getPercentValue() {
-    switch (dropdownValue) {
-      case 'weekly':
-        return weeklyPercent;
-      case 'monthly':
-        return monthlyPercent;
-      case 'yearly':
-        return yearlyPercent;
-      default:
-        return 0.95;
-    }
+  final String label;
+  final int value;
+  final IconData iconData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          label,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        const SizedBox(height: 4),
+        Icon(
+          iconData,
+          color: Colors.orangeAccent,
+          size: 52,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value.toString(),
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+      ],
+    );
   }
 }

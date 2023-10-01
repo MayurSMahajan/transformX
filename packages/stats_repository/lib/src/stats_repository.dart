@@ -78,7 +78,6 @@ class StatsRepository {
     return Statistics(
       habitId: habitId,
       habitName: habit.title,
-      stats: habit.stats,
       spots: spots,
     );
   }

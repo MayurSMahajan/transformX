@@ -49,7 +49,8 @@ class HabitLoadedView extends StatelessWidget {
               ),
               const SizedBox(height: 14),
               HabitRecordContainer(
-                stats: habit.stats,
+                record: habit.record,
+                streak: habit.streak,
               ),
               const SizedBox(height: 14),
               HabitMetricContainer(

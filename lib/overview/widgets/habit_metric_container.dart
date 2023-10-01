@@ -8,26 +8,29 @@ class HabitMetricContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 12, right: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          HabitMetricCard(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Expanded(
+          flex: 2,
+          child: HabitMetricCard(
             initialValue: metric.minimum,
             metricBound: 'Minimum',
           ),
-          Container(
-            height: 55,
-            width: 1.25,
-            color: Colors.grey.shade300,
-          ),
-          HabitMetricCard(
+        ),
+        Container(
+          height: 55,
+          width: 1.25,
+          color: Colors.grey.shade300,
+        ),
+        Expanded(
+          flex: 2,
+          child: HabitMetricCard(
             initialValue: metric.ideal,
             metricBound: 'Ideal',
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -60,7 +63,7 @@ class _HabitMetricCardState extends State<HabitMetricCard> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(6),
+          padding: const EdgeInsets.symmetric(vertical: 6),
           child: Text(
             widget.metricBound,
             style: Theme.of(context).textTheme.titleMedium,

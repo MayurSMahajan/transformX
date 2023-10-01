@@ -33,15 +33,15 @@ class Habit extends Equatable {
     required this.ritual,
     required this.shortReward,
     required this.longReward,
-    Stats? stats,
+    this.streak = 0,
+    this.record = 0,
     String? id,
     this.icon,
   })  : assert(
           id == null || id.isNotEmpty,
           'id must either be null or not empty',
         ),
-        id = id ?? const Uuid().v4(),
-        stats = stats ?? const Stats();
+        id = id ?? const Uuid().v4();
 
   /// The unique identifier of the `habit`.
   ///
@@ -88,10 +88,15 @@ class Habit extends Equatable {
   /// Can be empty but not null
   final String longReward;
 
-  /// Contains the statistics of the `habit`
+  /// The current `habit` streak
   ///
-  /// can
-  final Stats stats;
+  /// Initially set to zero
+  final int streak;
+
+  /// The `habit` record, or how many times the habit is achieved
+  ///
+  /// Initially set to zero
+  final int record;
 
   /// Returns a copy of this `habit` with the given values updated.
   ///
@@ -106,7 +111,8 @@ class Habit extends Equatable {
     String? ritual,
     String? shortReward,
     String? longReward,
-    Stats? stats,
+    int? streak,
+    int? record,
   }) {
     return Habit(
       id: id ?? this.id,
@@ -118,7 +124,8 @@ class Habit extends Equatable {
       ritual: ritual ?? this.ritual,
       shortReward: shortReward ?? this.shortReward,
       longReward: longReward ?? this.longReward,
-      stats: stats ?? this.stats,
+      streak: streak ?? this.streak,
+      record: record ?? this.record,
     );
   }
 
@@ -142,6 +149,8 @@ class Habit extends Equatable {
         ritual,
         shortReward,
         longReward,
+        streak,
+        record
       ];
 
   /// Returns a dummy or empty habit.

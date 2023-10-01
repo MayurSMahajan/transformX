@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:transformx/infra/infra.dart';
-import 'package:transformx/overview/widgets/widgets.dart';
 
 class HabitHorizontalCard extends StatelessWidget {
   const HabitHorizontalCard({
@@ -82,7 +81,6 @@ class HabitHorizontalCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                HabitStreakWrapper(habitId: id),
               ],
             ),
           ),

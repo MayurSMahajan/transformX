@@ -31,9 +31,15 @@ class HabitsRepository {
   /// Updates the stats of a  [Habit].
   ///
   /// the stats of the habit will be updated.
-  Future<void> udpateHabitStats(Habit habit, String userId, Stats stats) async {
+  Future<void> udpateHabitStats(
+    Habit habit,
+    String userId,
+    int streak,
+    int record,
+  ) async {
     final newHabit = habit.copyWith(
-      stats: stats,
+      streak: streak,
+      record: record,
     );
     await _habitsApi.saveHabit(newHabit, userId);
   }

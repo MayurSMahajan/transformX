@@ -24,17 +24,6 @@ class StatsContainer extends StatelessWidget {
         const SizedBox(height: 12),
         ProgressLineChart(spots: statistics.spots.getFlSpots()),
         const SizedBox(height: 12),
-        Text(
-          'Records',
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-        const SizedBox(height: 12),
-        RecordBarChart(
-          weekly: statistics.stats.weeklyRecord.toDouble(),
-          monthly: statistics.stats.monthlyRecord.toDouble(),
-          yearly: statistics.stats.yearlyRecord.toDouble(),
-        ),
-        const SizedBox(height: 12),
       ],
     );
   }

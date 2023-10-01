@@ -21,10 +21,7 @@ class HabitEntity {
     this.shortReward,
     this.longReward,
     this.streak,
-    this.weeklyRecord,
-    this.monthlyRecord,
-    this.yearlyRecord,
-    this.allTimeRecord,
+    this.record,
     this.icon,
   });
 
@@ -48,10 +45,7 @@ class HabitEntity {
       shortReward: data?['shortReward'] as String,
       longReward: data?['longReward'] as String,
       streak: data?['streak'] as int,
-      weeklyRecord: data?['weeklyRecord'] as int,
-      monthlyRecord: data?['monthlyRecord'] as int,
-      yearlyRecord: data?['yearlyRecord'] as int,
-      allTimeRecord: data?['allTimeRecord'] as int,
+      record: data?['record'] as int,
       icon: data?['icon'] as String?,
     );
   }
@@ -74,11 +68,8 @@ class HabitEntity {
       ritual: habit.ritual,
       shortReward: habit.shortReward,
       longReward: habit.longReward,
-      streak: habit.stats.streak,
-      weeklyRecord: habit.stats.weeklyRecord,
-      monthlyRecord: habit.stats.monthlyRecord,
-      yearlyRecord: habit.stats.yearlyRecord,
-      allTimeRecord: habit.stats.allTimeRecord,
+      streak: habit.streak,
+      record: habit.record,
       icon: habit.icon,
     );
   }
@@ -126,16 +117,7 @@ class HabitEntity {
   final int? streak;
 
   /// weeklyRecord for the habit
-  final int? weeklyRecord;
-
-  /// monthlyRecord for the habit
-  final int? monthlyRecord;
-
-  /// yearlyRecord for the habit
-  final int? yearlyRecord;
-
-  /// allTimeRecord for the habit
-  final int? allTimeRecord;
+  final int? record;
 
   /// icon for habit for ux
   final String? icon;
@@ -157,10 +139,7 @@ class HabitEntity {
       if (shortReward != null) 'shortReward': shortReward,
       if (longReward != null) 'longReward': longReward,
       if (streak != null) 'streak': streak,
-      if (weeklyRecord != null) 'weeklyRecord': weeklyRecord,
-      if (monthlyRecord != null) 'monthlyRecord': monthlyRecord,
-      if (yearlyRecord != null) 'yearlyRecord': yearlyRecord,
-      if (allTimeRecord != null) 'allTimeRecord': allTimeRecord,
+      if (record != null) 'record': record,
       if (icon != null) 'icon': icon,
     };
   }
@@ -184,13 +163,8 @@ class HabitEntity {
       ritual: ritual ?? '',
       shortReward: shortReward ?? '',
       longReward: longReward ?? '',
-      stats: Stats(
-        streak: streak ?? 0,
-        weeklyRecord: weeklyRecord ?? 0,
-        monthlyRecord: monthlyRecord ?? 0,
-        yearlyRecord: yearlyRecord ?? 0,
-        allTimeRecord: allTimeRecord ?? 0,
-      ),
+      streak: streak ?? 0,
+      record: record ?? 0,
       icon: icon,
     );
   }

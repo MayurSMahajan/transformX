@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:habits_repository/habits_repository.dart';
 import 'package:stats_repository/src/entities/spot.dart';
 
 /// This is a mixture of two entities that we store in our database.
@@ -13,7 +12,6 @@ class Statistics extends Equatable {
   const Statistics({
     required this.habitId,
     required this.habitName,
-    required this.stats,
     this.spots = const [],
   });
 
@@ -23,9 +21,6 @@ class Statistics extends Equatable {
   /// The name of the habit.
   final String habitName;
 
-  /// the stats of the habit i.e records.
-  final Stats stats;
-
   /// the last 7 track objects
   final Spots spots;
 
@@ -33,10 +28,6 @@ class Statistics extends Equatable {
   List<Object?> get props => [
         habitId,
         habitName,
-        stats.weeklyRecord,
-        stats.monthlyRecord,
-        stats.yearlyRecord,
-        stats.allTimeRecord,
         spots,
       ];
 }
