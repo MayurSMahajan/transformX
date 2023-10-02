@@ -18,7 +18,7 @@ class LocalPreferencesRepository {
 
   /// Retrieves the selected app theme.
   Future<String> getTheme() async {
-    return _prefs.getString('theme') ?? 'light';
+    return _prefs.getString('theme') ?? 'dark';
   }
 
   /// Sets the selected app language.
@@ -28,7 +28,7 @@ class LocalPreferencesRepository {
 
   /// Retrieves the selected app language.
   Future<String> getLanguage() async {
-    return _prefs.getString('language') ?? 'en';
+    return _prefs.getString('language') ?? 'ja';
   }
 
   /// Sets whether to show the onboarding screen.

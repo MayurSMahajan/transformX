@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transformx/app/cubit/preferences_cubit.dart';
+import 'package:transformx/home/pages/profile_page/utils/utils.dart';
 
 class ProfilePreferences extends StatelessWidget {
   const ProfilePreferences({super.key});
@@ -60,7 +63,16 @@ class DarkModeOption extends StatefulWidget {
 }
 
 class _DarkModeOptionState extends State<DarkModeOption> {
-  bool value = false;
+  bool isDarkMode = false;
+
+  void changeTheme({required bool value}) {
+    setState(
+      () => isDarkMode = value,
+    );
+
+    final themeMode = value ? ThemeMode.dark : ThemeMode.light;
+    context.read<PreferencesCubit>().changeTheme(themeMode);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,17 +85,13 @@ class _DarkModeOptionState extends State<DarkModeOption> {
         ),
         CupertinoSwitch(
           activeColor: Colors.amber,
-          value: value,
-          onChanged: (v) => setState(
-            () => value = v,
-          ),
+          value: isDarkMode,
+          onChanged: (v) => changeTheme(value: v),
         ),
       ],
     );
   }
 }
-
-const List<String> list = ['English', 'Hindi', 'Japanese', 'German'];
 
 class LanguageDropdown extends StatefulWidget {
   const LanguageDropdown({super.key});
@@ -93,19 +101,33 @@ class LanguageDropdown extends StatefulWidget {
 }
 
 class _LanguageDropdownState extends State<LanguageDropdown> {
-  String dropdownValue = list.first;
+  String dropdownValue = 'English';
+  final langs = Languages();
+  late List<String> options;
+
+  @override
+  void initState() {
+    super.initState();
+    options = langs.languages;
+  }
+
+  void updateLanguage(String? value) {
+    setState(() {
+      dropdownValue = value!;
+    });
+    if (value != null) {
+      context
+          .read<PreferencesCubit>()
+          .changeLocale(langs.getLocaleFromString(value));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<String>(
-      initialSelection: list.first,
-      onSelected: (String? value) {
-        // This is called when the user selects an item.
-        setState(() {
-          dropdownValue = value!;
-        });
-      },
-      dropdownMenuEntries: list.map<DropdownMenuEntry<String>>((String v) {
+      initialSelection: options.first,
+      onSelected: updateLanguage,
+      dropdownMenuEntries: options.map<DropdownMenuEntry<String>>((String v) {
         return DropdownMenuEntry<String>(value: v, label: v);
       }).toList(),
     );

@@ -291,7 +291,7 @@ class AppDarkTheme extends AppTheme {
   @override
   ThemeData get themeData {
     return ThemeData.dark().copyWith(
-      canvasColor: Colors.amber.shade700,
+      canvasColor: AppColors.darkCanvasColor,
     );
   }
 
@@ -307,9 +307,9 @@ class AppDarkTheme extends AppTheme {
   @override
   TextTheme get _textTheme {
     return AppTheme.uiTextTheme.apply(
-      bodyColor: AppColors.white,
-      displayColor: AppColors.white,
-      decorationColor: AppColors.white,
+      bodyColor: AppColors.surface2,
+      displayColor: AppColors.surface2,
+      decorationColor: AppColors.surface2,
     );
   }
 
