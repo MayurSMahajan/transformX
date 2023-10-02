@@ -32,7 +32,10 @@ class HabitLoadedView extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () {},
-            child: Text(l10n.editText),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Text(l10n.editText),
+            ),
           ),
         ],
       ),

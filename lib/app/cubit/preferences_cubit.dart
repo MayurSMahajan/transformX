@@ -41,6 +41,10 @@ class PreferencesCubit extends Cubit<PreferencesState> {
     return savedTheme;
   }
 
+  bool get isDarkMode => state.currentTheme == ThemeMode.dark;
+
+  Locale get currentLocale => state.currentLocale;
+
   String _themeModeToString(ThemeMode themeMode) {
     switch (themeMode) {
       case ThemeMode.light:

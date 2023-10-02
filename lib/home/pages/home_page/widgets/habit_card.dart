@@ -38,6 +38,7 @@ class HabitCard extends StatelessWidget {
                       child: const Icon(
                         Icons.sports_gymnastics,
                         size: 22,
+                        color: Colors.black,
                       ),
                     ),
                   ),

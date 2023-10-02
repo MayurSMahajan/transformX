@@ -15,4 +15,17 @@ class Languages {
         return const Locale('en');
     }
   }
+
+  String getStringFromLocale(Locale locale) {
+    switch (locale.languageCode) {
+      case 'hi':
+        return 'हिंदी';
+      case 'ja':
+        return '日本語';
+      case 'de':
+        return 'Deutsch';
+      default:
+        return 'English';
+    }
+  }
 }

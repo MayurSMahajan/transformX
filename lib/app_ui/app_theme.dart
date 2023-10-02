@@ -30,7 +30,6 @@ class AppTheme {
       colorScheme: _colorScheme,
       bottomSheetTheme: _bottomSheetTheme,
       listTileTheme: _listTileTheme,
-      switchTheme: _switchTheme,
       progressIndicatorTheme: _progressIndicatorTheme,
       tabBarTheme: _tabBarTheme,
       navigationBarTheme: _navigationBarTheme,
@@ -128,7 +127,7 @@ class AppTheme {
       focusedBorder: _textFieldBorder,
       disabledBorder: _textFieldBorder,
       hintStyle: UITextStyle.headline4.copyWith(
-        color: AppColors.mediumEmphasisSurface,
+        color: Colors.grey,
       ),
       contentPadding: const EdgeInsets.all(AppSpacing.lg),
       border: const UnderlineInputBorder(),
@@ -214,25 +213,6 @@ class AppTheme {
     );
   }
 
-  SwitchThemeData get _switchTheme {
-    return SwitchThemeData(
-      thumbColor:
-          MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-        if (states.contains(MaterialState.selected)) {
-          return AppColors.blueDress;
-        }
-        return AppColors.eerieBlack;
-      }),
-      trackColor:
-          MaterialStateProperty.resolveWith((Set<MaterialState> states) {
-        if (states.contains(MaterialState.selected)) {
-          return AppColors.primaryContainer;
-        }
-        return AppColors.paleSky;
-      }),
-    );
-  }
-
   ProgressIndicatorThemeData get _progressIndicatorTheme {
     return const ProgressIndicatorThemeData(
       color: AppColors.primaryYellow,
@@ -264,14 +244,19 @@ class AppTheme {
 InputBorder get _textFieldBorder => const UnderlineInputBorder(
       borderSide: BorderSide(
         width: 1.5,
+        color: Colors.grey,
       ),
     );
 
 NavigationBarThemeData get _navigationBarTheme {
   return const NavigationBarThemeData(
-    elevation: 5,
     indicatorColor: AppColors.orange,
     backgroundColor: AppColors.primaryYellow,
+    iconTheme: MaterialStatePropertyAll(
+      IconThemeData(
+        color: Colors.black,
+      ),
+    ),
   );
 }
 
@@ -290,9 +275,11 @@ class AppDarkTheme extends AppTheme {
 
   @override
   ThemeData get themeData {
-    return ThemeData.dark().copyWith(
-      canvasColor: AppColors.darkCanvasColor,
-    );
+    return super.themeData.copyWith(
+          canvasColor: AppColors.darkCanvasColor,
+          textTheme: _textTheme,
+          navigationBarTheme: _navigationBarTheme,
+        );
   }
 
   @override
@@ -301,6 +288,14 @@ class AppDarkTheme extends AppTheme {
       primary: AppColors.white,
       secondary: AppColors.secondary,
       background: AppColors.grey.shade900,
+    );
+  }
+
+  @override
+  AppBarTheme get _appBarTheme {
+    return const AppBarTheme(
+      elevation: 0,
+      backgroundColor: AppColors.darkCanvasColor,
     );
   }
 
@@ -342,11 +337,23 @@ class AppDarkTheme extends AppTheme {
   }
 
   @override
-  Color get _backgroundColor => AppColors.grey.shade900;
+  Color get _backgroundColor => AppColors.onDarkBackgroundColor;
 
   @override
   IconThemeData get _iconTheme {
     return const IconThemeData(color: AppColors.white);
+  }
+
+  NavigationBarThemeData get _navigationBarTheme {
+    return const NavigationBarThemeData(
+      indicatorColor: AppColors.orange,
+      backgroundColor: AppColors.darkCanvasColor,
+      iconTheme: MaterialStatePropertyAll(
+        IconThemeData(
+          color: Colors.black,
+        ),
+      ),
+    );
   }
 
   @override

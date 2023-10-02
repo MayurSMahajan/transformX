@@ -30,7 +30,7 @@ class DailyStreakContainer extends StatelessWidget {
     final child = Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(width: 0.25),
+        border: Border.all(width: 0.25, color: Colors.grey),
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),

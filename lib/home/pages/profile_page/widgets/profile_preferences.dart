@@ -65,6 +65,15 @@ class DarkModeOption extends StatefulWidget {
 class _DarkModeOptionState extends State<DarkModeOption> {
   bool isDarkMode = false;
 
+  @override
+  void initState() {
+    super.initState();
+    final isCurrentModeDark = context.read<PreferencesCubit>().isDarkMode;
+    setState(
+      () => isDarkMode = isCurrentModeDark,
+    );
+  }
+
   void changeTheme({required bool value}) {
     setState(
       () => isDarkMode = value,
@@ -109,6 +118,11 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
   void initState() {
     super.initState();
     options = langs.languages;
+    setState(() {
+      dropdownValue = langs.getStringFromLocale(
+        context.read<PreferencesCubit>().currentLocale,
+      );
+    });
   }
 
   void updateLanguage(String? value) {
@@ -125,7 +139,11 @@ class _LanguageDropdownState extends State<LanguageDropdown> {
   @override
   Widget build(BuildContext context) {
     return DropdownMenu<String>(
-      initialSelection: options.first,
+      trailingIcon: const Icon(
+        Icons.arrow_drop_down,
+        color: Colors.grey,
+      ),
+      initialSelection: dropdownValue,
       onSelected: updateLanguage,
       dropdownMenuEntries: options.map<DropdownMenuEntry<String>>((String v) {
         return DropdownMenuEntry<String>(value: v, label: v);

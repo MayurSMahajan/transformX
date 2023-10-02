@@ -168,4 +168,6 @@ abstract class AppColors {
   static const Color faintYellowAccent = Color(0xFFFEF3D0);
 
   static const Color darkCanvasColor = Color(0xFF57554C);
+
+  static const Color onDarkBackgroundColor = Color(0xFF343432);
 }

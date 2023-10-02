@@ -9,6 +9,9 @@ final class PreferencesState extends Equatable {
   final ThemeMode themeMode;
   final Locale locale;
 
+  ThemeMode get currentTheme => themeMode;
+  Locale get currentLocale => locale;
+
   PreferencesState copyWith({
     ThemeMode? themeMode,
     Locale? locale,

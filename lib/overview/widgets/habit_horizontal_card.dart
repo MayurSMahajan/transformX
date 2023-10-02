@@ -39,6 +39,7 @@ class HabitHorizontalCard extends StatelessWidget {
                         child: const Icon(
                           Icons.sports_gymnastics,
                           size: 32,
+                          color: Colors.black,
                         ),
                       ),
                     ),
