@@ -103,24 +103,6 @@ final GoRouter routerConfig = GoRouter(
             );
           },
         ),
-        GoRoute(
-          path: 'success',
-          pageBuilder: (context, state) {
-            return CustomTransitionPage(
-              key: state.pageKey,
-              child: const TrackSuccess(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return FadeTransition(
-                  opacity: CurveTween(
-                    curve: Curves.easeIn,
-                  ).animate(animation),
-                  child: child,
-                );
-              },
-            );
-          },
-        ),
       ],
     ),
     GoRoute(

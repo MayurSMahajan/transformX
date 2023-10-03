@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
+import 'package:transformx/infra/infra.dart';
 import 'package:transformx/track/track.dart';
 
 class TrackPage extends StatefulWidget {
@@ -47,8 +47,8 @@ class _TrackPageState extends State<TrackPage> {
   }
 
   void submitTrackBySkip(int submittedMins) {
-    submitTrack(submittedMins);
     Navigator.of(context).pop();
+    submitTrack(submittedMins);
   }
 
   void submitTrack(int submittedMins) {
@@ -61,40 +61,29 @@ class _TrackPageState extends State<TrackPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(
-            Icons.arrow_back,
+        actions: [
+          TextButton(
+            onPressed: () => _show(context),
+            child: const Text('Skip and Submit'),
           ),
-        ),
-        title: Text(
-          'Track your habit progress',
-          style: Theme.of(context).textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-        centerTitle: true,
+        ],
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => _show(context),
-                    child: const Text('Skip and Submit'),
-                  ),
-                ],
+              Text(
+                widget.habit.title,
+                style: Theme.of(context).textTheme.headlineMedium,
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 62),
+              HabitMetricContainer(metric: widget.habit.metric),
               TimerWithActions(
                 maxSeconds: widget.habit.metric.ideal * 60,
                 primaryLabel: 'Submit Progress',
-                secondaryLabel: 'Submit',
                 submitProgress: submitTrack,
-                navigateMethod: () {},
               )
             ],
           ),

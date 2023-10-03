@@ -1,7 +1,6 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:habits_repository/habits_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/infra/infra.dart';
@@ -33,15 +32,7 @@ class TrackPageContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TrackBloc, TrackState>(
-      listener: (context, state) {
-        if (state.status == TrackStatus.success) {
-          context.go('/success');
-        }
-      },
-      buildWhen: (p, c) {
-        return p.status != c.status && c.status != TrackStatus.success;
-      },
+    return BlocBuilder<TrackBloc, TrackState>(
       builder: (context, state) {
         if (state.status == TrackStatus.fetched) {
           return TrackPage(
@@ -52,19 +43,12 @@ class TrackPageContent extends StatelessWidget {
         if (state.status == TrackStatus.error) {
           return const TrackError();
         }
+        if (state.status == TrackStatus.success) {
+          return const TrackSuccess();
+        }
+
         return const ProgressCircle();
       },
-    );
-  }
-}
-
-class TrackError extends StatelessWidget {
-  const TrackError({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Some problem occured'),
     );
   }
 }

@@ -7,21 +7,17 @@ const pauseTimerLabel = 'Pause Timer';
 
 class TimerWithActions extends StatefulWidget {
   const TimerWithActions({
-    required this.navigateMethod,
     required this.submitProgress,
     required this.maxSeconds,
     this.primaryLabel = 'Start Habit',
-    this.secondaryLabel = 'Skip',
     this.isRitual = false,
     super.key,
   });
 
   final ValueSetter<int> submitProgress;
-  final VoidCallback navigateMethod;
   final bool isRitual;
   final int maxSeconds;
   final String primaryLabel;
-  final String secondaryLabel;
 
   @override
   State<TimerWithActions> createState() => _TimerWithActionsState();
@@ -77,7 +73,6 @@ class _TimerWithActionsState extends State<TimerWithActions>
   void submitProgress() {
     final mins = _controller.value * widget.maxSeconds ~/ 60;
     widget.submitProgress(mins);
-    widget.navigateMethod();
   }
 
   @override
@@ -103,26 +98,38 @@ class _TimerWithActionsState extends State<TimerWithActions>
             );
           },
         ),
-        const AspectRatio(aspectRatio: 2, child: SizedBox()),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Expanded(
-              child: SecondaryButton(
-                label: widget.secondaryLabel,
-                onPressed: secondaryMethod,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              flex: 2,
-              child: PrimaryButton(
+        const AspectRatio(aspectRatio: 2.5, child: SizedBox()),
+        if (widget.isRitual)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              PrimaryButton(
                 onPressed: toggleTimer,
                 text: isTimerCompleted ? widget.primaryLabel : timerActionLabel,
               ),
-            ),
-          ],
-        ),
+            ],
+          )
+        else
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: SecondaryButton(
+                  label: 'Submit',
+                  onPressed: secondaryMethod,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                flex: 2,
+                child: PrimaryButton(
+                  onPressed: toggleTimer,
+                  text:
+                      isTimerCompleted ? widget.primaryLabel : timerActionLabel,
+                ),
+              ),
+            ],
+          ),
       ],
     );
   }

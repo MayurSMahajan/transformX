@@ -19,12 +19,12 @@ class TrackRitualPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () => context.pop(),
-          icon: const Icon(
-            Icons.arrow_back,
+        actions: [
+          TextButton(
+            onPressed: () => context.push('/progress', extra: habit),
+            child: const Text('Skip'),
           ),
-        ),
+        ],
         title: Text(
           'Complete Your 1-min Ritual',
           style: Theme.of(context).textTheme.bodyLarge,
@@ -36,18 +36,16 @@ class TrackRitualPage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 40),
               Text(
                 habit.ritual,
                 style: Theme.of(context).textTheme.headlineMedium,
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 40),
               TimerWithActions(
                 maxSeconds: 60,
                 submitProgress: ritualProgress,
-                navigateMethod: () => context.push('/progress', extra: habit),
                 isRitual: true,
               ),
             ],

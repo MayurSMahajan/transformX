@@ -1,3 +1,4 @@
+export 'habit_metric_container.dart';
 export 'hspace.dart';
 export 'metadata_card.dart';
 export 'primary_button.dart';
