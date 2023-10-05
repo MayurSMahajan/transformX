@@ -142,9 +142,7 @@ class _HabitMetricTitleInput extends StatelessWidget {
         ),
         Text(
           l10n.minutes,
-          style: UITextStyle.headline4.copyWith(
-            color: AppColors.mediumEmphasisSurface,
-          ),
+          style: UITextStyle.headline4,
         ),
       ],
     );

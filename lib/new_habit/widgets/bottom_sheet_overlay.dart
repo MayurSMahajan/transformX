@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BottomSheetOverlay extends StatelessWidget {
-  const BottomSheetOverlay({super.key, this.paddingTop = 20});
+  const BottomSheetOverlay({super.key, this.paddingTop = 21});
 
   final double paddingTop;
 
@@ -13,7 +13,7 @@ class BottomSheetOverlay extends StatelessWidget {
         height: 60,
         width: 300,
         decoration: BoxDecoration(
-          color: Colors.amber.shade100,
+          color: Theme.of(context).indicatorColor,
           borderRadius: BorderRadius.circular(8),
         ),
       ),

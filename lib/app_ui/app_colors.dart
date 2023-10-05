@@ -170,4 +170,8 @@ abstract class AppColors {
   static const Color darkCanvasColor = Color(0xFF57554C);
 
   static const Color onDarkBackgroundColor = Color(0xFF343432);
+
+  static Color overlayColor = Colors.amber.shade100;
+
+  static const Color darkOverlayColor = Color.fromARGB(255, 59, 58, 52);
 }

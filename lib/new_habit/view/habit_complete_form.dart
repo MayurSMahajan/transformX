@@ -32,7 +32,6 @@ class HabitCompleteFormSuccessfull extends StatelessWidget {
     final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-      color: const Color(0xFFF6F6EA),
       child: Stack(
         alignment: Alignment.center,
         children: [

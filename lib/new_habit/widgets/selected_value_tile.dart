@@ -31,7 +31,6 @@ class SelectedValueTile extends StatelessWidget {
           child: Text(
             subLabel,
             style: UITextStyle.headline6.copyWith(
-              color: AppColors.mediumEmphasisSurface,
               fontWeight: FontWeight.w300,
             ),
           ),

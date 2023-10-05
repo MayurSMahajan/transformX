@@ -64,7 +64,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                const BottomSheetOverlay(paddingTop: 12),
+                const BottomSheetOverlay(paddingTop: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

@@ -15,6 +15,7 @@ class AppTheme {
       primaryColor: AppColors.primaryYellow,
       canvasColor: _canvasColor,
       scaffoldBackgroundColor: _backgroundColor,
+      indicatorColor: AppColors.overlayColor,
       iconTheme: _iconTheme,
       appBarTheme: _appBarTheme,
       dividerTheme: _dividerTheme,
@@ -279,6 +280,7 @@ class AppDarkTheme extends AppTheme {
           canvasColor: AppColors.darkCanvasColor,
           textTheme: _textTheme,
           navigationBarTheme: _navigationBarTheme,
+          indicatorColor: AppColors.darkOverlayColor,
         );
   }
 
