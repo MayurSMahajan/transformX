@@ -44,7 +44,9 @@ class TrackPageContent extends StatelessWidget {
           return const TrackError();
         }
         if (state.status == TrackStatus.success) {
-          return const TrackSuccess();
+          return TrackSuccess(
+            shortReward: habit.shortReward,
+          );
         }
 
         return const ProgressCircle();

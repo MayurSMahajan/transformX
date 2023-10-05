@@ -6,7 +6,9 @@ import 'package:transformx/home/pages/home_page/cubit/streak_cubit.dart';
 import 'package:transformx/infra/infra.dart';
 
 class TrackSuccess extends StatefulWidget {
-  const TrackSuccess({super.key});
+  const TrackSuccess({required this.shortReward, super.key});
+
+  final String shortReward;
 
   @override
   State<TrackSuccess> createState() => _TrackSuccessState();
@@ -62,14 +64,21 @@ class _TrackSuccessState extends State<TrackSuccess>
                 ],
               ),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
                     'Reward Unlocked',
                     style: Theme.of(context).textTheme.displaySmall,
+                    textAlign: TextAlign.center,
                   ),
                   const VSpace(),
                   Text(
-                    'Habit Nailed, Enjoy your Reward',
+                    'Habit Nailed, Enjoy your Reward: ',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  Text(
+                    widget.shortReward,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),

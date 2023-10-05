@@ -61,7 +61,7 @@ class _StatsLoadedViewState extends State<StatsLoadedView> {
                 },
                 icon: const Icon(
                   Icons.chevron_left_rounded,
-                  size: 38,
+                  size: 34,
                 ),
               ),
               Expanded(
@@ -86,7 +86,7 @@ class _StatsLoadedViewState extends State<StatsLoadedView> {
                 },
                 icon: const Icon(
                   Icons.chevron_right_rounded,
-                  size: 38,
+                  size: 34,
                 ),
               ),
             ],
