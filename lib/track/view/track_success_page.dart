@@ -1,6 +1,8 @@
 import 'package:animated_icon_button/animated_icon_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transformx/home/pages/home_page/cubit/streak_cubit.dart';
 import 'package:transformx/infra/infra.dart';
 
 class TrackSuccess extends StatefulWidget {
@@ -27,6 +29,11 @@ class _TrackSuccessState extends State<TrackSuccess>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  void onContinue() {
+    context.read<StreakCubit>().getStreak();
+    context.go('/');
   }
 
   @override
@@ -69,7 +76,7 @@ class _TrackSuccessState extends State<TrackSuccess>
                 ],
               ),
               PrimaryButton(
-                onPressed: () => context.go('/'),
+                onPressed: onContinue,
                 text: 'Continue',
               ),
             ],

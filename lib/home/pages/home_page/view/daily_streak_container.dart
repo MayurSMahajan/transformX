@@ -1,7 +1,5 @@
-import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stats_repository/stats_repository.dart';
 import 'package:transformx/app_ui/app_ui.dart';
 import 'package:transformx/home/pages/home_page/cubit/streak_cubit.dart';
 import 'package:transformx/home/pages/home_page/widgets/widgets.dart';
@@ -12,13 +10,7 @@ class DailyStreakContainerWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StreakCubit(
-        statsRepository: context.read<StatsRepository>(),
-        userId: context.read<AuthenticationRepository>().currentUser.id,
-      )..getStreak(),
-      child: const DailyStreakContainer(),
-    );
+    return const DailyStreakContainer();
   }
 }
 

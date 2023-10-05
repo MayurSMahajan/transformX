@@ -6,8 +6,8 @@ import 'package:local_preferences_repository/local_preferences_repository.dart';
 import 'package:stats_repository/stats_repository.dart';
 import 'package:track_repository/track_repository.dart';
 import 'package:transformx/app/app.dart';
-import 'package:transformx/app/cubit/preferences_cubit.dart';
 import 'package:transformx/app_ui/app_ui.dart';
+import 'package:transformx/home/pages/home_page/home_page.dart';
 import 'package:transformx/l10n/l10n.dart';
 
 class App extends StatelessWidget {
@@ -51,6 +51,12 @@ class App extends StatelessWidget {
             create: (context) => PreferencesCubit(
               localPreferencesRepository: _preferencesRepository,
             )..getDefaultPreferences(),
+          ),
+          BlocProvider(
+            create: (context) => StreakCubit(
+              statsRepository: context.read<StatsRepository>(),
+              userId: context.read<AuthenticationRepository>().currentUser.id,
+            )..getStreak(),
           ),
         ],
         child: const AppView(),
