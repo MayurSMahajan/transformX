@@ -5,6 +5,9 @@ import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
 
+const demoTitle = 'Congratulations!';
+const demoBody = 'You have taken the most important step towards a better you!';
+
 class HabitInitialForm extends StatefulWidget {
   const HabitInitialForm({super.key});
 

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_statements
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:transformx/infra/infra.dart';
@@ -13,6 +15,9 @@ class HabitQuarterAndHalfForm extends StatefulWidget {
 }
 
 class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
+  final LocalNotificationService notificationService =
+      LocalNotificationService();
+
   final shortRewardFocusNode = FocusNode();
   final longRewardFocusNode = FocusNode();
   final shortRewardController = TextEditingController();
@@ -24,6 +29,7 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
   void initState() {
     super.initState();
     shortRewardFocusNode.requestFocus();
+    notificationService.initializeNotifications();
   }
 
   @override
@@ -37,18 +43,29 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
 
   void submitInputs() {
     if (_habitRewardForm.currentState!.validate()) {
-      context.read<NewHabitUICubit>().setStatusAndProgress(
-            NewHabitUIStatus.complete,
-            0.95,
-          );
-      context.read<NewHabitFormBloc>().add(
-            HabitShortRewardChanged(shortRewardController.text),
-          );
-      context.read<NewHabitFormBloc>().add(
-            HabitLongRewardChanged(longRewardController.text),
-          );
-      context.read<NewHabitFormBloc>().add(const HabitSubmitted());
+      // context.read<NewHabitUICubit>().setStatusAndProgress(
+      //       NewHabitUIStatus.complete,
+      //       0.95,
+      //     );
+      // context.read<NewHabitFormBloc>().add(
+      //       HabitShortRewardChanged(shortRewardController.text),
+      //     );
+      // context.read<NewHabitFormBloc>().add(
+      //       HabitLongRewardChanged(longRewardController.text),
+      //     );
+      // context.read<NewHabitFormBloc>().add(const HabitSubmitted());
+      _setNotificationReminder();
     }
+  }
+
+  void _setNotificationReminder() {
+    int hour;
+    int mins;
+    String title;
+    String body;
+    (title, body, hour, mins) =
+        context.read<NewHabitFormBloc>().getNotificationDetails();
+    notificationService.scheduleNotification(title, body, hour, mins);
   }
 
   @override

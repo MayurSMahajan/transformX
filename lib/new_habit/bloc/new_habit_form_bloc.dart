@@ -28,6 +28,17 @@ class NewHabitFormBloc extends Bloc<NewHabitFormEvent, NewHabitFormState> {
   final HabitsRepository _habitsRepository;
   final String _userId;
 
+  (String, String, int, int) getNotificationDetails() {
+    final title = 'Time to ${state.habitName}';
+    const body = 'Extend your habit streak, take a step today';
+    var hour = state.habitTime.hour;
+    final mins = state.habitTime.mins;
+    if (!state.habitTime.isAm) {
+      hour += 12;
+    }
+    return (title, body, hour, mins);
+  }
+
   void _onHabitNameChanged(
     HabitNameChanged event,
     Emitter<NewHabitFormState> emit,
