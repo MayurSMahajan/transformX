@@ -43,17 +43,17 @@ class _HabitQuarterAndHalfFormState extends State<HabitQuarterAndHalfForm> {
 
   void submitInputs() {
     if (_habitRewardForm.currentState!.validate()) {
-      // context.read<NewHabitUICubit>().setStatusAndProgress(
-      //       NewHabitUIStatus.complete,
-      //       0.95,
-      //     );
-      // context.read<NewHabitFormBloc>().add(
-      //       HabitShortRewardChanged(shortRewardController.text),
-      //     );
-      // context.read<NewHabitFormBloc>().add(
-      //       HabitLongRewardChanged(longRewardController.text),
-      //     );
-      // context.read<NewHabitFormBloc>().add(const HabitSubmitted());
+      context.read<NewHabitUICubit>().setStatusAndProgress(
+            NewHabitUIStatus.complete,
+            0.95,
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitShortRewardChanged(shortRewardController.text),
+          );
+      context.read<NewHabitFormBloc>().add(
+            HabitLongRewardChanged(longRewardController.text),
+          );
+      context.read<NewHabitFormBloc>().add(const HabitSubmitted());
       _setNotificationReminder();
     }
   }
