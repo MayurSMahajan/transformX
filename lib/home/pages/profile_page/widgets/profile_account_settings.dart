@@ -56,7 +56,7 @@ class ProfileAccountSettings extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

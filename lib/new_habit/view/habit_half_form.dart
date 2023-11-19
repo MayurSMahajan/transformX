@@ -83,7 +83,7 @@ class _HabitHalfFormState extends State<HabitHalfForm> {
                   child: NextButton(
                     onPressed: submitInputs,
                   ),
-                )
+                ),
               ],
             ),
             const VSpace(),

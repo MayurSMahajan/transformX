@@ -84,7 +84,7 @@ class _TrackPageState extends State<TrackPage> {
                 maxSeconds: widget.habit.metric.ideal * 60,
                 primaryLabel: 'Submit Progress',
                 submitProgress: submitTrack,
-              )
+              ),
             ],
           ),
         ),

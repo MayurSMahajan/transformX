@@ -88,7 +88,7 @@ class _SkipTimerStatePopup extends State<SkipTimerPopup> {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),

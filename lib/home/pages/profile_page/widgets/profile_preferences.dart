@@ -42,11 +42,11 @@ class ProfilePreferences extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  const DarkModeOption()
+                  const DarkModeOption(),
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

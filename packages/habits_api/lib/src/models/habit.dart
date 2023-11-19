@@ -150,7 +150,7 @@ class Habit extends Equatable {
         shortReward,
         longReward,
         streak,
-        record
+        record,
       ];
 
   /// Returns a dummy or empty habit.

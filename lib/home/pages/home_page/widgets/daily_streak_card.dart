@@ -33,7 +33,7 @@ class DailyStreakCard extends StatelessWidget {
             FontAwesomeIcons.fire,
             size: 20,
             color: Colors.grey,
-          )
+          ),
       ],
     );
   }

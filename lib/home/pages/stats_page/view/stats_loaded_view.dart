@@ -90,7 +90,7 @@ class _StatsLoadedViewState extends State<StatsLoadedView> {
                 ),
               ),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -67,22 +67,24 @@ void main() {
     test('props are correct', () {
       expect(
         createSubject().props,
-        equals([
-          '1',
-          'title',
-          'location',
-          12,
-          55,
-          false,
-          'minutes',
-          25,
-          60,
-          'ritual',
-          'shortReward',
-          'longReward',
-          0,
-          0
-        ]),
+        equals(
+          [
+            '1',
+            'title',
+            'location',
+            12,
+            55,
+            false,
+            'minutes',
+            25,
+            60,
+            'ritual',
+            'shortReward',
+            'longReward',
+            0,
+            0,
+          ],
+        ),
       );
     });
 
