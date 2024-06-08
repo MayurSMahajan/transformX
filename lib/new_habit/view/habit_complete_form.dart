@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:transformx/infra/infra.dart';
 import 'package:transformx/l10n/l10n.dart';
 import 'package:transformx/new_habit/new_habit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HabitCompleteForm extends StatelessWidget {
   const HabitCompleteForm({super.key});
@@ -40,7 +41,11 @@ class HabitCompleteFormSuccessfull extends StatelessWidget {
               const VSpace(),
               const CustomProgressIndicator(progress: 1),
               const VSpace(),
-              Image.asset('assets/illustrations/baloon.png', height: 350),
+              SvgPicture.asset(
+                'assets/illustrations/complete.svg',
+                semanticsLabel: 'Habit Created',
+                height: 350,
+              ),
             ],
           ),
           Positioned(

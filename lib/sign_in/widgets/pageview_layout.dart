@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PageViewLayout extends StatelessWidget {
   const PageViewLayout({
@@ -18,10 +19,10 @@ class PageViewLayout extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height / 2.5,
-          child: Image.asset(
+          child: SvgPicture.asset(
             imagePath,
+            height: MediaQuery.of(context).size.height / 2.5,
+            width: MediaQuery.of(context).size.width,
           ),
         ),
         Padding(

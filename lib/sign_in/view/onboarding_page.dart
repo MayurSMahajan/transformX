@@ -21,7 +21,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       context.read<SignInCubit>().setShowOnboarding();
     } else {
       _controller.nextPage(
-        duration: const Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 400),
         curve: Curves.easeIn,
       );
     }
@@ -33,7 +33,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   void goToBackPage() {
     _controller.previousPage(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 400),
       curve: Curves.easeIn,
     );
   }
@@ -97,7 +97,7 @@ class _JourneyPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return PageViewLayout(
-      imagePath: 'assets/illustrations/journey.png',
+      imagePath: 'assets/illustrations/journey.svg',
       title: l10n.journeyTitle,
       subtitle: l10n.journeySubTitle,
     );
@@ -111,7 +111,7 @@ class _LoopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return PageViewLayout(
-      imagePath: 'assets/illustrations/loop.png',
+      imagePath: 'assets/illustrations/loop.svg',
       title: l10n.loopTitle,
       subtitle: l10n.loopSubTitle,
     );
@@ -125,7 +125,7 @@ class _GardenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return PageViewLayout(
-      imagePath: 'assets/illustrations/garden.png',
+      imagePath: 'assets/illustrations/garden.svg',
       title: l10n.gardenTitle,
       subtitle: l10n.gardenSubTitle,
     );
