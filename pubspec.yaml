@@ -17,16 +17,16 @@ dependencies:
     path: packages/firebase_habits_api
   firebase_track_api:
     path: packages/firebase_track_api
-  fl_chart: ^0.66.2
+  fl_chart: ^0.68.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
-  flutter_local_notifications: ^16.0.0+1
+  flutter_local_notifications: ^17.1.2
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.10+1
   font_awesome_flutter: ^10.5.0
-  go_router: ^13.2.0
+  go_router: ^14.2.0
   habits_api:
     path: packages/habits_api
   habits_repository:
