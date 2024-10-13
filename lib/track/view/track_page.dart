@@ -48,7 +48,7 @@ class _TrackPageState extends State<TrackPage> {
 
   void submitTrackBySkip(int submittedMins) {
     Navigator.of(context).pop();
-    submitTrack(submittedMins);
+    _showConfirmationDialog(submittedMinutes: submittedMins);
   }
 
   void submitTrack(int submittedMins) {
@@ -89,6 +89,36 @@ class _TrackPageState extends State<TrackPage> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> _showConfirmationDialog({int submittedMinutes = 0}) async {
+    final alertMsg =
+        'You are submitting $submittedMinutes as your tracked progress today.';
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Sure you want to skip the timer'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(alertMsg),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Approve'),
+              onPressed: () {
+                submitTrack(submittedMinutes);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
