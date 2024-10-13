@@ -18,7 +18,7 @@ class PrimaryButton extends StatelessWidget {
       style: Theme.of(context)
           .elevatedButtonTheme
           .style
-          ?.copyWith(backgroundColor: MaterialStatePropertyAll(color)),
+          ?.copyWith(backgroundColor: WidgetStatePropertyAll(color)),
       onPressed: onPressed,
       child: Text(text),
     );

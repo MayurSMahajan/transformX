@@ -44,7 +44,7 @@ class _HabitRitualContainerState extends State<HabitRitualContainer> {
                     ),
               ),
               Checkbox(
-                fillColor: const MaterialStatePropertyAll(Colors.amber),
+                fillColor: const WidgetStatePropertyAll(Colors.amber),
                 value: isChecked,
                 onChanged: (value) {
                   setState(() => isChecked = value!);

@@ -42,7 +42,7 @@ class AppTheme {
     return ColorScheme.fromSeed(
       seedColor: AppColors.primaryYellow,
     ).copyWith(
-      background: AppColors.faintYellowBackground,
+      surface: AppColors.faintYellowBackground,
     );
   }
 
@@ -253,7 +253,7 @@ NavigationBarThemeData get _navigationBarTheme {
   return const NavigationBarThemeData(
     indicatorColor: AppColors.orange,
     backgroundColor: AppColors.primaryYellow,
-    iconTheme: MaterialStatePropertyAll(
+    iconTheme: WidgetStatePropertyAll(
       IconThemeData(
         color: Colors.black,
       ),
@@ -289,7 +289,7 @@ class AppDarkTheme extends AppTheme {
     return const ColorScheme.dark().copyWith(
       primary: AppColors.white,
       secondary: AppColors.secondary,
-      background: AppColors.grey.shade900,
+      surface: AppColors.grey.shade900,
     );
   }
 
@@ -350,7 +350,7 @@ class AppDarkTheme extends AppTheme {
     return const NavigationBarThemeData(
       indicatorColor: AppColors.orange,
       backgroundColor: AppColors.darkCanvasColor,
-      iconTheme: MaterialStatePropertyAll(
+      iconTheme: WidgetStatePropertyAll(
         IconThemeData(
           color: Colors.black,
         ),
