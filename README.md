@@ -10,8 +10,7 @@ A habit tracking app based on the Atomic Habits
 
 Screenshots:
 
-![screenshots](https://github.com/user-attachments/assets/b9287190-1044-4e77-a7aa-7a9726e43f6b)
-
+![transformx-snapshot](https://github.com/user-attachments/assets/9b4caece-1e23-464a-8406-3e8782711ae7)
 
 ---
 
