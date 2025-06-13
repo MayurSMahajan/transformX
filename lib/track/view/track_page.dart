@@ -94,13 +94,13 @@ class _TrackPageState extends State<TrackPage> {
 
   Future<void> _showConfirmationDialog({int submittedMinutes = 0}) async {
     final alertMsg =
-        'You are submitting $submittedMinutes as your tracked progress today.';
+        'You are submitting $submittedMinutes min(s) as your tracked progress today.';
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Sure you want to skip the timer'),
+          title: const Text('Are you sure to skip the timer?'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
